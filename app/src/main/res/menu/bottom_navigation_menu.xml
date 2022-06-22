@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/cocktailsFragment"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="@string/cocktails" />
+
+    <item
+        android:id="@+id/categoriesFragment"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="@string/categories" />
+
+    <item
+        android:id="@+id/randomCocktailFragment"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="@string/random" />
+
+    <item
+        android:id="@+id/searchIngredientFragment"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="@string/ingredients" />
+</menu>
