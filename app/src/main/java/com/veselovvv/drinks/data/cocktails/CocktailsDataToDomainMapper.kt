@@ -1,5 +1,5 @@
 package com.veselovvv.drinks.data.cocktails
 
-import com.veselovvv.drinks.data.core.DataToDomain
+import com.veselovvv.drinks.core.Mapper
 
-abstract class CocktailsDataToDomainMapper : DataToDomain<List<CocktailData>, CocktailsDomain>()
+abstract class CocktailsDataToDomainMapper : Mapper.DataToDomain<List<CocktailData>, CocktailsDomain>

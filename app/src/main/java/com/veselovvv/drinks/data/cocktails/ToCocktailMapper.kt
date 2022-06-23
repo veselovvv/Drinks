@@ -1,6 +1,8 @@
 package com.veselovvv.drinks.data.cocktails
 
-interface ToCocktailMapper {
+import com.veselovvv.drinks.core.Mapper
+
+interface ToCocktailMapper : Mapper {
     fun map(id: String, name: String, category: String, photoUrl: String): CocktailData
 
     class Base : ToCocktailMapper {

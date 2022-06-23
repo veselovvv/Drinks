@@ -6,8 +6,9 @@ import com.google.gson.reflect.TypeToken
 interface CocktailsCloudDataSource {
     suspend fun fetchCocktails(): List<CocktailCloud>
 
-    class Base(private val service: CocktailsService, private val gson: Gson) :
-        CocktailsCloudDataSource {
+    class Base(
+        private val service: CocktailsService, private val gson: Gson
+    ) : CocktailsCloudDataSource {
         private val type = object : TypeToken<List<CocktailCloud>>() {}.type
 
         override suspend fun fetchCocktails(): List<CocktailCloud> =

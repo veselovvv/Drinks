@@ -1,6 +1,8 @@
 package com.veselovvv.drinks.data.cocktails.cloud
 
 import com.google.gson.annotations.SerializedName
+import com.veselovvv.drinks.core.Object
+import com.veselovvv.drinks.data.cocktails.CocktailData
 import com.veselovvv.drinks.data.cocktails.ToCocktailMapper
 
 data class CocktailCloud(
@@ -12,6 +14,6 @@ data class CocktailCloud(
     private val category: String,
     @SerializedName("strDrinkThumb")
     private val photoUrl: String
-) {
-    fun map(mapper: ToCocktailMapper) = mapper.map(id, name, category, photoUrl)
+) : Object<CocktailData, ToCocktailMapper> {
+    override fun map(mapper: ToCocktailMapper) = mapper.map(id, name, category, photoUrl)
 }
