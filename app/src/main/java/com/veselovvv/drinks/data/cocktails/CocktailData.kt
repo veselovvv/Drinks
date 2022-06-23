@@ -1,6 +1,7 @@
 package com.veselovvv.drinks.data.cocktails
 
 import com.veselovvv.drinks.core.Object
+import com.veselovvv.drinks.domain.cocktails.CocktailDomain
 
 data class CocktailData(
     private val id: String,

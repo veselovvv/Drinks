@@ -1,6 +1,7 @@
 package com.veselovvv.drinks.data.cocktails
 
 import com.veselovvv.drinks.core.Object
+import com.veselovvv.drinks.domain.cocktails.CocktailsDomain
 import java.lang.Exception
 
 sealed class CocktailsData : Object<CocktailsDomain, CocktailsDataToDomainMapper> {
