@@ -1,0 +1,16 @@
+package com.veselovvv.drinks.presentation.cocktails
+
+import com.veselovvv.drinks.core.ErrorType
+import com.veselovvv.drinks.core.ResourceProvider
+import com.veselovvv.drinks.domain.cocktails.CocktailDomain
+import com.veselovvv.drinks.domain.cocktails.CocktailDomainToUiMapper
+import com.veselovvv.drinks.domain.cocktails.CocktailsDomainToUiMapper
+
+class BaseCocktailsDomainToUiMapper(
+    private val resourceProvider: ResourceProvider,
+    private val cocktailMapper: CocktailDomainToUiMapper,
+    private val cocktailsMapper: CocktailsDomainToUiMapper
+) : CocktailsDomainToUiMapper(resourceProvider) {
+    override fun map(data: List<CocktailDomain>) = CocktailsUi.Success(data, cocktailMapper)
+    override fun map(errorType: ErrorType) = CocktailsUi.Fail(errorType, cocktailsMapper)
+}

@@ -25,7 +25,7 @@ interface Mapper {
         fun map(errorType: ErrorType): T
 
         abstract class Base<S, T>(private val resourceProvider: ResourceProvider) : DomainToUi<S, T> {
-            protected fun getErrorMessage(errorType: ErrorType) = resourceProvider.getString(
+            fun getErrorMessage(errorType: ErrorType) = resourceProvider.getString(
                 when (errorType) {
                     ErrorType.NO_CONNECTION -> R.string.no_connection_message
                     ErrorType.SERVICE_UNAVAILABLE -> R.string.service_unavailable_message
