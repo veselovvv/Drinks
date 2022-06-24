@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/cocktail_name_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
             android:textStyle="bold"
             tools:text="Cocktail" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/cocktail_category_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
