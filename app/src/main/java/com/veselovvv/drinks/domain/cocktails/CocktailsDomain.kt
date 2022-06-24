@@ -4,6 +4,7 @@ import com.veselovvv.drinks.core.ErrorType
 import com.veselovvv.drinks.core.Object
 import com.veselovvv.drinks.data.cocktails.CocktailData
 import com.veselovvv.drinks.data.cocktails.CocktailDataToDomainMapper
+import com.veselovvv.drinks.presentation.cocktails.CocktailsUi
 
 sealed class CocktailsDomain : Object<CocktailsUi, CocktailsDomainToUiMapper> {
     data class Success(

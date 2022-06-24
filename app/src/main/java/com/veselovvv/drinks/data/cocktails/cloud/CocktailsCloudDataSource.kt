@@ -9,9 +9,11 @@ interface CocktailsCloudDataSource {
     class Base(
         private val service: CocktailsService, private val gson: Gson
     ) : CocktailsCloudDataSource {
-        private val type = object : TypeToken<List<CocktailCloud>>() {}.type
+        private val type = object : TypeToken<DrinksCloud>() {}.type
 
-        override suspend fun fetchCocktails(): List<CocktailCloud> =
-            gson.fromJson(service.fetchCocktails().string(), type)
+        override suspend fun fetchCocktails(): List<CocktailCloud> {
+            val drinks: DrinksCloud = gson.fromJson(service.fetchCocktails().string(), type)
+            return drinks.getCocktailsList()
+        }
     }
 }

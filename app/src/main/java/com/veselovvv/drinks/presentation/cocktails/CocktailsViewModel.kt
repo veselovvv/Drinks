@@ -6,11 +6,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.veselovvv.drinks.domain.cocktails.CocktailsDomainToUiMapper
 import com.veselovvv.drinks.domain.cocktails.FetchCocktailsUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class CocktailsViewModel(
+@HiltViewModel
+class CocktailsViewModel @Inject constructor(
     private val fetchCocktailsUseCase: FetchCocktailsUseCase,
     private val mapper: CocktailsDomainToUiMapper,
     private val communication: CocktailsCommunication

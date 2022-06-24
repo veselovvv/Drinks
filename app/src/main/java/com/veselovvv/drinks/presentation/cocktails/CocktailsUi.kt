@@ -20,10 +20,9 @@ sealed class CocktailsUi : Object<Unit, CocktailsCommunication> {
     }
 
     class Fail(
-        private val errorType: ErrorType,
-        private val cocktailMapper: CocktailsDomainToUiMapper
+        private val errorMessage: String
     ) : CocktailsUi() {
         override fun map(mapper: CocktailsCommunication) =
-            mapper.map(listOf(CocktailUi.Fail(cocktailMapper.getErrorMessage(errorType))))
+            mapper.map(listOf(CocktailUi.Fail(errorMessage)))
     }
 }

@@ -8,9 +8,8 @@ import com.veselovvv.drinks.domain.cocktails.CocktailsDomainToUiMapper
 
 class BaseCocktailsDomainToUiMapper(
     private val resourceProvider: ResourceProvider,
-    private val cocktailMapper: CocktailDomainToUiMapper,
-    private val cocktailsMapper: CocktailsDomainToUiMapper
+    private val cocktailMapper: CocktailDomainToUiMapper
 ) : CocktailsDomainToUiMapper(resourceProvider) {
     override fun map(data: List<CocktailDomain>) = CocktailsUi.Success(data, cocktailMapper)
-    override fun map(errorType: ErrorType) = CocktailsUi.Fail(errorType, cocktailsMapper)
+    override fun map(errorType: ErrorType) = CocktailsUi.Fail(getErrorMessage(errorType))
 }

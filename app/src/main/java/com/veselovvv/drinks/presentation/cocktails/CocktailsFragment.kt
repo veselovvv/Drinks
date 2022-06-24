@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.veselovvv.drinks.R
 import com.veselovvv.drinks.core.Retry
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CocktailsFragment : Fragment() {
     private val viewModel: CocktailsViewModel by viewModels()
     private lateinit var recyclerView: RecyclerView // TODO add Toolbar?

@@ -5,7 +5,7 @@ import com.veselovvv.drinks.core.Object
 
 sealed class CocktailUi : Object<Unit, CocktailUi.BaseMapper> {
     override fun map(mapper: BaseMapper) = Unit
-    open fun open(cocktailListener: DrinksAdapter.CocktailListener) = Unit
+    //open fun open(cocktailListener: DrinksAdapter.CocktailListener) = Unit
 
     object Progress : CocktailUi()
 
@@ -16,8 +16,8 @@ sealed class CocktailUi : Object<Unit, CocktailUi.BaseMapper> {
         private val photoUrl: String
     ) : CocktailUi() {
         override fun map(mapper: BaseMapper) = mapper.map(id, name, category, photoUrl)
-        override fun open(cocktailListener: DrinksAdapter.CocktailListener) =
-            cocktailListener.showCocktails(name, category, photoUrl)
+        //override fun open(cocktailListener: DrinksAdapter.CocktailListener) =
+           // cocktailListener.showCocktails(name, category, photoUrl)
     }
 
     class Fail(private val message: String) : CocktailUi() {
