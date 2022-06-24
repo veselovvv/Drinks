@@ -4,10 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textview.MaterialTextView
 import com.veselovvv.drinks.R
 import com.veselovvv.drinks.core.Retry
+import de.hdodenhof.circleimageview.CircleImageView
 
 class DrinksAdapter(private val retry: Retry) : RecyclerView.Adapter<DrinksAdapter.DrinksViewHolder>() {
     private val cocktails = ArrayList<CocktailUi>()
@@ -41,12 +43,14 @@ class DrinksAdapter(private val retry: Retry) : RecyclerView.Adapter<DrinksAdapt
         class FullscreenProgress(view: View) : DrinksViewHolder(view)
 
         class Base(view: View) : DrinksViewHolder(view) {
+            private val photoImageView = itemView.findViewById<CircleImageView>(R.id.cocktail_photo_image_view)
             private val nameTextView = itemView.findViewById<MaterialTextView>(R.id.cocktail_name_text_view)
             private val categoryTextView = itemView.findViewById<MaterialTextView>(R.id.cocktail_category_text_view)
 
             override fun bind(cocktail: CocktailUi) {
                 cocktail.map(object : CocktailUi.BaseMapper {
                     override fun map(id: String, name: String, category: String, photoUrl: String) {
+                        Glide.with(itemView).load(photoUrl).into(photoImageView)
                         nameTextView.text = name
                         categoryTextView.text = category
                     }
