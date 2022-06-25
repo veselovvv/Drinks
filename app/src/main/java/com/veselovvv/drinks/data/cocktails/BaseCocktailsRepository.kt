@@ -15,4 +15,14 @@ class BaseCocktailsRepository(
     } catch (e: Exception) {
         CocktailsData.Fail(e)
     }
+
+    override suspend fun searchCocktails(query: String) = try {
+        val cocktailsCloudList = cloudDataSource.fetchCocktails().filter { cocktail ->
+            cocktail.getName().startsWith(query)
+        }
+        val cocktails = cocktailsCloudMapper.map(cocktailsCloudList)
+        CocktailsData.Success(cocktails)
+    } catch (e: Exception) {
+        CocktailsData.Fail(e)
+    }
 }

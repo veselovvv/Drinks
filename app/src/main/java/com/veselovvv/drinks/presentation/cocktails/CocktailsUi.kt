@@ -1,10 +1,8 @@
 package com.veselovvv.drinks.presentation.cocktails
 
-import com.veselovvv.drinks.core.ErrorType
 import com.veselovvv.drinks.core.Object
 import com.veselovvv.drinks.domain.cocktails.CocktailDomain
 import com.veselovvv.drinks.domain.cocktails.CocktailDomainToUiMapper
-import com.veselovvv.drinks.domain.cocktails.CocktailsDomainToUiMapper
 
 sealed class CocktailsUi : Object<Unit, CocktailsCommunication> {
     class Success(

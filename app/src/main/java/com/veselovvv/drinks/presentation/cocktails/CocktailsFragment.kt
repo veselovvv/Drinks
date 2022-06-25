@@ -4,6 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
+import androidx.appcompat.widget.Toolbar
+import androidx.core.view.isEmpty
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -16,8 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class CocktailsFragment : Fragment() {
     private val viewModel: CocktailsViewModel by viewModels()
-    private lateinit var recyclerView: RecyclerView // TODO add Toolbar?
-    private lateinit var swipeToRefreshLayout: SwipeRefreshLayout
+    private lateinit var toolbar: Toolbar
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -26,28 +28,63 @@ class CocktailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = DrinksAdapter(
-            object : Retry {
+        val adapter = DrinksAdapter(object : Retry {
                 override fun tryAgain() = viewModel.fetchCocktails()
             }
         )
 
-        swipeToRefreshLayout = view.findViewById(R.id.cocktails_swipe_to_refresh)
+        toolbar = view.findViewById(R.id.cocktails_toolbar)
+        with(toolbar) {
+            title = getString(R.string.cocktails)
+            inflateMenu(R.menu.cocktails_toolbar_menu)
+            setOnMenuItemClickListener {
+                when (it.itemId) {
+                    R.id.action_search -> {
+                        (it.actionView as SearchView).apply {
+                            queryHint = getString(R.string.search_cocktails)
+                            setOnQueryTextListener(SearchCocktailsListener())
+                        }
+                        true
+                    } else -> false
+                }
+            }
+        }
+
+        val swipeToRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.cocktails_swipe_to_refresh)
         swipeToRefreshLayout.setOnRefreshListener {
             refreshUi(adapter)
             swipeToRefreshLayout.isRefreshing = false
         }
 
-        recyclerView = view.findViewById(R.id.cocktails_recycler_view)
-        recyclerView.apply {
+        view.findViewById<RecyclerView>(R.id.cocktails_recycler_view).apply {
             this.adapter = adapter
             addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
         }
         refreshUi(adapter)
     }
 
+    override fun onStart() {
+        super.onStart()
+        if (toolbar.menu.isEmpty()) toolbar.inflateMenu(R.menu.cocktails_toolbar_menu)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        toolbar.menu.clear()
+    }
+
     private fun refreshUi(adapter: DrinksAdapter) {
         viewModel.observe(this, { adapter.update(it) })
         viewModel.fetchCocktails()
+    }
+
+    private inner class SearchCocktailsListener : SearchView.OnQueryTextListener {
+        override fun onQueryTextSubmit(query: String?) = find(query)
+        override fun onQueryTextChange(newText: String?) = find(newText)
+
+        private fun find(query: String?): Boolean {
+            viewModel.searchCocktails(query.toString())
+            return !query.isNullOrEmpty()
+        }
     }
 }

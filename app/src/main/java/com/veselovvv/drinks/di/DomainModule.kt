@@ -31,6 +31,11 @@ class DomainModule {
     ): FetchCocktailsUseCase = FetchCocktailsUseCase(cocktailsRepository, mapper)
 
     @Provides
+    fun provideSearchCocktailsUseCase(
+        cocktailsRepository: CocktailsRepository, mapper: CocktailsDataToDomainMapper
+    ): SearchCocktailsUseCase = SearchCocktailsUseCase(cocktailsRepository, mapper)
+
+    @Provides
     fun provideResourceProvider(@ApplicationContext context: Context): ResourceProvider =
         ResourceProvider.Base(context)
 
