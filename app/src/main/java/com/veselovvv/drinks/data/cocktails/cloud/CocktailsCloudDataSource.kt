@@ -12,8 +12,13 @@ interface CocktailsCloudDataSource {
         private val type = object : TypeToken<DrinksCloud>() {}.type
 
         override suspend fun fetchCocktails(): List<CocktailCloud> {
-            val drinks: DrinksCloud = gson.fromJson(service.fetchCocktails().string(), type)
-            return drinks.getCocktailsList()
+            val drinks = mutableListOf<DrinksCloud>()
+            for (letter in 'a'..'z') {
+                drinks.add(gson.fromJson(service.fetchCocktails(letter.toString()).string(), type))
+            }
+            val cocktails = mutableListOf<CocktailCloud>()
+            drinks.forEach { cocktails += it.getCocktailsList() }
+            return cocktails
         }
     }
 }
