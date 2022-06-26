@@ -11,7 +11,10 @@ import com.veselovvv.drinks.R
 import com.veselovvv.drinks.core.Retry
 import de.hdodenhof.circleimageview.CircleImageView
 
-class DrinksAdapter(private val retry: Retry) : RecyclerView.Adapter<DrinksAdapter.DrinksViewHolder>() {
+class CocktailsAdapter(
+    private val retry: Retry,
+    private val cocktailListener: CocktailListener
+) : RecyclerView.Adapter<CocktailsAdapter.DrinksViewHolder>() {
     private val cocktails = ArrayList<CocktailUi>()
 
     fun update(newList: List<CocktailUi>) {
@@ -27,7 +30,7 @@ class DrinksAdapter(private val retry: Retry) : RecyclerView.Adapter<DrinksAdapt
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = when (viewType) {
-        0 -> DrinksViewHolder.Base(R.layout.cocktail_layout.makeView(parent))
+        0 -> DrinksViewHolder.Base(R.layout.cocktail_layout.makeView(parent), cocktailListener)
         1 -> DrinksViewHolder.Fail(R.layout.fail_fullscreen.makeView(parent), retry)
         else -> DrinksViewHolder.FullscreenProgress(R.layout.progress_fullscreen.makeView(parent))
     }
@@ -42,7 +45,7 @@ class DrinksAdapter(private val retry: Retry) : RecyclerView.Adapter<DrinksAdapt
 
         class FullscreenProgress(view: View) : DrinksViewHolder(view)
 
-        class Base(view: View) : DrinksViewHolder(view) {
+        class Base(view: View, private val cocktailListener: CocktailListener) : DrinksViewHolder(view) {
             private val photoImageView = itemView.findViewById<CircleImageView>(R.id.cocktail_photo_image_view)
             private val nameTextView = itemView.findViewById<MaterialTextView>(R.id.cocktail_name_text_view)
             private val categoryTextView = itemView.findViewById<MaterialTextView>(R.id.cocktail_category_text_view)
@@ -56,6 +59,10 @@ class DrinksAdapter(private val retry: Retry) : RecyclerView.Adapter<DrinksAdapt
                     }
                     override fun map(text: String) = Unit
                 })
+
+                itemView.setOnClickListener {
+                    cocktail.open(cocktailListener)
+                }
             }
         }
 
@@ -73,6 +80,10 @@ class DrinksAdapter(private val retry: Retry) : RecyclerView.Adapter<DrinksAdapt
                 tryAgainButton.setOnClickListener { retry.tryAgain() }
             }
         }
+    }
+
+    interface CocktailListener {
+        fun showCocktail(name: String, category: String, photoUrl: String)
     }
 }
 

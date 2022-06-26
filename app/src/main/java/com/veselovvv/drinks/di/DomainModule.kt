@@ -1,12 +1,15 @@
 package com.veselovvv.drinks.di
 
 import android.content.Context
+import com.veselovvv.drinks.core.Read
 import com.veselovvv.drinks.core.ResourceProvider
+import com.veselovvv.drinks.core.Save
 import com.veselovvv.drinks.data.cocktails.CocktailDataToDomainMapper
 import com.veselovvv.drinks.data.cocktails.CocktailsDataToDomainMapper
 import com.veselovvv.drinks.domain.cocktails.*
 import com.veselovvv.drinks.presentation.cocktails.BaseCocktailDomainToUiMapper
 import com.veselovvv.drinks.presentation.cocktails.BaseCocktailsDomainToUiMapper
+import com.veselovvv.drinks.presentation.cocktails.CocktailCache
 import com.veselovvv.drinks.presentation.cocktails.CocktailsCommunication
 import dagger.Module
 import dagger.Provides
@@ -50,4 +53,12 @@ class DomainModule {
 
     @Provides
     fun provideCocktailsCommunication(): CocktailsCommunication = CocktailsCommunication.Base()
+
+    @Provides
+    fun provideSaveCocktailCache(@ApplicationContext context: Context): Save<Triple<String, String, String>> =
+        CocktailCache.Base(context)
+
+    @Provides
+    fun provideReadCocktailCache(@ApplicationContext context: Context): Read<Triple<String, String, String>> =
+        CocktailCache.Base(context)
 }

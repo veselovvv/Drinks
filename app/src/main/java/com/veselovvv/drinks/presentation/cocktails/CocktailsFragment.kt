@@ -9,6 +9,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isEmpty
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -28,8 +29,15 @@ class CocktailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = DrinksAdapter(object : Retry {
+        val adapter = CocktailsAdapter(object : Retry {
                 override fun tryAgain() = viewModel.fetchCocktails()
+            },
+            object : CocktailsAdapter.CocktailListener {
+                override fun showCocktail(name: String, category: String, photoUrl: String) {
+                    viewModel.saveCocktailInfo(name, category, photoUrl)
+                    requireActivity().findNavController(R.id.fragment_container_view)
+                        .navigate(R.id.cocktailDetailsFragment)
+                }
             }
         )
 
@@ -73,7 +81,7 @@ class CocktailsFragment : Fragment() {
         toolbar.menu.clear()
     }
 
-    private fun refreshUi(adapter: DrinksAdapter) {
+    private fun refreshUi(adapter: CocktailsAdapter) {
         viewModel.observe(this, { adapter.update(it) })
         viewModel.fetchCocktails()
     }

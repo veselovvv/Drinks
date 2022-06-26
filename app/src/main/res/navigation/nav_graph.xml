@@ -25,4 +25,8 @@
         android:name="com.veselovvv.drinks.SearchIngredientFragment"
         android:label="Search Ingredient"
         tools:layout="@layout/fragment_search_ingredient" />
+    <fragment
+        android:id="@+id/cocktailDetailsFragment"
+        android:name="com.veselovvv.drinks.presentation.cocktaildetails.CocktailDetailsFragment"
+        android:label="CocktailDetailsFragment" />
 </navigation>

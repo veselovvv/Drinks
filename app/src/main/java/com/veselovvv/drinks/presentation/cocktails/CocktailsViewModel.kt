@@ -4,6 +4,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.veselovvv.drinks.core.Save
 import com.veselovvv.drinks.domain.cocktails.CocktailsDomainToUiMapper
 import com.veselovvv.drinks.domain.cocktails.FetchCocktailsUseCase
 import com.veselovvv.drinks.domain.cocktails.SearchCocktailsUseCase
@@ -18,7 +19,8 @@ class CocktailsViewModel @Inject constructor(
     private val fetchCocktailsUseCase: FetchCocktailsUseCase,
     private val searchCocktailsUseCase: SearchCocktailsUseCase,
     private val mapper: CocktailsDomainToUiMapper,
-    private val communication: CocktailsCommunication
+    private val communication: CocktailsCommunication,
+    private val cocktailCache: Save<Triple<String, String, String>>
 ) : ViewModel() {
     fun fetchCocktails() {
         communication.map(listOf(CocktailUi.Progress))
@@ -40,6 +42,10 @@ class CocktailsViewModel @Inject constructor(
                 resultUi.map(communication)
             }
         }
+    }
+
+    fun saveCocktailInfo(name: String, category: String, photoUrl: String) {
+        cocktailCache.save(Triple(name, category, photoUrl))
     }
 
     fun observe(owner: LifecycleOwner, observer: Observer<List<CocktailUi>>) =
