@@ -3,7 +3,7 @@ package com.veselovvv.drinks.domain.cocktails
 import com.veselovvv.drinks.core.Object
 import com.veselovvv.drinks.presentation.cocktails.CocktailUi
 
-class CocktailDomain(
+data class CocktailDomain(
     private val id: String,
     private val name: String,
     private val category: String,

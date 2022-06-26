@@ -9,7 +9,7 @@ import com.veselovvv.drinks.presentation.cocktails.CocktailsUi
 sealed class CocktailsDomain : Object<CocktailsUi, CocktailsDomainToUiMapper> {
     data class Success(
         private val cocktails: List<CocktailData>,
-        private val cocktailMapper:CocktailDataToDomainMapper
+        private val cocktailMapper: CocktailDataToDomainMapper
     ) : CocktailsDomain() {
         override fun map(mapper: CocktailsDomainToUiMapper) = mapper.map(cocktails.map { cocktail ->
             cocktail.map(cocktailMapper) }

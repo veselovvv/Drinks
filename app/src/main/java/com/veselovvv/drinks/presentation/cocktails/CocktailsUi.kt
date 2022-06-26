@@ -5,7 +5,7 @@ import com.veselovvv.drinks.domain.cocktails.CocktailDomain
 import com.veselovvv.drinks.domain.cocktails.CocktailDomainToUiMapper
 
 sealed class CocktailsUi : Object<Unit, CocktailsCommunication> {
-    class Success(
+    data class Success(
         private val cocktails: List<CocktailDomain>,
         private val cocktailMapper: CocktailDomainToUiMapper
     ) : CocktailsUi() {
@@ -17,7 +17,7 @@ sealed class CocktailsUi : Object<Unit, CocktailsCommunication> {
         }
     }
 
-    class Fail(
+    data class Fail(
         private val errorMessage: String
     ) : CocktailsUi() {
         override fun map(mapper: CocktailsCommunication) =
