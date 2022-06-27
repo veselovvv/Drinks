@@ -1,0 +1,13 @@
+package com.veselovvv.drinks.data.cocktaildetails
+
+import com.veselovvv.drinks.core.Object
+
+sealed class CocktailsDetailsData : Object<CocktailsDetailsDomain, CocktailsDetailsDataToDomainMapper> {
+    data class Success(private val cocktailDetails: CocktailDetailsData) : CocktailsDetailsData() {
+        override fun map(mapper: CocktailsDetailsDataToDomainMapper) = mapper.map(cocktailDetails)
+    }
+
+    data class Fail(private val exception: Exception) : CocktailsDetailsData() {
+        override fun map(mapper: CocktailsDetailsDataToDomainMapper) = mapper.map(exception)
+    }
+}
