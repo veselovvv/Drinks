@@ -2,6 +2,7 @@ package com.veselovvv.drinks.domain.cocktails
 
 import com.veselovvv.drinks.data.cocktails.CocktailData
 import com.veselovvv.drinks.data.cocktails.CocktailsData
+import com.veselovvv.drinks.data.cocktails.CocktailsRepository
 
 class TestCocktailsRepository(private val exception: Exception? = null) : CocktailsRepository {
     private val cocktails = listOf(

@@ -14,7 +14,7 @@ class BaseCocktailsRepositoryTest {
             CocktailData("1", "Margarita", "Ordinal", "https://somephotopath1"),
             CocktailData("12", "Martini", "Ordinal", "https://somephotopath2")
         )
-        val repository = BaseCocktailsRepository(
+        val repository = CocktailsRepository.Base(
             TestCocktailsCloudDataSource(true), CocktailsCloudMapper.Base(ToCocktailMapper.Base())
         )
         val expected = CocktailsData.Success(resultData)
@@ -24,7 +24,7 @@ class BaseCocktailsRepositoryTest {
 
     @Test
     fun test_fetch_cocktails_fail() = runBlocking {
-        val repository = BaseCocktailsRepository(
+        val repository = CocktailsRepository.Base(
             TestCocktailsCloudDataSource(false), CocktailsCloudMapper.Base(ToCocktailMapper.Base())
         )
         val expected = CocktailsData.Fail(TestException(""))
@@ -37,7 +37,7 @@ class BaseCocktailsRepositoryTest {
         val resultData = listOf(
             CocktailData("12", "Martini", "Ordinal", "https://somephotopath2")
         )
-        val repository = BaseCocktailsRepository(
+        val repository = CocktailsRepository.Base(
             TestCocktailsCloudDataSource(true), CocktailsCloudMapper.Base(ToCocktailMapper.Base())
         )
         val expected = CocktailsData.Success(resultData)
@@ -47,7 +47,7 @@ class BaseCocktailsRepositoryTest {
 
     @Test
     fun test_search_cocktails_fail() = runBlocking {
-        val repository = BaseCocktailsRepository(
+        val repository = CocktailsRepository.Base(
             TestCocktailsCloudDataSource(false), CocktailsCloudMapper.Base(ToCocktailMapper.Base())
         )
         val expected = CocktailsData.Fail(TestException(""))

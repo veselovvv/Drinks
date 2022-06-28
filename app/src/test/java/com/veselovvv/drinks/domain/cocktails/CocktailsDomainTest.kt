@@ -55,9 +55,9 @@ class CocktailsDomainTest {
         }
     }
 
-    private companion object {
-        const val NO_CONNECTION_MESSAGE = "No connection. Please try again!"
-        const val SERVICE_UNAVAILABLE_MESSAGE = "Service unavailable. Please try again!"
-        const val SOMETHING_WENT_WRONG = "Something went wrong. Please try again!"
+    companion object {
+        private const val NO_CONNECTION_MESSAGE = "No connection. Please try again!"
+        private const val SERVICE_UNAVAILABLE_MESSAGE = "Service unavailable. Please try again!"
+        private const val SOMETHING_WENT_WRONG = "Something went wrong. Please try again!"
     }
 }

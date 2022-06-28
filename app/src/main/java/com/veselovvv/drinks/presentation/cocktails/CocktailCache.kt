@@ -22,11 +22,11 @@ interface CocktailCache : Save<Triple<String, String, String>>, Read<Triple<Stri
                 .putString(COCKTAIL_PHOTO_URL_KEY, data.third)
                 .apply()
 
-        private companion object {
-            const val COCKTAIL_DATA_FILENAME = "cocktailData"
-            const val COCKTAIL_NAME_KEY = "cocktailNameKey"
-            const val COCKTAIL_CATEGORY_KEY = "cocktailCategoryKey"
-            const val COCKTAIL_PHOTO_URL_KEY = "cocktailPhotoUrlKey"
+        companion object {
+            private const val COCKTAIL_DATA_FILENAME = "cocktailData"
+            private const val COCKTAIL_NAME_KEY = "cocktailNameKey"
+            private const val COCKTAIL_CATEGORY_KEY = "cocktailCategoryKey"
+            private const val COCKTAIL_PHOTO_URL_KEY = "cocktailPhotoUrlKey"
         }
     }
 }

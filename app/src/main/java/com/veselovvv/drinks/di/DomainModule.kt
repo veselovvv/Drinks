@@ -6,6 +6,7 @@ import com.veselovvv.drinks.core.ResourceProvider
 import com.veselovvv.drinks.core.Save
 import com.veselovvv.drinks.data.cocktails.CocktailDataToDomainMapper
 import com.veselovvv.drinks.data.cocktails.CocktailsDataToDomainMapper
+import com.veselovvv.drinks.data.cocktails.CocktailsRepository
 import com.veselovvv.drinks.domain.cocktails.*
 import com.veselovvv.drinks.presentation.cocktails.BaseCocktailDomainToUiMapper
 import com.veselovvv.drinks.presentation.cocktails.BaseCocktailsDomainToUiMapper

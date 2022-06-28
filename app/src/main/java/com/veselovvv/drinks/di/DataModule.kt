@@ -1,15 +1,11 @@
 package com.veselovvv.drinks.di
 
 import com.google.gson.Gson
-import com.veselovvv.drinks.data.cocktails.BaseCocktailsRepository
-import com.veselovvv.drinks.data.cocktails.CocktailDataToDomainMapper
-import com.veselovvv.drinks.data.cocktails.CocktailsDataToDomainMapper
+import com.veselovvv.drinks.data.cocktails.CocktailsRepository
 import com.veselovvv.drinks.data.cocktails.ToCocktailMapper
 import com.veselovvv.drinks.data.cocktails.cloud.CocktailsCloudDataSource
 import com.veselovvv.drinks.data.cocktails.cloud.CocktailsCloudMapper
 import com.veselovvv.drinks.data.cocktails.cloud.CocktailsService
-import com.veselovvv.drinks.domain.cocktails.BaseCocktailsDataToDomainMapper
-import com.veselovvv.drinks.domain.cocktails.CocktailsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -67,5 +63,5 @@ class DataModule {
     @Singleton
     fun provideCocktailsRepository(
         cloudDataSource: CocktailsCloudDataSource, cocktailsCloudMapper: CocktailsCloudMapper
-    ): CocktailsRepository = BaseCocktailsRepository(cloudDataSource, cocktailsCloudMapper)
+    ): CocktailsRepository = CocktailsRepository.Base(cloudDataSource, cocktailsCloudMapper)
 }

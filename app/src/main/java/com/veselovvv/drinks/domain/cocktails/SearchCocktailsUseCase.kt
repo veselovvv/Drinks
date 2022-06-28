@@ -1,6 +1,7 @@
 package com.veselovvv.drinks.domain.cocktails
 
 import com.veselovvv.drinks.data.cocktails.CocktailsDataToDomainMapper
+import com.veselovvv.drinks.data.cocktails.CocktailsRepository
 
 class SearchCocktailsUseCase(
     private val cocktailsRepository: CocktailsRepository,
