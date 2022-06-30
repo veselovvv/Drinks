@@ -9,4 +9,5 @@
     <string name="no_connection_message">No connection. Please try again!</string>
     <string name="something_went_wrong">Something went wrong. Please try again!</string>
     <string name="search_cocktails">Search cocktails</string>
+    <string name="glass">Glass</string>
 </resources>

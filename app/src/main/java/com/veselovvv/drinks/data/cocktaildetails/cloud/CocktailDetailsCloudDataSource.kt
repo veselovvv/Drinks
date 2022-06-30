@@ -9,10 +9,22 @@ interface CocktailDetailsCloudDataSource {
     class Base(
         private val service: CocktailDetailsService, private val gson: Gson
     ) : CocktailDetailsCloudDataSource {
-        private val type = object : TypeToken<CocktailDetailsCloud>() {}.type
+        private val type = object : TypeToken<DrinksDetailsCloud>() {}.type
 
-        // TODO change name like Cocktail Name to cocktail_name in UseCase
-        override suspend fun fetchCocktailDetails(cocktailName: String): CocktailDetailsCloud =
-            gson.fromJson(service.fetchCocktailDetails(cocktailName).string(), type)
+        override suspend fun fetchCocktailDetails(cocktailName: String): CocktailDetailsCloud {
+            val convertedName = cocktailName.replace(OLD_SEPARATOR, NEW_SEPARATOR).lowercase()
+            val drinksDetails: DrinksDetailsCloud =
+                gson.fromJson(service.fetchCocktailDetails(convertedName).string(), type)
+            val cocktailsDetails = drinksDetails.getCocktailsList()
+            cocktailsDetails.forEach {
+                if (it.getName() == cocktailName) return it
+            }
+            return cocktailsDetails[0]
+        }
+
+        companion object {
+            private const val OLD_SEPARATOR = ' '
+            private const val NEW_SEPARATOR = '_'
+        }
     }
 }

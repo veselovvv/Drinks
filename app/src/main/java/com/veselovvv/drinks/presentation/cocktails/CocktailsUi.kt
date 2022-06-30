@@ -17,9 +17,7 @@ sealed class CocktailsUi : Object<Unit, CocktailsCommunication> {
         }
     }
 
-    data class Fail(
-        private val errorMessage: String
-    ) : CocktailsUi() {
+    data class Fail(private val errorMessage: String) : CocktailsUi() {
         override fun map(mapper: CocktailsCommunication) =
             mapper.map(listOf(CocktailUi.Fail(errorMessage)))
     }

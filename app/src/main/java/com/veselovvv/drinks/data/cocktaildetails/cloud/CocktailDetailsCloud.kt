@@ -6,6 +6,8 @@ import com.veselovvv.drinks.data.cocktaildetails.CocktailDetailsData
 import com.veselovvv.drinks.data.cocktaildetails.ToCocktailDetailsMapper
 
 data class CocktailDetailsCloud(
+    @SerializedName("strDrink")
+    private val name: String,
     @SerializedName("strAlcoholic")
     private val alcoholic: String,
     @SerializedName("strGlass")
@@ -33,6 +35,8 @@ data class CocktailDetailsCloud(
     @SerializedName("strIngredient10")
     private val ingredient10: String?
 ) : Object<CocktailDetailsData, ToCocktailDetailsMapper> {
+    fun getName() = name
+
     override fun map(mapper: ToCocktailDetailsMapper) = mapper.map(
         alcoholic, glass, instructions,
         listOf(ingredient1, ingredient2, ingredient3 ?: "", ingredient4 ?: "", ingredient5 ?: "",

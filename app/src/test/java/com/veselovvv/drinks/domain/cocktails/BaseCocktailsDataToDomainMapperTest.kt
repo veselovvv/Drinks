@@ -26,6 +26,7 @@ class BaseCocktailsDataToDomainMapperTest {
         var expected = CocktailsDomain.Fail(ErrorType.NO_CONNECTION)
         var actual = cocktailsDataToDomainMapper.map(UnknownHostException())
         assertEquals(expected, actual)
+
         expected = CocktailsDomain.Fail(ErrorType.GENERIC_ERROR)
         actual = cocktailsDataToDomainMapper.map(Exception())
         assertEquals(expected, actual)
