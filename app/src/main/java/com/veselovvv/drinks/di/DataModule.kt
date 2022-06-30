@@ -1,6 +1,11 @@
 package com.veselovvv.drinks.di
 
 import com.google.gson.Gson
+import com.veselovvv.drinks.data.cocktaildetails.CocktailDetailsRepository
+import com.veselovvv.drinks.data.cocktaildetails.ToCocktailDetailsMapper
+import com.veselovvv.drinks.data.cocktaildetails.cloud.CocktailDetailsCloudDataSource
+import com.veselovvv.drinks.data.cocktaildetails.cloud.CocktailDetailsCloudMapper
+import com.veselovvv.drinks.data.cocktaildetails.cloud.CocktailDetailsService
 import com.veselovvv.drinks.data.cocktails.CocktailsRepository
 import com.veselovvv.drinks.data.cocktails.ToCocktailMapper
 import com.veselovvv.drinks.data.cocktails.cloud.CocktailsCloudDataSource
@@ -64,4 +69,34 @@ class DataModule {
     fun provideCocktailsRepository(
         cloudDataSource: CocktailsCloudDataSource, cocktailsCloudMapper: CocktailsCloudMapper
     ): CocktailsRepository = CocktailsRepository.Base(cloudDataSource, cocktailsCloudMapper)
+
+    @Provides
+    @Singleton
+    fun provideCocktailDetailsService(retrofit: Retrofit) : CocktailDetailsService =
+        retrofit.create(CocktailDetailsService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideCocktailDetailsCloudDataSource(
+        service: CocktailDetailsService, gson: Gson
+    ): CocktailDetailsCloudDataSource = CocktailDetailsCloudDataSource.Base(service, gson)
+
+    @Provides
+    @Singleton
+    fun provideToCocktailDetailsMapper(): ToCocktailDetailsMapper = ToCocktailDetailsMapper.Base()
+
+    @Provides
+    @Singleton
+    fun provideCocktailDetailsCloudMapper(
+        toCocktailDetailsMapper: ToCocktailDetailsMapper
+    ): CocktailDetailsCloudMapper = CocktailDetailsCloudMapper.Base(toCocktailDetailsMapper)
+
+    @Provides
+    @Singleton
+    fun provideCocktailDetailsRepository(
+        cloudDataSource: CocktailDetailsCloudDataSource,
+        cocktailDetailsCloudMapper: CocktailDetailsCloudMapper
+    ): CocktailDetailsRepository = CocktailDetailsRepository.Base(
+        cloudDataSource, cocktailDetailsCloudMapper
+    )
 }
