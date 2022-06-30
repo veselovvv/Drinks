@@ -11,20 +11,25 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.veselovvv.drinks.R
 import com.veselovvv.drinks.core.Retry
+import com.veselovvv.drinks.databinding.FragmentCocktailsBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class CocktailsFragment : Fragment() {
+    private var _binding: FragmentCocktailsBinding? = null
+    private val binding get() = _binding!!
+
     private val viewModel: CocktailsViewModel by viewModels()
     private lateinit var toolbar: Toolbar
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_cocktails, container, false)
+    ): View {
+        _binding = FragmentCocktailsBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -41,7 +46,7 @@ class CocktailsFragment : Fragment() {
             }
         )
 
-        toolbar = view.findViewById(R.id.cocktails_toolbar)
+        toolbar = binding.cocktailsToolbar
         with(toolbar) {
             title = getString(R.string.cocktails)
             inflateMenu(R.menu.cocktails_toolbar_menu)
@@ -58,13 +63,13 @@ class CocktailsFragment : Fragment() {
             }
         }
 
-        val swipeToRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.cocktails_swipe_to_refresh)
+        val swipeToRefreshLayout = binding.cocktailsSwipeToRefresh
         swipeToRefreshLayout.setOnRefreshListener {
             refreshUi(adapter)
             swipeToRefreshLayout.isRefreshing = false
         }
 
-        view.findViewById<RecyclerView>(R.id.cocktails_recycler_view).apply {
+        binding.cocktailsRecyclerView.apply {
             this.adapter = adapter
             addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
         }
@@ -79,6 +84,11 @@ class CocktailsFragment : Fragment() {
     override fun onPause() {
         super.onPause()
         toolbar.menu.clear()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun refreshUi(adapter: CocktailsAdapter) {

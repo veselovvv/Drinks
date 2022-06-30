@@ -7,58 +7,67 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
-import com.google.android.material.textview.MaterialTextView
-import com.veselovvv.drinks.R
 import com.veselovvv.drinks.core.Retry
+import com.veselovvv.drinks.databinding.FragmentCocktailDetailsBinding
 import dagger.hilt.android.AndroidEntryPoint
-import de.hdodenhof.circleimageview.CircleImageView
 
 @AndroidEntryPoint
 class CocktailDetailsFragment : Fragment() {
+    private var _binding: FragmentCocktailDetailsBinding? = null
+    private val binding get() = _binding!!
+
     private val viewModel: CocktailDetailsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.fragment_cocktail_details, container, false)
+    ): View {
+        _binding = FragmentCocktailDetailsBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val cocktailName = viewModel.getCocktailName()
-        view.findViewById<MaterialTextView>(R.id.cocktail_details_name).text = cocktailName
-        view.findViewById<MaterialTextView>(R.id.cocktail_details_category).text =
-            viewModel.getCocktailCategory()
-        val photoImageView = view.findViewById<CircleImageView>(R.id.cocktail_details_photo)
-        Glide.with(view).load(viewModel.getCocktailPhotoUrl()).into(photoImageView)
+        binding.cocktailDetailsName.text = cocktailName
+        binding.cocktailDetailsCategory.text = viewModel.getCocktailCategory()
+        Glide.with(view).load(viewModel.getCocktailPhotoUrl()).into(binding.cocktailDetailsPhoto)
+
+        val cocktailDetailsFailLayout = binding.cocktailDetailsFailLayout
 
         viewModel.observe(this) { ui ->
-            ui.map(view.findViewById(R.id.cocktail_details_progress_layout))
+            ui.map(binding.cocktailDetailsProgressLayout.root)
             ui.map(
-                view.findViewById(R.id.cocktail_details_alcoholic),
-                view.findViewById(R.id.cocktail_details_glass),
-                view.findViewById(R.id.cocktail_details_instructions),
+                binding.cocktailDetailsAlcoholic,
+                binding.cocktailDetailsGlass,
+                binding.cocktailDetailsInstructions,
                 listOf(
-                    view.findViewById(R.id.cocktail_details_ingredient1),
-                    view.findViewById(R.id.cocktail_details_ingredient2),
-                    view.findViewById(R.id.cocktail_details_ingredient3),
-                    view.findViewById(R.id.cocktail_details_ingredient4),
-                    view.findViewById(R.id.cocktail_details_ingredient5),
-                    view.findViewById(R.id.cocktail_details_ingredient6),
-                    view.findViewById(R.id.cocktail_details_ingredient7),
-                    view.findViewById(R.id.cocktail_details_ingredient8),
-                    view.findViewById(R.id.cocktail_details_ingredient9),
-                    view.findViewById(R.id.cocktail_details_ingredient10)
+                    binding.cocktailDetailsIngredient1,
+                    binding.cocktailDetailsIngredient2,
+                    binding.cocktailDetailsIngredient3,
+                    binding.cocktailDetailsIngredient4,
+                    binding.cocktailDetailsIngredient5,
+                    binding.cocktailDetailsIngredient6,
+                    binding.cocktailDetailsIngredient7,
+                    binding.cocktailDetailsIngredient8,
+                    binding.cocktailDetailsIngredient9,
+                    binding.cocktailDetailsIngredient10
                 )
             )
             ui.map(
-                view.findViewById(R.id.cocktail_details_fail_layout),
-                view.findViewById(R.id.fail_message_text_view),
-                view.findViewById(R.id.fail_try_again_button),
+                cocktailDetailsFailLayout.root,
+                cocktailDetailsFailLayout.failMessageTextView,
+                cocktailDetailsFailLayout.failTryAgainButton,
                 object : Retry {
                     override fun tryAgain() = viewModel.fetchCocktailDetails(cocktailName)
                 }
             )
         }
         viewModel.fetchCocktailDetails(cocktailName)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
