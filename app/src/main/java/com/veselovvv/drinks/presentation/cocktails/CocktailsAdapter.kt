@@ -5,11 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.google.android.material.button.MaterialButton
-import com.google.android.material.textview.MaterialTextView
-import com.veselovvv.drinks.R
 import com.veselovvv.drinks.core.Retry
-import de.hdodenhof.circleimageview.CircleImageView
+import com.veselovvv.drinks.databinding.CocktailLayoutBinding
+import com.veselovvv.drinks.databinding.FailFullscreenBinding
+import com.veselovvv.drinks.databinding.ProgressFullscreenBinding
 
 class CocktailsAdapter(
     private val retry: Retry,
@@ -30,9 +29,17 @@ class CocktailsAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = when (viewType) {
-        0 -> DrinksViewHolder.Base(R.layout.cocktail_layout.makeView(parent), cocktailListener)
-        1 -> DrinksViewHolder.Fail(R.layout.fail_fullscreen.makeView(parent), retry)
-        else -> DrinksViewHolder.FullscreenProgress(R.layout.progress_fullscreen.makeView(parent))
+        0 -> DrinksViewHolder.Base(
+            CocktailLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false),
+            cocktailListener
+        )
+        1 -> DrinksViewHolder.Fail(
+            FailFullscreenBinding.inflate(LayoutInflater.from(parent.context), parent, false),
+            retry
+        )
+        else -> DrinksViewHolder.FullscreenProgress(
+            ProgressFullscreenBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        )
     }
 
     override fun onBindViewHolder(holder: DrinksViewHolder, position: Int) =
@@ -43,19 +50,18 @@ class CocktailsAdapter(
     abstract class DrinksViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         open fun bind(cocktail: CocktailUi) = Unit
 
-        class FullscreenProgress(view: View) : DrinksViewHolder(view)
+        class FullscreenProgress(binding: ProgressFullscreenBinding) : DrinksViewHolder(binding.root)
 
-        class Base(view: View, private val cocktailListener: CocktailListener) : DrinksViewHolder(view) {
-            private val photoImageView = itemView.findViewById<CircleImageView>(R.id.cocktail_photo_image_view)
-            private val nameTextView = itemView.findViewById<MaterialTextView>(R.id.cocktail_name_text_view)
-            private val categoryTextView = itemView.findViewById<MaterialTextView>(R.id.cocktail_category_text_view)
-
+        class Base(
+            private val binding: CocktailLayoutBinding,
+            private val cocktailListener: CocktailListener
+        ) : DrinksViewHolder(binding.root) {
             override fun bind(cocktail: CocktailUi) {
                 cocktail.map(object : CocktailUi.BaseMapper {
                     override fun map(id: String, name: String, category: String, photoUrl: String) {
-                        Glide.with(itemView).load(photoUrl).into(photoImageView)
-                        nameTextView.text = name
-                        categoryTextView.text = category
+                        Glide.with(itemView).load(photoUrl).into(binding.cocktailPhotoImageView)
+                        binding.cocktailNameTextView.text = name
+                        binding.cocktailCategoryTextView.text = category
                     }
                     override fun map(text: String) = Unit
                 })
@@ -66,18 +72,20 @@ class CocktailsAdapter(
             }
         }
 
-        class Fail(view: View, private val retry: Retry) : DrinksViewHolder(view) {
-            private val messageTextView = itemView.findViewById<MaterialTextView>(R.id.fail_message_text_view)
-            private val tryAgainButton = itemView.findViewById<MaterialButton>(R.id.fail_try_again_button)
-
+        class Fail(
+            private val binding: FailFullscreenBinding,
+            private val retry: Retry
+        ) : DrinksViewHolder(binding.root) {
             override fun bind(cocktail: CocktailUi) {
                 cocktail.map(object : CocktailUi.BaseMapper {
                     override fun map(text: String) {
-                        messageTextView.text = text
+                        binding.failMessageTextView.text = text
                     }
                     override fun map(id: String, name: String, category: String, photoUrl: String) = Unit
                 })
-                tryAgainButton.setOnClickListener { retry.tryAgain() }
+                binding.failTryAgainButton.setOnClickListener {
+                    retry.tryAgain()
+                }
             }
         }
     }
@@ -86,6 +94,3 @@ class CocktailsAdapter(
         fun showCocktail(name: String, category: String, photoUrl: String)
     }
 }
-
-private fun Int.makeView(parent: ViewGroup) =
-    LayoutInflater.from(parent.context).inflate(this, parent, false)
