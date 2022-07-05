@@ -15,6 +15,5 @@ data class CocktailCloud(
     @SerializedName("strDrinkThumb")
     private val photoUrl: String
 ) : Object<CocktailData, ToCocktailMapper> {
-    fun getName() = name
     override fun map(mapper: ToCocktailMapper) = mapper.map(id, name, category, photoUrl)
 }

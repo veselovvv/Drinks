@@ -27,13 +27,11 @@ interface CocktailsRepository {
             CocktailsData.Fail(e)
         }
 
-        // TODO change search with db and network
         override suspend fun searchCocktails(query: String) = try {
-            val cocktailsCloudList = cloudDataSource.fetchCocktails().filter { cocktail ->
-                cocktail.getName().startsWith(query)
+            val cocktailsCacheList = cacheDataSource.read().filter { cocktail ->
+                cocktail.name.startsWith(query)
             }
-            val cocktails = cocktailsCloudMapper.map(cocktailsCloudList)
-            CocktailsData.Success(cocktails)
+            CocktailsData.Success(cocktailsCacheMapper.map(cocktailsCacheList))
         } catch (e: Exception) {
             CocktailsData.Fail(e)
         }
