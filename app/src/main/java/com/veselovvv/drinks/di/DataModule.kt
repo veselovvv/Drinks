@@ -1,5 +1,6 @@
 package com.veselovvv.drinks.di
 
+import android.content.Context
 import com.google.gson.Gson
 import com.veselovvv.drinks.data.cocktaildetails.CocktailDetailsRepository
 import com.veselovvv.drinks.data.cocktaildetails.ToCocktailDetailsMapper
@@ -8,12 +9,16 @@ import com.veselovvv.drinks.data.cocktaildetails.cloud.CocktailDetailsCloudMappe
 import com.veselovvv.drinks.data.cocktaildetails.cloud.CocktailDetailsService
 import com.veselovvv.drinks.data.cocktails.CocktailsRepository
 import com.veselovvv.drinks.data.cocktails.ToCocktailMapper
+import com.veselovvv.drinks.data.cocktails.cache.CocktailDataToDbMapper
+import com.veselovvv.drinks.data.cocktails.cache.CocktailsCacheDataSource
+import com.veselovvv.drinks.data.cocktails.cache.CocktailsCacheMapper
 import com.veselovvv.drinks.data.cocktails.cloud.CocktailsCloudDataSource
 import com.veselovvv.drinks.data.cocktails.cloud.CocktailsCloudMapper
 import com.veselovvv.drinks.data.cocktails.cloud.CocktailsService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -57,6 +62,16 @@ class DataModule {
 
     @Provides
     @Singleton
+    fun provideCocktailDataToDbMapper(): CocktailDataToDbMapper = CocktailDataToDbMapper.Base()
+
+    @Provides
+    @Singleton
+    fun provideCocktailsCacheDataSource(
+        @ApplicationContext context: Context, mapper: CocktailDataToDbMapper
+    ): CocktailsCacheDataSource = CocktailsCacheDataSource.Base(context, mapper)
+
+    @Provides
+    @Singleton
     fun provideToCocktailMapper(): ToCocktailMapper = ToCocktailMapper.Base()
 
     @Provides
@@ -66,9 +81,18 @@ class DataModule {
 
     @Provides
     @Singleton
+    fun provideCocktailsCacheMapper(toCocktailMapper: ToCocktailMapper): CocktailsCacheMapper =
+        CocktailsCacheMapper.Base(toCocktailMapper)
+
+    @Provides
+    @Singleton
     fun provideCocktailsRepository(
-        cloudDataSource: CocktailsCloudDataSource, cocktailsCloudMapper: CocktailsCloudMapper
-    ): CocktailsRepository = CocktailsRepository.Base(cloudDataSource, cocktailsCloudMapper)
+        cloudDataSource: CocktailsCloudDataSource,
+        cacheDataSource: CocktailsCacheDataSource,
+        cocktailsCloudMapper: CocktailsCloudMapper,
+        cocktailsCacheMapper: CocktailsCacheMapper
+    ): CocktailsRepository = CocktailsRepository.Base(
+        cloudDataSource, cacheDataSource, cocktailsCloudMapper, cocktailsCacheMapper)
 
     @Provides
     @Singleton
