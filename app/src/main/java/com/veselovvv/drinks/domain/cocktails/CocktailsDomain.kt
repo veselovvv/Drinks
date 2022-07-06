@@ -12,8 +12,8 @@ sealed class CocktailsDomain : Object<CocktailsUi, CocktailsDomainToUiMapper> {
         private val cocktailMapper: CocktailDataToDomainMapper
     ) : CocktailsDomain() {
         override fun map(mapper: CocktailsDomainToUiMapper) = mapper.map(cocktails.map { cocktail ->
-            cocktail.map(cocktailMapper) }
-        )
+            cocktail.map(cocktailMapper)
+        })
     }
 
     data class Fail(private val errorType: ErrorType) : CocktailsDomain() {

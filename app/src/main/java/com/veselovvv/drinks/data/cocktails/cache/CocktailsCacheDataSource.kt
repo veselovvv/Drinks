@@ -2,11 +2,12 @@ package com.veselovvv.drinks.data.cocktails.cache
 
 import android.content.Context
 import androidx.room.Room
+import com.veselovvv.drinks.core.Clear
 import com.veselovvv.drinks.core.Read
 import com.veselovvv.drinks.core.Save
 import com.veselovvv.drinks.data.cocktails.CocktailData
 
-interface CocktailsCacheDataSource : Save<List<CocktailData>>, Read<List<CocktailDb>> {
+interface CocktailsCacheDataSource : Save<List<CocktailData>>, Read<List<CocktailDb>>, Clear {
     fun cocktailDao(): CocktailDao
 
     abstract class Abstract(
@@ -29,6 +30,7 @@ interface CocktailsCacheDataSource : Save<List<CocktailData>>, Read<List<Cocktai
         }
 
         override fun read() = cocktailDao().getCocktails()
+        override fun clear() = cocktailDao().deleteCocktails()
     }
 
     class Base(

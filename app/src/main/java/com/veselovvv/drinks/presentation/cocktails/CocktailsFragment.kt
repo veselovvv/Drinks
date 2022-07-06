@@ -55,7 +55,12 @@ class CocktailsFragment : Fragment() {
                     R.id.action_search -> {
                         (it.actionView as SearchView).apply {
                             queryHint = getString(R.string.search_cocktails)
-                            setOnQueryTextListener(SearchCocktailsListener())
+                            setOnQueryTextListener(object : SearchCocktailsListener() {
+                                override fun find(query: String?): Boolean {
+                                    viewModel.searchCocktails(query.toString())
+                                    return !query.isNullOrEmpty()
+                                }
+                            })
                         }
                         true
                     } else -> false
@@ -65,7 +70,7 @@ class CocktailsFragment : Fragment() {
 
         val swipeToRefreshLayout = binding.cocktailsSwipeToRefresh
         swipeToRefreshLayout.setOnRefreshListener {
-            refreshUi(adapter)
+            viewModel.fetchCocktailsFromNetwork()
             swipeToRefreshLayout.isRefreshing = false
         }
 
@@ -73,7 +78,8 @@ class CocktailsFragment : Fragment() {
             this.adapter = adapter
             addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
         }
-        refreshUi(adapter)
+        viewModel.observe(this) { adapter.update(it) }
+        viewModel.fetchCocktails()
     }
 
     override fun onStart() {
@@ -89,20 +95,5 @@ class CocktailsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    private fun refreshUi(adapter: CocktailsAdapter) {
-        viewModel.observe(this, { adapter.update(it) })
-        viewModel.fetchCocktails()
-    }
-
-    private inner class SearchCocktailsListener : SearchView.OnQueryTextListener {
-        override fun onQueryTextSubmit(query: String?) = find(query)
-        override fun onQueryTextChange(newText: String?) = find(newText)
-
-        private fun find(query: String?): Boolean {
-            viewModel.searchCocktails(query.toString())
-            return !query.isNullOrEmpty()
-        }
     }
 }

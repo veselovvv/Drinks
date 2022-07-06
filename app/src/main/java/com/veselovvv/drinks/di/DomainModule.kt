@@ -42,6 +42,11 @@ class DomainModule {
     ): FetchCocktailsUseCase = FetchCocktailsUseCase(cocktailsRepository, mapper)
 
     @Provides
+    fun provideFetchCocktailsFromNetworkUseCase(
+        cocktailsRepository: CocktailsRepository, mapper: CocktailsDataToDomainMapper
+    ): FetchCocktailsFromNetworkUseCase = FetchCocktailsFromNetworkUseCase(cocktailsRepository, mapper)
+
+    @Provides
     fun provideSearchCocktailsUseCase(
         cocktailsRepository: CocktailsRepository, mapper: CocktailsDataToDomainMapper
     ): SearchCocktailsUseCase = SearchCocktailsUseCase(cocktailsRepository, mapper)

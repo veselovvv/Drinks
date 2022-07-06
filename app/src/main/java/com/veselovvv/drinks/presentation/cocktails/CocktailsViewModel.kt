@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.veselovvv.drinks.core.Save
 import com.veselovvv.drinks.domain.cocktails.CocktailsDomainToUiMapper
+import com.veselovvv.drinks.domain.cocktails.FetchCocktailsFromNetworkUseCase
 import com.veselovvv.drinks.domain.cocktails.FetchCocktailsUseCase
 import com.veselovvv.drinks.domain.cocktails.SearchCocktailsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,6 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class CocktailsViewModel @Inject constructor(
     private val fetchCocktailsUseCase: FetchCocktailsUseCase,
+    private val fetchCocktailsFromNetworkUseCase: FetchCocktailsFromNetworkUseCase,
     private val searchCocktailsUseCase: SearchCocktailsUseCase,
     private val mapper: CocktailsDomainToUiMapper,
     private val communication: CocktailsCommunication,
@@ -26,6 +28,17 @@ class CocktailsViewModel @Inject constructor(
         communication.map(listOf(CocktailUi.Progress))
         viewModelScope.launch(Dispatchers.IO) {
             val resultDomain = fetchCocktailsUseCase.execute()
+            val resultUi = resultDomain.map(mapper)
+            withContext(Dispatchers.Main) {
+                resultUi.map(communication)
+            }
+        }
+    }
+
+    fun fetchCocktailsFromNetwork() {
+        communication.map(listOf(CocktailUi.Progress))
+        viewModelScope.launch(Dispatchers.IO) {
+            val resultDomain = fetchCocktailsFromNetworkUseCase.execute()
             val resultUi = resultDomain.map(mapper)
             withContext(Dispatchers.Main) {
                 resultUi.map(communication)
