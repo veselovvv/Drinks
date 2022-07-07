@@ -90,6 +90,14 @@ class DomainModule {
     )
 
     @Provides
+    fun provideFetchCocktailDetailsFromNetworkUseCase(
+        cocktailDetailsRepository: CocktailDetailsRepository,
+        cocktailsDetailsDataToDomainMapper: CocktailsDetailsDataToDomainMapper
+    ): FetchCocktailDetailsFromNetworkUseCase = FetchCocktailDetailsFromNetworkUseCase(
+        cocktailDetailsRepository, cocktailsDetailsDataToDomainMapper
+    )
+
+    @Provides
     fun provideCocktailDetailsDomainToUiMapper(): CocktailDetailsDomainToUiMapper =
         BaseCocktailDetailsDomainToUiMapper()
 

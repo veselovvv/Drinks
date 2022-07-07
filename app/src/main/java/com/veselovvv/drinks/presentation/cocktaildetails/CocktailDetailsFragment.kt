@@ -35,6 +35,12 @@ class CocktailDetailsFragment : Fragment() {
 
         val cocktailDetailsFailLayout = binding.cocktailDetailsFailLayout
 
+        val swipeToRefreshLayout = binding.cocktailDetailsSwipeToRefresh
+        swipeToRefreshLayout.setOnRefreshListener {
+            viewModel.fetchCocktailDetailsFromNetwork(cocktailName)
+            swipeToRefreshLayout.isRefreshing = false
+        }
+
         viewModel.observe(this) { ui ->
             ui.map(binding.cocktailDetailsProgressLayout.root)
             ui.map(

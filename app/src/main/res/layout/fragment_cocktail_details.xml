@@ -13,133 +13,139 @@
         android:id="@+id/cocktail_details_fail_layout"
         android:visibility="gone" />
 
-    <ScrollView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/cocktail_details_swipe_to_refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:overScrollMode="never">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:overScrollMode="never">
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/cocktail_details_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingTop="24sp"
-                android:layout_gravity="center"
-                android:textSize="28sp"
-                android:textStyle="bold"
-                tools:text="Cocktail's Name" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/cocktail_details_category"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textSize="24sp"
-                style="@style/TextAppearance.AppCompat.Body1"
-                tools:text="Category" />
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/cocktail_details_photo"
-                android:layout_width="104dp"
-                android:layout_height="104dp"
-                android:layout_margin="16dp"
-                android:layout_gravity="center"
-                android:src="@drawable/baseline_local_bar_24" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/cocktail_details_instructions"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                style="@style/TextAppearance.AppCompat.Body2"
-                tools:text="Rub the rim of the glass with the lime slice to make the salt stick to it." />
+                android:orientation="vertical">
 
-            <com.google.android.material.divider.MaterialDivider
-                style="@style/divider" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/cocktail_details_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="24sp"
+                    android:layout_gravity="center"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    tools:text="Cocktail's Name" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/cocktail_details_alcoholic"
-                style="@style/small_text_view"
-                tools:text="Alcoholic" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/cocktail_details_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="24sp"
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    tools:text="Category" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/cocktail_details_glass"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="8dp"
-                android:textSize="20sp"
-                style="@style/TextAppearance.AppCompat.Title"
-                tools:text="Cocktail glass" />
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/cocktail_details_photo"
+                    android:layout_width="104dp"
+                    android:layout_height="104dp"
+                    android:layout_margin="16dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/baseline_local_bar_24" />
 
-            <com.google.android.material.divider.MaterialDivider
-                style="@style/divider" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/cocktail_details_instructions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    style="@style/TextAppearance.AppCompat.Body2"
+                    tools:text="Rub the rim of the glass with the lime slice to make the salt stick to it." />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingTop="16dp"
-                android:paddingHorizontal="16dp"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                style="@style/TextAppearance.AppCompat.Title"
-                android:text="@string/ingredients" />
+                <com.google.android.material.divider.MaterialDivider
+                    style="@style/divider" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/cocktail_details_ingredient1"
-                style="@style/small_text_view"
-                tools:text="Ingredient 1" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/cocktail_details_alcoholic"
+                    style="@style/small_text_view"
+                    tools:text="Alcoholic" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/cocktail_details_ingredient2"
-                style="@style/small_text_view"
-                tools:text="Ingredient 2" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/cocktail_details_glass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
+                    android:textSize="20sp"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    tools:text="Cocktail glass" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/cocktail_details_ingredient3"
-                style="@style/small_text_view_gone"
-                tools:text="Ingredient 3" />
+                <com.google.android.material.divider.MaterialDivider
+                    style="@style/divider" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/cocktail_details_ingredient4"
-                style="@style/small_text_view_gone"
-                tools:text="Ingredient 4" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="16dp"
+                    android:paddingHorizontal="16dp"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:text="@string/ingredients" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/cocktail_details_ingredient5"
-                style="@style/small_text_view_gone"
-                tools:text="Ingredient 5" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/cocktail_details_ingredient1"
+                    style="@style/small_text_view"
+                    tools:text="Ingredient 1" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/cocktail_details_ingredient6"
-                style="@style/small_text_view_gone"
-                tools:text="Ingredient 6" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/cocktail_details_ingredient2"
+                    style="@style/small_text_view"
+                    tools:text="Ingredient 2" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/cocktail_details_ingredient7"
-                style="@style/small_text_view_gone"
-                tools:text="Ingredient 7" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/cocktail_details_ingredient3"
+                    style="@style/small_text_view_gone"
+                    tools:text="Ingredient 3" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/cocktail_details_ingredient8"
-                style="@style/small_text_view_gone"
-                tools:text="Ingredient 8" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/cocktail_details_ingredient4"
+                    style="@style/small_text_view_gone"
+                    tools:text="Ingredient 4" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/cocktail_details_ingredient9"
-                style="@style/small_text_view_gone"
-                tools:text="Ingredient 9" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/cocktail_details_ingredient5"
+                    style="@style/small_text_view_gone"
+                    tools:text="Ingredient 5" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/cocktail_details_ingredient10"
-                style="@style/small_text_view_gone"
-                tools:text="Ingredient 10" />
-        </LinearLayout>
-    </ScrollView>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/cocktail_details_ingredient6"
+                    style="@style/small_text_view_gone"
+                    tools:text="Ingredient 6" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/cocktail_details_ingredient7"
+                    style="@style/small_text_view_gone"
+                    tools:text="Ingredient 7" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/cocktail_details_ingredient8"
+                    style="@style/small_text_view_gone"
+                    tools:text="Ingredient 8" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/cocktail_details_ingredient9"
+                    style="@style/small_text_view_gone"
+                    tools:text="Ingredient 9" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/cocktail_details_ingredient10"
+                    style="@style/small_text_view_gone"
+                    tools:text="Ingredient 10" />
+            </LinearLayout>
+        </ScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </LinearLayout>

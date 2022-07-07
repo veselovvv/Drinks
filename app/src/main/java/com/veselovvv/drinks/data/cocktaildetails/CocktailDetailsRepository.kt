@@ -7,6 +7,7 @@ import com.veselovvv.drinks.data.cocktaildetails.cloud.CocktailDetailsCloudMappe
 
 interface CocktailDetailsRepository {
     suspend fun fetchCocktailDetails(cocktailName: String): CocktailsDetailsData
+    suspend fun fetchCocktailDetailsFromNetwork(cocktailName: String): CocktailsDetailsData
 
     class Base(
         private val cloudDataSource: CocktailDetailsCloudDataSource,
@@ -22,6 +23,16 @@ interface CocktailDetailsRepository {
                 cacheDataSource.save(cocktailDetails)
                 CocktailsDetailsData.Success(cocktailDetails)
             } else CocktailsDetailsData.Success(cocktailDetailsCacheMapper.map(cocktailDetailsCache))
+        } catch (e: Exception) {
+            CocktailsDetailsData.Fail(e)
+        }
+
+        override suspend fun fetchCocktailDetailsFromNetwork(cocktailName: String) = try {
+            val cocktailDetailsCloud = cloudDataSource.fetchCocktailDetails(cocktailName)
+            val cocktailDetails = cocktailDetailsCloudMapper.map(cocktailDetailsCloud)
+            cacheDataSource.clear(cocktailName)
+            cacheDataSource.save(cocktailDetails)
+            CocktailsDetailsData.Success(cocktailDetails)
         } catch (e: Exception) {
             CocktailsDetailsData.Fail(e)
         }
