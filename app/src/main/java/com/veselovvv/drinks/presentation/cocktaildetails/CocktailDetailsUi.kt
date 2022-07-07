@@ -1,10 +1,11 @@
 package com.veselovvv.drinks.presentation.cocktaildetails
 
-import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textview.MaterialTextView
 import com.veselovvv.drinks.core.Retry
+import com.veselovvv.drinks.presentation.core.hide
+import com.veselovvv.drinks.presentation.core.show
 
 sealed class CocktailDetailsUi : CocktailDetailsUiMapper {
     override fun map(
@@ -21,13 +22,8 @@ sealed class CocktailDetailsUi : CocktailDetailsUiMapper {
         retry: Retry
     ) = Unit
 
-    //TODO something with that?
-    fun show(view: View, show: Boolean = true) {
-        view.visibility = if (show) View.VISIBLE else View.GONE
-    }
-
     object Progress : CocktailDetailsUi() {
-        override fun map(progressLayout: ViewGroup) = show(progressLayout)
+        override fun map(progressLayout: ViewGroup) = progressLayout.show()
     }
 
     class Base(
@@ -36,7 +32,7 @@ sealed class CocktailDetailsUi : CocktailDetailsUiMapper {
         private val instructions: String,
         private val ingredients: List<String>
     ) : CocktailDetailsUi() {
-        override fun map(progressLayout: ViewGroup) = show(progressLayout, false)
+        override fun map(progressLayout: ViewGroup) = progressLayout.hide()
         override fun map(
             alcoholicTextView: MaterialTextView,
             glassTextView: MaterialTextView,
@@ -48,27 +44,27 @@ sealed class CocktailDetailsUi : CocktailDetailsUiMapper {
             instructionsTextView.text = instructions
 
             ingredientsTextViews.forEachIndexed { index, textView ->
-                if (ingredients[index] != "") {
-                    show(textView)
-                    textView.text = ingredients[index]
+                if (ingredients[index] != "") textView.apply {
+                    show()
+                    text = ingredients[index]
                 }
             }
         }
     }
 
     class Fail(private val message: String) : CocktailDetailsUi() {
-        override fun map(progressLayout: ViewGroup) = show(progressLayout, false)
+        override fun map(progressLayout: ViewGroup) = progressLayout.hide()
         override fun map(
             failLayout: ViewGroup,
             messageTextView: MaterialTextView,
             tryAgainButton: MaterialButton,
             retry: Retry
         ) {
-            show(failLayout)
+            failLayout.show()
             messageTextView.text = message
             tryAgainButton.setOnClickListener {
                 retry.tryAgain()
-                show(failLayout, false)
+                failLayout.hide()
             }
         }
     }
