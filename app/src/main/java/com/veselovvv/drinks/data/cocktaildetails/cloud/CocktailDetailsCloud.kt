@@ -38,7 +38,7 @@ data class CocktailDetailsCloud(
     fun getName() = name
 
     override fun map(mapper: ToCocktailDetailsMapper) = mapper.map(
-        alcoholic, glass, instructions,
+        name, alcoholic, glass, instructions,
         listOf(ingredient1, ingredient2, ingredient3 ?: "", ingredient4 ?: "", ingredient5 ?: "",
             ingredient6 ?: "", ingredient7 ?: "", ingredient8 ?: "", ingredient9 ?: "", ingredient10 ?: "")
     )

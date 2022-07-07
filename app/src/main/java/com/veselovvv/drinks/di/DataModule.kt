@@ -4,6 +4,9 @@ import android.content.Context
 import com.google.gson.Gson
 import com.veselovvv.drinks.data.cocktaildetails.CocktailDetailsRepository
 import com.veselovvv.drinks.data.cocktaildetails.ToCocktailDetailsMapper
+import com.veselovvv.drinks.data.cocktaildetails.cache.CocktailDetailsCacheDataSource
+import com.veselovvv.drinks.data.cocktaildetails.cache.CocktailDetailsCacheMapper
+import com.veselovvv.drinks.data.cocktaildetails.cache.CocktailDetailsDataToDbMapper
 import com.veselovvv.drinks.data.cocktaildetails.cloud.CocktailDetailsCloudDataSource
 import com.veselovvv.drinks.data.cocktaildetails.cloud.CocktailDetailsCloudMapper
 import com.veselovvv.drinks.data.cocktaildetails.cloud.CocktailDetailsService
@@ -107,6 +110,17 @@ class DataModule {
 
     @Provides
     @Singleton
+    fun provideCocktailDetailsDataToDbMapper(): CocktailDetailsDataToDbMapper =
+        CocktailDetailsDataToDbMapper.Base()
+
+    @Provides
+    @Singleton
+    fun provideCocktailDetailsCacheDataSource(
+        @ApplicationContext context: Context, mapper: CocktailDetailsDataToDbMapper
+    ): CocktailDetailsCacheDataSource = CocktailDetailsCacheDataSource.Base(context, mapper)
+
+    @Provides
+    @Singleton
     fun provideToCocktailDetailsMapper(): ToCocktailDetailsMapper = ToCocktailDetailsMapper.Base()
 
     @Provides
@@ -117,10 +131,18 @@ class DataModule {
 
     @Provides
     @Singleton
+    fun provideCocktailDetailsCacheMapper(
+        toCocktailDetailsMapper: ToCocktailDetailsMapper
+    ): CocktailDetailsCacheMapper = CocktailDetailsCacheMapper.Base(toCocktailDetailsMapper)
+
+    @Provides
+    @Singleton
     fun provideCocktailDetailsRepository(
         cloudDataSource: CocktailDetailsCloudDataSource,
-        cocktailDetailsCloudMapper: CocktailDetailsCloudMapper
+        cacheDataSource: CocktailDetailsCacheDataSource,
+        cocktailDetailsCloudMapper: CocktailDetailsCloudMapper,
+        cocktailDetailsCacheMapper: CocktailDetailsCacheMapper
     ): CocktailDetailsRepository = CocktailDetailsRepository.Base(
-        cloudDataSource, cocktailDetailsCloudMapper
+        cloudDataSource, cacheDataSource, cocktailDetailsCloudMapper, cocktailDetailsCacheMapper
     )
 }
