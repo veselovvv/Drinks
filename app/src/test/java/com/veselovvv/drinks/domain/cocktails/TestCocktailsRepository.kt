@@ -17,6 +17,9 @@ class TestCocktailsRepository(private val exception: Exception? = null) : Cockta
     override suspend fun fetchCocktails() =
         if (exception == null) CocktailsData.Success(cocktails) else CocktailsData.Fail(exception)
 
+    override suspend fun fetchCocktailsFromNetwork() =
+        if (exception == null) CocktailsData.Success(cocktails) else CocktailsData.Fail(exception)
+
     override suspend fun searchCocktails(query: String) =
         if (exception == null) CocktailsData.Success(foundCocktails) else CocktailsData.Fail(exception)
 }
