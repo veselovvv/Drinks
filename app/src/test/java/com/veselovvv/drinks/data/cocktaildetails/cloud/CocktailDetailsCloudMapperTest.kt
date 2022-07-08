@@ -8,7 +8,7 @@ import org.junit.Test
 class CocktailDetailsCloudMapperTest {
     @Test
     fun test_mapping() {
-        val cocktailsCloudMapper = CocktailDetailsCloudMapper.Base(ToCocktailDetailsMapper.Base())
+        val mapper = CocktailDetailsCloudMapper.Base(ToCocktailDetailsMapper.Base())
         val cocktailDetails = CocktailDetailsCloud(
             "Margarita",
             "Alcoholic",
@@ -18,12 +18,13 @@ class CocktailDetailsCloudMapperTest {
             null,null, null, null, null, null
         )
         val expected = CocktailDetailsData(
+            "Margarita",
             "Alcoholic",
             "Cocktail glass",
             "Rub the rim of the glass with the lime slice to make the salt stick to it.",
             listOf("Tequila", "Triple sec", "Lime juice", "Salt", "", "", "", "", "", "")
         )
-        val actual = cocktailsCloudMapper.map(cocktailDetails)
+        val actual = mapper.map(cocktailDetails)
         assertEquals(expected, actual)
     }
 }

@@ -1,5 +1,9 @@
 package com.veselovvv.drinks.data.cocktaildetails
 
+import com.veselovvv.drinks.data.TestException
+import com.veselovvv.drinks.data.cocktaildetails.cache.CocktailDetailsCacheDataSource
+import com.veselovvv.drinks.data.cocktaildetails.cache.CocktailDetailsCacheMapper
+import com.veselovvv.drinks.data.cocktaildetails.cache.CocktailDetailsDb
 import com.veselovvv.drinks.data.cocktaildetails.cloud.CocktailDetailsCloud
 import com.veselovvv.drinks.data.cocktaildetails.cloud.CocktailDetailsCloudDataSource
 import com.veselovvv.drinks.data.cocktaildetails.cloud.CocktailDetailsCloudMapper
@@ -9,34 +13,130 @@ import org.junit.Test
 
 class BaseCocktailDetailsRepositoryTest {
     @Test
-    fun test_fetch_cocktail_details_success() = runBlocking {
-        val resultData = CocktailDetailsData(
-            "Alcoholic",
-            "Cocktail glass",
-            "Rub the rim of the glass with the lime slice to make the salt stick to it.",
-            listOf("Tequila", "Triple sec", "Lime juice", "Salt", "", "", "", "", "", "")
-        )
+    fun test_fetch_details_cloud_fail_cache_fail() = runBlocking {
+        val testCloudDataSource = TestCocktailDetailsCloudDataSource(false)
+        val testCacheDataSource = TestCocktailDetailsCacheDataSource(false)
         val repository = CocktailDetailsRepository.Base(
-            TestCocktailDetailsCloudDataSource(true),
-            CocktailDetailsCloudMapper.Base(ToCocktailDetailsMapper.Base())
+            testCloudDataSource,
+            testCacheDataSource,
+            CocktailDetailsCloudMapper.Base(ToCocktailDetailsMapper.Base()),
+            CocktailDetailsCacheMapper.Base(ToCocktailDetailsMapper.Base())
         )
-        val expected = CocktailsDetailsData.Success(resultData)
-        val actual = repository.fetchCocktailDetails("")
+        val expected = CocktailsDetailsData.Fail(TestException(""))
+        val actual = repository.fetchCocktailDetails("Margarita")
         assertEquals(expected, actual)
     }
 
     @Test
-    fun test_fetch_cocktail_details_fail() = runBlocking {
+    fun test_fetch_details_cloud_success_cache_fail() = runBlocking {
+        val testCloudDataSource = TestCocktailDetailsCloudDataSource(true)
+        val testCacheDataSource = TestCocktailDetailsCacheDataSource(false)
         val repository = CocktailDetailsRepository.Base(
-            TestCocktailDetailsCloudDataSource(false),
-            CocktailDetailsCloudMapper.Base(ToCocktailDetailsMapper.Base())
+            testCloudDataSource,
+            testCacheDataSource,
+            CocktailDetailsCloudMapper.Base(ToCocktailDetailsMapper.Base()),
+            CocktailDetailsCacheMapper.Base(ToCocktailDetailsMapper.Base())
         )
-        val expected = CocktailsDetailsData.Fail(TestException(""))
-        val actual = repository.fetchCocktailDetails("")
+        val expected = CocktailsDetailsData.Success(
+            CocktailDetailsData(
+                "Margarita",
+                "Alcoholic",
+                "Cocktail glass",
+                "Rub the rim of the glass with the lime slice to make the salt stick to it.",
+                listOf("Tequila", "Triple sec", "Lime juice", "Salt", "", "", "", "", "", "")
+            )
+        )
+        val actual = repository.fetchCocktailDetails("Margarita")
         assertEquals(expected, actual)
     }
 
-    class TestCocktailDetailsCloudDataSource(private val success: Boolean) : CocktailDetailsCloudDataSource {
+    @Test
+    fun test_fetch_details_cloud_fail_cache_success() = runBlocking {
+        val testCloudDataSource = TestCocktailDetailsCloudDataSource(false)
+        val testCacheDataSource = TestCocktailDetailsCacheDataSource(true)
+        val repository = CocktailDetailsRepository.Base(
+            testCloudDataSource,
+            testCacheDataSource,
+            CocktailDetailsCloudMapper.Base(ToCocktailDetailsMapper.Base()),
+            CocktailDetailsCacheMapper.Base(ToCocktailDetailsMapper.Base())
+        )
+        val expected = CocktailsDetailsData.Success(
+            CocktailDetailsData(
+                "Margarita",
+                "Alcoholic",
+                "Cocktail glass",
+                "Rub the rim of the glass with the lime slice to make the salt stick to it.",
+                listOf("Tequila", "Triple sec", "Lime juice", "Salt", "", "", "", "", "", "")
+            )
+        )
+        val actual = repository.fetchCocktailDetails("Margarita")
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun test_fetch_details_cloud_success_cache_success() = runBlocking {
+        val testCloudDataSource = TestCocktailDetailsCloudDataSource(true)
+        val testCacheDataSource = TestCocktailDetailsCacheDataSource(true)
+        val repository = CocktailDetailsRepository.Base(
+            testCloudDataSource,
+            testCacheDataSource,
+            CocktailDetailsCloudMapper.Base(ToCocktailDetailsMapper.Base()),
+            CocktailDetailsCacheMapper.Base(ToCocktailDetailsMapper.Base())
+        )
+        val expected = CocktailsDetailsData.Success(
+            CocktailDetailsData(
+                "Margarita",
+                "Alcoholic",
+                "Cocktail glass",
+                "Rub the rim of the glass with the lime slice to make the salt stick to it.",
+                listOf("Tequila", "Triple sec", "Lime juice", "Salt", "", "", "", "", "", "")
+            )
+        )
+        val actual = repository.fetchCocktailDetails("Margarita")
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun test_fetch_details_from_network_success() = runBlocking {
+        val testCloudDataSource = TestCocktailDetailsCloudDataSource(true)
+        val testCacheDataSource = TestCocktailDetailsCacheDataSource(false)
+        val repository = CocktailDetailsRepository.Base(
+            testCloudDataSource,
+            testCacheDataSource,
+            CocktailDetailsCloudMapper.Base(ToCocktailDetailsMapper.Base()),
+            CocktailDetailsCacheMapper.Base(ToCocktailDetailsMapper.Base())
+        )
+        val expected = CocktailsDetailsData.Success(
+            CocktailDetailsData(
+                "Margarita",
+                "Alcoholic",
+                "Cocktail glass",
+                "Rub the rim of the glass with the lime slice to make the salt stick to it.",
+                listOf("Tequila", "Triple sec", "Lime juice", "Salt", "", "", "", "", "", "")
+            )
+        )
+        val actual = repository.fetchCocktailDetailsFromNetwork("Margarita")
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun test_fetch_details_from_network_fail() = runBlocking {
+        val testCloudDataSource = TestCocktailDetailsCloudDataSource(false)
+        val testCacheDataSource = TestCocktailDetailsCacheDataSource(false)
+        val repository = CocktailDetailsRepository.Base(
+            testCloudDataSource,
+            testCacheDataSource,
+            CocktailDetailsCloudMapper.Base(ToCocktailDetailsMapper.Base()),
+            CocktailDetailsCacheMapper.Base(ToCocktailDetailsMapper.Base())
+        )
+        val expected = CocktailsDetailsData.Fail(TestException(""))
+        val actual = repository.fetchCocktailDetailsFromNetwork("Margarita")
+        assertEquals(expected, actual)
+    }
+
+    class TestCocktailDetailsCloudDataSource(
+        private val success: Boolean
+    ) : CocktailDetailsCloudDataSource {
         override suspend fun fetchCocktailDetails(cocktailName: String) =
             if (success) CocktailDetailsCloud(
                 "Margarita",
@@ -48,5 +148,19 @@ class BaseCocktailDetailsRepositoryTest {
             else throw TestException("")
     }
 
-    data class TestException(private val text: String) : Exception()
+    class TestCocktailDetailsCacheDataSource(
+        private val success: Boolean
+    ) : CocktailDetailsCacheDataSource {
+        override fun save(cocktailDetails: CocktailDetailsData) = Unit
+        override fun clear(name: String) = Unit
+
+        override fun read(name: String) = if (success) CocktailDetailsDb(
+            "Margarita",
+            "Alcoholic",
+            "Cocktail glass",
+            "Rub the rim of the glass with the lime slice to make the salt stick to it.",
+            "Tequila", "Triple sec", "Lime juice", "Salt",
+            "", "", "", "", "", ""
+        ) else null
+    }
 }
