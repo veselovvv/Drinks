@@ -33,7 +33,7 @@ class CocktailDetailsFragment : Fragment() {
         binding.cocktailDetailsCategory.text = viewModel.getCocktailCategory()
         Glide.with(view).load(viewModel.getCocktailPhotoUrl()).into(binding.cocktailDetailsPhoto)
 
-        val cocktailDetailsFailLayout = binding.cocktailDetailsFailLayout
+        val failLayout = binding.cocktailDetailsFailLayout
 
         val swipeToRefreshLayout = binding.cocktailDetailsSwipeToRefresh
         swipeToRefreshLayout.setOnRefreshListener {
@@ -61,9 +61,9 @@ class CocktailDetailsFragment : Fragment() {
                 )
             )
             ui.map(
-                cocktailDetailsFailLayout.root,
-                cocktailDetailsFailLayout.failMessageTextView,
-                cocktailDetailsFailLayout.failTryAgainButton,
+                failLayout.root,
+                failLayout.failMessageTextView,
+                failLayout.failTryAgainButton,
                 object : Retry {
                     override fun tryAgain() = viewModel.fetchCocktailDetails(cocktailName)
                 }

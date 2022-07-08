@@ -12,24 +12,24 @@ interface CocktailDetailsRepository {
     class Base(
         private val cloudDataSource: CocktailDetailsCloudDataSource,
         private val cacheDataSource: CocktailDetailsCacheDataSource,
-        private val cocktailDetailsCloudMapper: CocktailDetailsCloudMapper,
-        private val cocktailDetailsCacheMapper: CocktailDetailsCacheMapper
+        private val cloudMapper: CocktailDetailsCloudMapper,
+        private val cacheMapper: CocktailDetailsCacheMapper
     ) : CocktailDetailsRepository {
         override suspend fun fetchCocktailDetails(cocktailName: String) = try {
             val cocktailDetailsCache = cacheDataSource.read(cocktailName)
             if (cocktailDetailsCache == null) {
                 val cocktailDetailsCloud = cloudDataSource.fetchCocktailDetails(cocktailName)
-                val cocktailDetails = cocktailDetailsCloudMapper.map(cocktailDetailsCloud)
+                val cocktailDetails = cloudMapper.map(cocktailDetailsCloud)
                 cacheDataSource.save(cocktailDetails)
                 CocktailsDetailsData.Success(cocktailDetails)
-            } else CocktailsDetailsData.Success(cocktailDetailsCacheMapper.map(cocktailDetailsCache))
+            } else CocktailsDetailsData.Success(cacheMapper.map(cocktailDetailsCache))
         } catch (e: Exception) {
             CocktailsDetailsData.Fail(e)
         }
 
         override suspend fun fetchCocktailDetailsFromNetwork(cocktailName: String) = try {
             val cocktailDetailsCloud = cloudDataSource.fetchCocktailDetails(cocktailName)
-            val cocktailDetails = cocktailDetailsCloudMapper.map(cocktailDetailsCloud)
+            val cocktailDetails = cloudMapper.map(cocktailDetailsCloud)
             cacheDataSource.clear(cocktailName)
             cacheDataSource.save(cocktailDetails)
             CocktailsDetailsData.Success(cocktailDetails)
