@@ -3,11 +3,11 @@ package com.veselovvv.drinks.domain.cocktaildetails
 import com.veselovvv.drinks.core.ErrorType
 import com.veselovvv.drinks.data.cocktaildetails.CocktailDetailsData
 import kotlinx.coroutines.runBlocking
-import org.junit.Assert.assertEquals
+import org.junit.Assert
 import org.junit.Test
 import java.net.UnknownHostException
 
-class FetchCocktailDetailsUseCaseTest {
+class FetchCocktailDetailsFromNetworkUseCaseTest {
     @Test
     fun test_success() = runBlocking {
         val cocktailDetails = CocktailDetailsData(
@@ -18,32 +18,32 @@ class FetchCocktailDetailsUseCaseTest {
             listOf("Tequila", "Triple sec", "Lime juice", "Salt", "", "", "", "", "", "")
         )
         val cocktailDetailsDataToDomainMapper = BaseCocktailDetailsDataToDomainMapper()
-        val useCase = FetchCocktailDetailsUseCase(
+        val useCase = FetchCocktailDetailsFromNetworkUseCase(
             TestCocktailsDetailsRepository(),
             BaseCocktailsDetailsDataToDomainMapper(cocktailDetailsDataToDomainMapper)
         )
         val expected = CocktailsDetailsDomain.Success(cocktailDetails, cocktailDetailsDataToDomainMapper)
         val actual = useCase.execute("Margarita")
-        assertEquals(expected, actual)
+        Assert.assertEquals(expected, actual)
     }
 
     @Test
     fun test_fail() = runBlocking {
         val cocktailDetailsDataToDomainMapper = BaseCocktailDetailsDataToDomainMapper()
-        var useCase = FetchCocktailDetailsUseCase(
+        var useCase = FetchCocktailDetailsFromNetworkUseCase(
             TestCocktailsDetailsRepository(UnknownHostException()),
             BaseCocktailsDetailsDataToDomainMapper(cocktailDetailsDataToDomainMapper)
         )
         var expected = CocktailsDetailsDomain.Fail(ErrorType.NO_CONNECTION)
         var actual = useCase.execute("")
-        assertEquals(expected, actual)
+        Assert.assertEquals(expected, actual)
 
-        useCase = FetchCocktailDetailsUseCase(
+        useCase = FetchCocktailDetailsFromNetworkUseCase(
             TestCocktailsDetailsRepository(Exception()),
             BaseCocktailsDetailsDataToDomainMapper(cocktailDetailsDataToDomainMapper)
         )
         expected = CocktailsDetailsDomain.Fail(ErrorType.GENERIC_ERROR)
         actual = useCase.execute("")
-        assertEquals(expected, actual)
+        Assert.assertEquals(expected, actual)
     }
 }

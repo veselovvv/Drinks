@@ -8,30 +8,30 @@ import java.net.UnknownHostException
 
 class BaseCocktailsDetailsDataToDomainMapperTest {
     private val cocktailDetailsDataToDomainMapper = BaseCocktailDetailsDataToDomainMapper()
-    private val cocktailsDetailsDataToDomainMapper =
-        BaseCocktailsDetailsDataToDomainMapper(cocktailDetailsDataToDomainMapper)
+    private val mapper = BaseCocktailsDetailsDataToDomainMapper(cocktailDetailsDataToDomainMapper)
 
     @Test
     fun test_success() {
-        val data = CocktailDetailsData(
+        val cocktailDetails = CocktailDetailsData(
+            "Margarita",
             "Alcoholic",
             "Cocktail glass",
             "Rub the rim of the glass with the lime slice to make the salt stick to it.",
             listOf("Tequila", "Triple sec", "Lime juice", "Salt", "", "", "", "", "", "")
         )
-        val expected = CocktailsDetailsDomain.Success(data, cocktailDetailsDataToDomainMapper)
-        val actual = cocktailsDetailsDataToDomainMapper.map(data)
+        val expected = CocktailsDetailsDomain.Success(cocktailDetails, cocktailDetailsDataToDomainMapper)
+        val actual = mapper.map(cocktailDetails)
         assertEquals(expected, actual)
     }
 
     @Test
     fun test_fail() {
         var expected = CocktailsDetailsDomain.Fail(ErrorType.NO_CONNECTION)
-        var actual = cocktailsDetailsDataToDomainMapper.map(UnknownHostException())
+        var actual = mapper.map(UnknownHostException())
         assertEquals(expected, actual)
 
         expected = CocktailsDetailsDomain.Fail(ErrorType.GENERIC_ERROR)
-        actual = cocktailsDetailsDataToDomainMapper.map(Exception())
+        actual = mapper.map(Exception())
         assertEquals(expected, actual)
     }
 }
