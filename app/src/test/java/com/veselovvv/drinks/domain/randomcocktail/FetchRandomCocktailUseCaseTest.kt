@@ -1,6 +1,7 @@
 package com.veselovvv.drinks.domain.randomcocktail
 
 import com.veselovvv.drinks.core.ErrorType
+import com.veselovvv.drinks.data.randomcocktail.RandomCocktailData
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Test

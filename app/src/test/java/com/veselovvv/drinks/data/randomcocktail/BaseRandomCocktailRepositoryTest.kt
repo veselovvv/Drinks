@@ -2,6 +2,8 @@ package com.veselovvv.drinks.data.randomcocktail
 
 import com.veselovvv.drinks.data.TestException
 import com.veselovvv.drinks.data.randomcocktail.cloud.RandomCocktailCloud
+import com.veselovvv.drinks.data.randomcocktail.cloud.RandomCocktailCloudDataSource
+import com.veselovvv.drinks.data.randomcocktail.cloud.RandomCocktailCloudMapper
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Test

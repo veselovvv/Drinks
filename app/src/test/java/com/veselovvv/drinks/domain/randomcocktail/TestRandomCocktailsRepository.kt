@@ -1,8 +1,12 @@
 package com.veselovvv.drinks.domain.randomcocktail
 
+import com.veselovvv.drinks.data.randomcocktail.RandomCocktailData
+import com.veselovvv.drinks.data.randomcocktail.RandomCocktailRepository
+import com.veselovvv.drinks.data.randomcocktail.RandomCocktailsData
+
 class TestRandomCocktailsRepository(
     private val exception: Exception? = null
-) : RandomCocktailsRepository {
+) : RandomCocktailRepository {
     private val randomCocktail = RandomCocktailData(
         "Margarita",
         "Cocktail",

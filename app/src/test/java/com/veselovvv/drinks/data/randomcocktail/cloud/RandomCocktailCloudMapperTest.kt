@@ -1,5 +1,7 @@
 package com.veselovvv.drinks.data.randomcocktail.cloud
 
+import com.veselovvv.drinks.data.randomcocktail.RandomCocktailData
+import com.veselovvv.drinks.data.randomcocktail.ToRandomCocktailMapper
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

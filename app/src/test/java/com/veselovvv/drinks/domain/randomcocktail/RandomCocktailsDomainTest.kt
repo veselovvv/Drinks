@@ -2,6 +2,10 @@ package com.veselovvv.drinks.domain.randomcocktail
 
 import com.veselovvv.drinks.TestResourceProvider
 import com.veselovvv.drinks.core.ErrorType
+import com.veselovvv.drinks.data.randomcocktail.RandomCocktailData
+import com.veselovvv.drinks.presentation.randomcocktail.BaseRandomCocktailDomainToUiMapper
+import com.veselovvv.drinks.presentation.randomcocktail.BaseRandomCocktailsDomainToUiMapper
+import com.veselovvv.drinks.presentation.randomcocktail.RandomCocktailsUi
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -27,7 +31,7 @@ class RandomCocktailsDomainTest {
             listOf("Tequila", "Triple sec", "Lime juice", "Salt", "", "", "", "", "", "")
         )
         val randomCocktailDomainToUiMapper = BaseRandomCocktailDomainToUiMapper()
-        val domain = RandomCocktailsDomain.Success(randomCocktail, BaseRandomCocktailDataToDomainMapper)
+        val domain = RandomCocktailsDomain.Success(randomCocktail, BaseRandomCocktailDataToDomainMapper())
         val expected = RandomCocktailsUi.Success(resultRandomCocktail, randomCocktailDomainToUiMapper)
         val actual = domain.map(
             BaseRandomCocktailsDomainToUiMapper(
