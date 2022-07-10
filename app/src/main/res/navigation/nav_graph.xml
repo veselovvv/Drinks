@@ -17,7 +17,7 @@
         tools:layout="@layout/fragment_categories" />
     <fragment
         android:id="@+id/randomCocktailFragment"
-        android:name="com.veselovvv.drinks.RandomCocktailFragment"
+        android:name="com.veselovvv.drinks.presentation.randomcocktail.RandomCocktailFragment"
         android:label="Random Cocktail"
         tools:layout="@layout/fragment_random_cocktail" />
     <fragment
