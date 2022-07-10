@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.bumptech.glide.Glide
 import com.veselovvv.drinks.core.Retry
 import com.veselovvv.drinks.databinding.FragmentCocktailDetailsBinding
+import com.veselovvv.drinks.presentation.core.loadImage
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -29,12 +29,13 @@ class CocktailDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val cocktailName = viewModel.getCocktailName()
-        binding.cocktailDetailsName.text = cocktailName
-        binding.cocktailDetailsCategory.text = viewModel.getCocktailCategory()
-        Glide.with(view).load(viewModel.getCocktailPhotoUrl()).into(binding.cocktailDetailsPhoto)
+        with(binding) {
+            cocktailDetailsName.text = cocktailName
+            cocktailDetailsCategory.text = viewModel.getCocktailCategory()
+            cocktailDetailsPhoto.loadImage(view, viewModel.getCocktailPhotoUrl())
+        }
 
         val failLayout = binding.cocktailDetailsFailLayout
-
         val swipeToRefreshLayout = binding.cocktailDetailsSwipeToRefresh
         swipeToRefreshLayout.setOnRefreshListener {
             viewModel.fetchCocktailDetailsFromNetwork(cocktailName)

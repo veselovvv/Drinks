@@ -4,11 +4,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.veselovvv.drinks.core.Retry
 import com.veselovvv.drinks.databinding.CocktailLayoutBinding
 import com.veselovvv.drinks.databinding.FailFullscreenBinding
 import com.veselovvv.drinks.databinding.ProgressFullscreenBinding
+import com.veselovvv.drinks.presentation.core.loadImage
 
 class CocktailsAdapter(
     private val retry: Retry,
@@ -59,9 +59,11 @@ class CocktailsAdapter(
             override fun bind(cocktail: CocktailUi) {
                 cocktail.map(object : CocktailUi.BaseMapper {
                     override fun map(id: String, name: String, category: String, photoUrl: String) {
-                        Glide.with(itemView).load(photoUrl).into(binding.cocktailPhotoImageView)
-                        binding.cocktailNameTextView.text = name
-                        binding.cocktailCategoryTextView.text = category
+                        with(binding) {
+                            cocktailPhotoImageView.loadImage(itemView, photoUrl)
+                            cocktailNameTextView.text = name
+                            cocktailCategoryTextView.text = category
+                        }
                     }
                     override fun map(text: String) = Unit
                 })
