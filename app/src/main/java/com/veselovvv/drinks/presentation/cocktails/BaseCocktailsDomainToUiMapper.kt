@@ -7,7 +7,7 @@ import com.veselovvv.drinks.domain.cocktails.CocktailDomainToUiMapper
 import com.veselovvv.drinks.domain.cocktails.CocktailsDomainToUiMapper
 
 class BaseCocktailsDomainToUiMapper(
-    private val resourceProvider: ResourceProvider,
+    resourceProvider: ResourceProvider,
     private val cocktailMapper: CocktailDomainToUiMapper
 ) : CocktailsDomainToUiMapper(resourceProvider) {
     override fun map(data: List<CocktailDomain>) = CocktailsUi.Success(data, cocktailMapper)
