@@ -4,22 +4,16 @@ import android.view.ViewGroup
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textview.MaterialTextView
 import com.veselovvv.drinks.core.Retry
+import com.veselovvv.drinks.presentation.core.BaseCocktailUiMapper
 import com.veselovvv.drinks.presentation.core.hide
 import com.veselovvv.drinks.presentation.core.show
 
-sealed class CocktailDetailsUi : CocktailDetailsUiMapper {
+sealed class CocktailDetailsUi : CocktailDetailsUiMapper, BaseCocktailUiMapper.BaseCocktailUi() {
     override fun map(
         alcoholicTextView: MaterialTextView,
         glassTextView: MaterialTextView,
         instructionsTextView: MaterialTextView,
         ingredientsTextViews: List<MaterialTextView>
-    ) = Unit
-
-    override fun map(
-        failLayout: ViewGroup,
-        messageTextView: MaterialTextView,
-        tryAgainButton: MaterialButton,
-        retry: Retry
     ) = Unit
 
     object Progress : CocktailDetailsUi() {
@@ -42,13 +36,7 @@ sealed class CocktailDetailsUi : CocktailDetailsUiMapper {
             alcoholicTextView.text = alcoholic
             glassTextView.text = glass
             instructionsTextView.text = instructions
-
-            ingredientsTextViews.forEachIndexed { index, textView ->
-                if (ingredients[index] != "") textView.apply {
-                    show()
-                    text = ingredients[index]
-                }
-            }
+            mapIngredients(ingredients, ingredientsTextViews)
         }
     }
 
@@ -59,13 +47,6 @@ sealed class CocktailDetailsUi : CocktailDetailsUiMapper {
             messageTextView: MaterialTextView,
             tryAgainButton: MaterialButton,
             retry: Retry
-        ) {
-            failLayout.show()
-            messageTextView.text = message
-            tryAgainButton.setOnClickListener {
-                retry.tryAgain()
-                failLayout.hide()
-            }
-        }
+        ) = mapFail(failLayout, messageTextView, tryAgainButton, retry, message)
     }
 }
