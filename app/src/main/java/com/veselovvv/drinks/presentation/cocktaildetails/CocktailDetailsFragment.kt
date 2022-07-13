@@ -11,7 +11,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class CocktailDetailsFragment : BaseCocktailInfoFragment() {
     private val viewModel: CocktailDetailsViewModel by viewModels()
 
-    override fun fetchData() = viewModel.fetchCocktailDetailsFromNetwork(viewModel.getCocktailName())
+    override fun fetchData() = viewModel.fetchCocktailDetails(viewModel.getCocktailName())
+    override fun updateData() = viewModel.fetchCocktailDetailsFromNetwork(viewModel.getCocktailName())
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

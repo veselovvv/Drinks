@@ -11,6 +11,7 @@ class RandomCocktailFragment : BaseCocktailInfoFragment() {
     private val viewModel: RandomCocktailViewModel by viewModels()
 
     override fun fetchData() = viewModel.fetchRandomCocktail()
+    override fun updateData() = fetchData()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

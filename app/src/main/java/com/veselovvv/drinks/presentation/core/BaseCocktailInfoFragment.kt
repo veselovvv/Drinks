@@ -28,11 +28,12 @@ abstract class BaseCocktailInfoFragment : BaseFragment<FragmentCocktailDetailsBi
         FragmentCocktailDetailsBinding.inflate(inflater, container, false)
 
     abstract fun fetchData()
+    abstract fun updateData()
 
     protected fun setupSwipeToRefresh() {
         val swipeToRefreshLayout = binding.cocktailDetailsSwipeToRefresh
         swipeToRefreshLayout.setOnRefreshListener {
-            fetchData()
+            updateData()
             swipeToRefreshLayout.isRefreshing = false
         }
     }
