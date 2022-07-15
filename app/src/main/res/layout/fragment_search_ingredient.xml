@@ -3,14 +3,71 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".SearchIngredientFragment">
 
-    <com.google.android.material.textview.MaterialTextView
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Search Ingredient"
-        android:textColor="@color/black"
-        android:textSize="32sp" />
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/cocktails_toolbar"
+            app:title="@string/search_an_ingredient"
+            style="@style/toolbar" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <include layout="@layout/progress_fullscreen"
+        android:id="@+id/search_ingredient_progress_layout"
+        android:visibility="gone" />
+
+    <include layout="@layout/fail_fullscreen"
+        android:id="@+id/search_ingredient_fail_layout"
+        android:visibility="gone" />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/search_ingredient_swipe_to_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView style="@style/scroll_view"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/search_ingredient_name"
+                    tools:text="Ingredient's Name"
+                    style="@style/big_text_view" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/search_ingredient_type"
+                    android:paddingTop="16dp"
+                    style="@style/small_text_view"
+                    tools:text="Type" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/search_ingredient_alcohol"
+                    style="@style/small_text_view"
+                    tools:text="Alcohol" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/search_ingredient_abv"
+                    android:paddingBottom="8dp"
+                    style="@style/small_text_view"
+                    tools:text="40" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    style="@style/divider" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/search_ingredient_description"
+                    style="@style/description"
+                    tools:text="It contained little alcohol, an estimated maximum of about 14%, as only this amount can be attained by natural fermentation. The still, allowing for distillation (burning of wine), increased purity, and increased alcohol content, was invented in the 8th century." />
+            </LinearLayout>
+        </ScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </LinearLayout>
