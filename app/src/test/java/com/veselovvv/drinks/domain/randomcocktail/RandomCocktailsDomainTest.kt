@@ -34,9 +34,7 @@ class RandomCocktailsDomainTest {
         val domain = RandomCocktailsDomain.Success(randomCocktail, BaseRandomCocktailDataToDomainMapper())
         val expected = RandomCocktailsUi.Success(resultRandomCocktail, randomCocktailDomainToUiMapper)
         val actual = domain.map(
-            BaseRandomCocktailsDomainToUiMapper(
-                TestResourceProvider(), randomCocktailDomainToUiMapper
-            )
+            BaseRandomCocktailsDomainToUiMapper(TestResourceProvider(), randomCocktailDomainToUiMapper)
         )
         assertEquals(expected, actual)
     }

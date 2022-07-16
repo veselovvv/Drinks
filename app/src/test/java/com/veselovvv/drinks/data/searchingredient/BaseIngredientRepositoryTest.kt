@@ -5,16 +5,15 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-class BaseSearchIngredientRepositoryTest {
+class BaseIngredientRepositoryTest {
     @Test
     fun test_fetch_ingredient_success() = runBlocking {
-        val testCloudDataSource = TestSearchIngredientCloudDataSource(true)
-        val repository = SearchIngredientRepository.Base(
-            testCloudDataSource,
-            SearchIngredientCloudMapper.Base(ToSearchIngredientMapper.Base())
+        val testCloudDataSource = TestIngredientCloudDataSource(true)
+        val repository = IngredientRepository.Base(
+            testCloudDataSource, IngredientCloudMapper.Base(ToIngredientMapper.Base())
         )
-        val expected = SearchIngredientsData.Success(
-            SearchIngredientData(
+        val expected = IngredientsData.Success(
+            IngredientData(
                 "Fresh Mint",
                 "Lamiaceae or Labiatae is a family of flowering plants commonly known as the mint or deadnettle family.",
                 "Garnish",
@@ -22,26 +21,23 @@ class BaseSearchIngredientRepositoryTest {
                 ""
             )
         )
-        val actual = repository.fetchIngredient("fresh")
+        val actual = repository.fetchIngredient("mint")
         assertEquals(expected, actual)
     }
 
     @Test
     fun test_fetch_ingredient_fail() = runBlocking {
-        val testCloudDataSource = TestSearchIngredientCloudDataSource(false)
-        val repository = SearchIngredientRepository.Base(
-            testCloudDataSource,
-            SearchIngredientCloudMapper.Base(ToSearchIngredientMapper.Base())
+        val testCloudDataSource = TestIngredientCloudDataSource(false)
+        val repository = IngredientRepository.Base(
+            testCloudDataSource, IngredientCloudMapper.Base(ToIngredientMapper.Base())
         )
-        val expected = SearchIngredientsData.Fail(TestException(""))
+        val expected = IngredientsData.Fail(TestException(""))
         val actual = repository.fetchIngredient("")
         assertEquals(expected, actual)
     }
 
-    class TestSearchIngredientCloudDataSource(
-        private val success: Boolean
-    ) : SearchIngredientCloudDataSource {
-        override suspend fun fetchIngredient(name: String) = if (success) SearchIngredientCloud(
+    class TestIngredientCloudDataSource(private val success: Boolean) : IngredientCloudDataSource {
+        override suspend fun fetchIngredient(name: String) = if (success) IngredientCloud(
             "Fresh Mint",
             "Lamiaceae or Labiatae is a family of flowering plants commonly known as the mint or deadnettle family.",
             "Garnish",
