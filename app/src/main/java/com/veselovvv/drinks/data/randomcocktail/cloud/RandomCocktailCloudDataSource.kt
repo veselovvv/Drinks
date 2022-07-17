@@ -14,8 +14,7 @@ interface RandomCocktailCloudDataSource {
         override suspend fun fetchRandomCocktail(): RandomCocktailCloud {
             val drinksRandom: DrinksRandomCloud =
                 gson.fromJson(service.fetchRandomCocktail().string(), type)
-            val randomCocktails = drinksRandom.getCocktailsList()
-            return randomCocktails[0]
+            return drinksRandom.getCocktailsList()[0]
         }
     }
 }
