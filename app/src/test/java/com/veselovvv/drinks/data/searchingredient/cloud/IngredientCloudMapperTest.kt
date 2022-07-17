@@ -1,5 +1,7 @@
 package com.veselovvv.drinks.data.searchingredient.cloud
 
+import com.veselovvv.drinks.data.searchingredient.IngredientData
+import com.veselovvv.drinks.data.searchingredient.ToIngredientMapper
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

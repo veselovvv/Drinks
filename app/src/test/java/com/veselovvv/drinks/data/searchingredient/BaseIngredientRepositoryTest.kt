@@ -1,6 +1,9 @@
 package com.veselovvv.drinks.data.searchingredient
 
 import com.veselovvv.drinks.data.TestException
+import com.veselovvv.drinks.data.searchingredient.cloud.IngredientCloud
+import com.veselovvv.drinks.data.searchingredient.cloud.IngredientCloudDataSource
+import com.veselovvv.drinks.data.searchingredient.cloud.IngredientCloudMapper
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Test
