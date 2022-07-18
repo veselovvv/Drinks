@@ -1,6 +1,7 @@
 package com.veselovvv.drinks.data.searchingredient
 
 import com.veselovvv.drinks.core.Object
+import com.veselovvv.drinks.domain.searchingredient.IngredientDomain
 
 data class IngredientData(
     private val name: String,
