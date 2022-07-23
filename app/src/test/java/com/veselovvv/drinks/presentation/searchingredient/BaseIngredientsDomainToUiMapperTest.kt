@@ -2,6 +2,7 @@ package com.veselovvv.drinks.presentation.searchingredient
 
 import com.veselovvv.drinks.TestResourceProvider
 import com.veselovvv.drinks.core.ErrorType
+import com.veselovvv.drinks.domain.searchingredient.IngredientDomain
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

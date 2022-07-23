@@ -3,6 +3,9 @@ package com.veselovvv.drinks.domain.searchingredient
 import com.veselovvv.drinks.TestResourceProvider
 import com.veselovvv.drinks.core.ErrorType
 import com.veselovvv.drinks.data.searchingredient.IngredientData
+import com.veselovvv.drinks.presentation.searchingredient.BaseIngredientDomainToUiMapper
+import com.veselovvv.drinks.presentation.searchingredient.BaseIngredientsDomainToUiMapper
+import com.veselovvv.drinks.presentation.searchingredient.IngredientsUi
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
