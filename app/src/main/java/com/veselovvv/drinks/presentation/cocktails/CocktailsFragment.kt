@@ -14,6 +14,7 @@ import com.veselovvv.drinks.R
 import com.veselovvv.drinks.core.Retry
 import com.veselovvv.drinks.databinding.FragmentCocktailsBinding
 import com.veselovvv.drinks.presentation.core.BaseFragment
+import com.veselovvv.drinks.presentation.core.SearchListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -48,7 +49,7 @@ class CocktailsFragment : BaseFragment<FragmentCocktailsBinding>() {
                     R.id.action_search -> {
                         (it.actionView as SearchView).apply {
                             queryHint = getString(R.string.search_cocktails)
-                            setOnQueryTextListener(object : SearchCocktailsListener() {
+                            setOnQueryTextListener(object : SearchListener() {
                                 override fun find(query: String?): Boolean {
                                     viewModel.searchCocktails(query.toString())
                                     return !query.isNullOrEmpty()

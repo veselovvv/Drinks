@@ -1,8 +1,8 @@
-package com.veselovvv.drinks.presentation.cocktails
+package com.veselovvv.drinks.presentation.core
 
 import androidx.appcompat.widget.SearchView
 
-abstract class SearchCocktailsListener : SearchView.OnQueryTextListener {
+abstract class SearchListener : SearchView.OnQueryTextListener {
     override fun onQueryTextSubmit(query: String?) = find(query)
     override fun onQueryTextChange(newText: String?) = find(newText)
 

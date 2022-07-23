@@ -22,7 +22,7 @@
         tools:layout="@layout/fragment_random_cocktail" />
     <fragment
         android:id="@+id/searchIngredientFragment"
-        android:name="com.veselovvv.drinks.SearchIngredientFragment"
+        android:name="com.veselovvv.drinks.presentation.searchingredient.SearchIngredientFragment"
         android:label="Search Ingredient"
         tools:layout="@layout/fragment_search_ingredient" />
     <fragment
