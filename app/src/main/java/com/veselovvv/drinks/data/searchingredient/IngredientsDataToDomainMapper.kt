@@ -4,4 +4,6 @@ import com.veselovvv.drinks.core.Mapper
 import com.veselovvv.drinks.domain.searchingredient.IngredientsDomain
 
 abstract class IngredientsDataToDomainMapper :
-    Mapper.DataToDomain.Base<IngredientData, IngredientsDomain>()
+    Mapper.DataToDomain.Base<IngredientData, IngredientsDomain>() {
+    abstract fun map(): IngredientsDomain
+}

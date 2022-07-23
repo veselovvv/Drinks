@@ -9,4 +9,5 @@ class BaseIngredientsDataToDomainMapper(
 ) : IngredientsDataToDomainMapper() {
     override fun map(data: IngredientData) = IngredientsDomain.Success(data, ingredientMapper)
     override fun map(e: Exception) = IngredientsDomain.Fail(getErrorType(e))
+    override fun map() = IngredientsDomain.NoResults
 }

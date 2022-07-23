@@ -11,4 +11,8 @@ sealed class IngredientsData : Object<IngredientsDomain, IngredientsDataToDomain
     data class Fail(private val exception: Exception) : IngredientsData() {
         override fun map(mapper: IngredientsDataToDomainMapper) = mapper.map(exception)
     }
+
+    object NoResults : IngredientsData() {
+        override fun map(mapper: IngredientsDataToDomainMapper) = mapper.map()
+    }
 }

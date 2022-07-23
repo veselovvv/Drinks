@@ -12,8 +12,10 @@ interface IngredientRepository {
     ) : IngredientRepository {
         override suspend fun fetchIngredient(name: String) = try {
             val ingredientCloud = cloudDataSource.fetchIngredient(name)
-            val ingredient = cloudMapper.map(ingredientCloud)
-            IngredientsData.Success(ingredient)
+            if (ingredientCloud == null) IngredientsData.NoResults else {
+                val ingredient = cloudMapper.map(ingredientCloud)
+                IngredientsData.Success(ingredient)
+            }
         } catch (e: Exception) {
             IngredientsData.Fail(e)
         }
