@@ -9,6 +9,7 @@ import com.veselovvv.drinks.presentation.core.hide
 import com.veselovvv.drinks.presentation.core.show
 
 sealed class CocktailDetailsUi : CocktailDetailsUiMapper, BaseCocktailUiMapper.BaseCocktailUi() {
+    override fun map(progressLayout: ViewGroup) = progressLayout.hide()
     override fun map(
         alcoholicTextView: MaterialTextView,
         glassTextView: MaterialTextView,
@@ -26,7 +27,6 @@ sealed class CocktailDetailsUi : CocktailDetailsUiMapper, BaseCocktailUiMapper.B
         private val instructions: String,
         private val ingredients: List<String>
     ) : CocktailDetailsUi() {
-        override fun map(progressLayout: ViewGroup) = progressLayout.hide()
         override fun map(
             alcoholicTextView: MaterialTextView,
             glassTextView: MaterialTextView,
@@ -41,7 +41,6 @@ sealed class CocktailDetailsUi : CocktailDetailsUiMapper, BaseCocktailUiMapper.B
     }
 
     class Fail(private val message: String) : CocktailDetailsUi() {
-        override fun map(progressLayout: ViewGroup) = progressLayout.hide()
         override fun map(
             failLayout: ViewGroup,
             messageTextView: MaterialTextView,

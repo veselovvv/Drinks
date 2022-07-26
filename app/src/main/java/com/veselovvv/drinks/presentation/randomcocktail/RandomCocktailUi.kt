@@ -12,6 +12,7 @@ import com.veselovvv.drinks.presentation.core.show
 import de.hdodenhof.circleimageview.CircleImageView
 
 sealed class RandomCocktailUi : RandomCocktailUiMapper, BaseCocktailUiMapper.BaseCocktailUi() {
+    override fun map(progressLayout: ViewGroup) = progressLayout.hide()
     override fun map(
         view: View,
         nameTextView: MaterialTextView,
@@ -36,7 +37,6 @@ sealed class RandomCocktailUi : RandomCocktailUiMapper, BaseCocktailUiMapper.Bas
         private val photoUrl: String,
         private val ingredients: List<String>
     ) : RandomCocktailUi() {
-        override fun map(progressLayout: ViewGroup) = progressLayout.hide()
         override fun map(
             view: View,
             nameTextView: MaterialTextView,
@@ -58,7 +58,6 @@ sealed class RandomCocktailUi : RandomCocktailUiMapper, BaseCocktailUiMapper.Bas
     }
 
     class Fail(private val message: String) : RandomCocktailUi() {
-        override fun map(progressLayout: ViewGroup) = progressLayout.hide()
         override fun map(
             failLayout: ViewGroup,
             messageTextView: MaterialTextView,

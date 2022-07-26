@@ -7,7 +7,7 @@ import com.veselovvv.drinks.presentation.core.hide
 import com.veselovvv.drinks.presentation.core.show
 
 sealed class IngredientUi : IngredientUiMapper {
-    override fun map(progressLayout: ViewGroup) = progressLayout.hide() //TODO make that way in all Ui features classes
+    override fun map(progressLayout: ViewGroup) = progressLayout.hide()
     override fun mapNoResults(noResultsLayout: ViewGroup) = noResultsLayout.hide()
 
     override fun map(
@@ -62,7 +62,6 @@ sealed class IngredientUi : IngredientUiMapper {
         }
     }
 
-    //TODO + write unit tests with NoResults
     object NoResults : IngredientUi() {
         override fun mapNoResults(noResultsLayout: ViewGroup) = noResultsLayout.show()
     }

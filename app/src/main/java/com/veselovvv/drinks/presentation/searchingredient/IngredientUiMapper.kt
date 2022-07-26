@@ -5,7 +5,7 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.textview.MaterialTextView
 
 interface IngredientUiMapper {
-    fun map(progressLayout: ViewGroup) // TODO dry (BaseCocktailUiMapper - make base thing for all the features)
+    fun map(progressLayout: ViewGroup)
     fun mapNoResults(noResultsLayout: ViewGroup)
     fun map(
         nameTextView: MaterialTextView,
