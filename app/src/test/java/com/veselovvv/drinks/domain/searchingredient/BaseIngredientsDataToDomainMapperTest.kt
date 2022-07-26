@@ -34,4 +34,11 @@ class BaseIngredientsDataToDomainMapperTest {
         actual = mapper.map(Exception())
         assertEquals(expected, actual)
     }
+
+    @Test
+    fun test_no_results() {
+        val expected = IngredientsDomain.NoResults
+        val actual = mapper.map()
+        assertEquals(expected, actual)
+    }
 }

@@ -39,13 +39,30 @@ class BaseIngredientRepositoryTest {
         assertEquals(expected, actual)
     }
 
-    class TestIngredientCloudDataSource(private val success: Boolean) : IngredientCloudDataSource {
-        override suspend fun fetchIngredient(name: String) = if (success) IngredientCloud(
-            "Fresh Mint",
-            "Lamiaceae or Labiatae is a family of flowering plants commonly known as the mint or deadnettle family.",
-            "Garnish",
-            "No",
-            null
-        ) else throw TestException("")
+    @Test
+    fun test_fetch_ingredient_no_results() = runBlocking {
+        val testCloudDataSource = TestIngredientCloudDataSource(success = true, isResults = false)
+        val repository = IngredientRepository.Base(
+            testCloudDataSource, IngredientCloudMapper.Base(ToIngredientMapper.Base())
+        )
+        val expected = IngredientsData.NoResults
+        val actual = repository.fetchIngredient("")
+        assertEquals(expected, actual)
+
+    }
+
+    class TestIngredientCloudDataSource(
+        private val success: Boolean,
+        private val isResults: Boolean = true
+    ) : IngredientCloudDataSource {
+        override suspend fun fetchIngredient(name: String) = if (success) {
+            if (isResults) IngredientCloud(
+                "Fresh Mint",
+                "Lamiaceae or Labiatae is a family of flowering plants commonly known as the mint or deadnettle family.",
+                "Garnish",
+                "No",
+                null
+            ) else null
+        } else throw TestException("")
     }
 }

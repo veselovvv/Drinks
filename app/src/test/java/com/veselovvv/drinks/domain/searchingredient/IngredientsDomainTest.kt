@@ -52,6 +52,16 @@ class IngredientsDomainTest {
         assertEquals(expected, actual)
     }
 
+    @Test
+    fun test_no_results() {
+        val domain = IngredientsDomain.NoResults
+        val expected = IngredientsUi.NoResults
+        val actual = domain.map(
+            BaseIngredientsDomainToUiMapper(TestResourceProvider(), BaseIngredientDomainToUiMapper())
+        )
+        assertEquals(expected, actual)
+    }
+
     companion object {
         private const val NO_CONNECTION_MESSAGE = "No connection. Please try again!"
         private const val SERVICE_UNAVAILABLE_MESSAGE = "Service unavailable. Please try again!"

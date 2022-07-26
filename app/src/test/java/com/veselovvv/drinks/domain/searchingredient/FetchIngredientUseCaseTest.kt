@@ -46,4 +46,16 @@ class FetchIngredientUseCaseTest {
         actual = useCase.execute("")
         assertEquals(expected, actual)
     }
+
+    @Test
+    fun test_no_results() = runBlocking {
+        val ingredientDataToDomainMapper = BaseIngredientDataToDomainMapper()
+        val useCase = FetchIngredientUseCase(
+            TestIngredientRepository(isResults = false),
+            BaseIngredientsDataToDomainMapper(ingredientDataToDomainMapper)
+        )
+        val expected = IngredientsDomain.NoResults
+        val actual = useCase.execute("")
+        assertEquals(expected, actual)
+    }
 }
