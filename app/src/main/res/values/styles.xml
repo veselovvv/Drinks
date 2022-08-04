@@ -47,4 +47,40 @@
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+    <style name="DrinksCardView" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="android:layout_width">168dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">16dp</item>
+        <item name="strokeColor">@color/pink</item>
+        <item name="strokeWidth">2dp</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MaterialCardView.Cut</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.MaterialCardView.Cut" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">16dp</item>
+        <item name="cornerSizeTopLeft">16dp</item>
+        <item name="cornerSizeBottomRight">16dp</item>
+        <item name="cornerSizeBottomLeft">16dp</item>
+    </style>
+
+    <style name="card_view_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="image_view">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">112dp</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="tint">@color/orange_500</item>
+    </style>
+
+    <style name="card_view_text_view" parent="big_text_view">
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:textSize">24sp</item>
+    </style>
 </resources>

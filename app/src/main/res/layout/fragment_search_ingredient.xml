@@ -68,7 +68,7 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     style="@style/small_text_view"
-                    android:text="@string/alcohol" />
+                    android:text="@string/alcohol_" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/search_ingredient_alcohol"

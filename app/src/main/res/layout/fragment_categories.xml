@@ -1,16 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:theme="@style/AppTheme.PopupOverlay"
+    android:rowCount="2"
+    android:columnCount="2"
     tools:context=".CategoriesFragment">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Categories"
-        android:textSize="32sp"
-        android:textColor="@color/black" />
-</LinearLayout>
+    <com.google.android.material.card.MaterialCardView style="@style/DrinksCardView">
+        <LinearLayout style="@style/card_view_layout">
+            <ImageView style="@style/image_view"
+                android:src="@drawable/baseline_format_list_bulleted_24" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:text="@string/categories"
+                style="@style/card_view_text_view" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView style="@style/DrinksCardView">
+        <LinearLayout style="@style/card_view_layout">
+            <ImageView style="@style/image_view"
+                android:src="@drawable/baseline_local_bar_24" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:text="@string/glass"
+                style="@style/card_view_text_view" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView style="@style/DrinksCardView">
+        <LinearLayout style="@style/card_view_layout">
+            <ImageView style="@style/image_view"
+                android:src="@drawable/baseline_colorize_24" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:text="@string/ingredients"
+                style="@style/card_view_text_view" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView style="@style/DrinksCardView">
+        <LinearLayout style="@style/card_view_layout">
+            <ImageView style="@style/image_view"
+                android:src="@drawable/baseline_liquor_24" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:text="@string/alcohol"
+                style="@style/card_view_text_view" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</GridLayout>

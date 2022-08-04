@@ -13,6 +13,7 @@
     <string name="search_an_ingredient">Search an ingredient</string>
     <string name="no_results_to_show">No results to show</string>
     <string name="please_check_spelling">Please check spelling or try a different word</string>
-    <string name="alcohol">Alcohol: </string>
+    <string name="alcohol_">Alcohol: </string>
     <string name="abv">Abv:</string>
+    <string name="alcohol">Alcohol</string>
 </resources>
