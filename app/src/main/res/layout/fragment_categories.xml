@@ -8,7 +8,9 @@
     android:columnCount="2"
     tools:context=".CategoriesFragment">
 
-    <com.google.android.material.card.MaterialCardView style="@style/DrinksCardView">
+    <com.google.android.material.card.MaterialCardView style="@style/DrinksCardView"
+        android:id="@+id/categories_categories_card_view">
+
         <LinearLayout style="@style/card_view_layout">
             <ImageView style="@style/image_view"
                 android:src="@drawable/baseline_format_list_bulleted_24" />
@@ -19,7 +21,9 @@
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <com.google.android.material.card.MaterialCardView style="@style/DrinksCardView">
+    <com.google.android.material.card.MaterialCardView style="@style/DrinksCardView"
+        android:id="@+id/categories_glass_card_view">
+
         <LinearLayout style="@style/card_view_layout">
             <ImageView style="@style/image_view"
                 android:src="@drawable/baseline_local_bar_24" />
@@ -30,7 +34,9 @@
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <com.google.android.material.card.MaterialCardView style="@style/DrinksCardView">
+    <com.google.android.material.card.MaterialCardView style="@style/DrinksCardView"
+        android:id="@+id/categories_ingredients_card_view">
+
         <LinearLayout style="@style/card_view_layout">
             <ImageView style="@style/image_view"
                 android:src="@drawable/baseline_colorize_24" />
@@ -41,7 +47,9 @@
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <com.google.android.material.card.MaterialCardView style="@style/DrinksCardView">
+    <com.google.android.material.card.MaterialCardView style="@style/DrinksCardView"
+        android:id="@+id/categories_alcohol_card_view">
+
         <LinearLayout style="@style/card_view_layout">
             <ImageView style="@style/image_view"
                 android:src="@drawable/baseline_liquor_24" />

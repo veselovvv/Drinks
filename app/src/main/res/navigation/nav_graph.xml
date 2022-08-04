@@ -29,4 +29,8 @@
         android:id="@+id/cocktailDetailsFragment"
         android:name="com.veselovvv.drinks.presentation.cocktaildetails.CocktailDetailsFragment"
         android:label="CocktailDetailsFragment" />
+    <fragment
+        android:id="@+id/subcategoriesFragment"
+        android:name="com.veselovvv.drinks.SubcategoriesFragment"
+        android:label="SubcategoriesFragment" />
 </navigation>
