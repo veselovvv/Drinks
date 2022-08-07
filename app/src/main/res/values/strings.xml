@@ -16,4 +16,5 @@
     <string name="alcohol_">Alcohol: </string>
     <string name="abv">Abv:</string>
     <string name="alcohol">Alcohol</string>
+    <string name="subcategories">Subcategories</string>
 </resources>

@@ -31,6 +31,6 @@
         android:label="CocktailDetailsFragment" />
     <fragment
         android:id="@+id/subcategoriesFragment"
-        android:name="com.veselovvv.drinks.SubcategoriesFragment"
+        android:name="com.veselovvv.drinks.presentation.subcategories.SubcategoriesFragment"
         android:label="SubcategoriesFragment" />
 </navigation>
