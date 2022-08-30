@@ -12,7 +12,6 @@
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/subcategories_toolbar"
             app:title="@string/subcategories"
             style="@style/toolbar" />
     </com.google.android.material.appbar.AppBarLayout>
