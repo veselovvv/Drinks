@@ -1,6 +1,9 @@
 package com.veselovvv.drinks.data.subcategorycocktails
 
 import com.veselovvv.drinks.data.TestException
+import com.veselovvv.drinks.data.subcategorycocktails.cloud.SubcategoryCocktailCloud
+import com.veselovvv.drinks.data.subcategorycocktails.cloud.SubcategoryCocktailsCloudDataSource
+import com.veselovvv.drinks.data.subcategorycocktails.cloud.SubcategoryCocktailsCloudMapper
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Test

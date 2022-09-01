@@ -1,5 +1,7 @@
 package com.veselovvv.drinks.data.subcategorycocktails.cloud
 
+import com.veselovvv.drinks.data.subcategorycocktails.SubcategoryCocktailData
+import com.veselovvv.drinks.data.subcategorycocktails.ToSubcategoryCocktailMapper
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
