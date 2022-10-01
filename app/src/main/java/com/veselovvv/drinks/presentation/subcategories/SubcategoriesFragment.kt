@@ -24,22 +24,26 @@ class SubcategoriesFragment : BaseFragment<FragmentSubcategoriesBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         val categoryKey = requireActivity().findNavController(R.id.fragment_container_view)
-            .backQueue.last().arguments?.getString("category") ?: ""
+            .backQueue.last().arguments?.getString("category") ?: "" // TODO here and further replace with "categoryKey"
 
         val adapter = SubcategoriesAdapter(object : Retry {
             override fun tryAgain() = viewModel.fetchSubcategories(categoryKey)
         },
         object : SubcategoriesAdapter.SubcategoryListener {
             override fun showSubcategory(subcategory: String) {
-                // TODO save?
+                val bundle = Bundle()
+                bundle.apply {
+                    putString("categoryKey", categoryKey)
+                    putString("subcategoryName", subcategory)
+                }
                 requireActivity().findNavController(R.id.fragment_container_view)
-                    .navigate(R.id.categoriesFragment) // TODO replace with right fragment
+                    .navigate(R.id.subcategoryCocktailsFragment, bundle)
             }
         })
 
         val swipeToRefreshLayout = binding.subcategoriesSwipeToRefresh
         swipeToRefreshLayout.setOnRefreshListener {
-            viewModel.fetchSubcategories(categoryKey) // TODO from network?
+            viewModel.fetchSubcategories(categoryKey)
             swipeToRefreshLayout.isRefreshing = false
         }
 
