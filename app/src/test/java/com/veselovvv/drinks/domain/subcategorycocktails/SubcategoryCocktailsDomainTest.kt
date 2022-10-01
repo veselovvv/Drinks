@@ -2,6 +2,10 @@ package com.veselovvv.drinks.domain.subcategorycocktails
 
 import com.veselovvv.drinks.TestResourceProvider
 import com.veselovvv.drinks.core.ErrorType
+import com.veselovvv.drinks.data.subcategorycocktails.SubcategoryCocktailData
+import com.veselovvv.drinks.presentation.subcategorycocktails.BaseSubcategoryCocktailDomainToUiMapper
+import com.veselovvv.drinks.presentation.subcategorycocktails.BaseSubcategoryCocktailsDomainToUiMapper
+import com.veselovvv.drinks.presentation.subcategorycocktails.SubcategoryCocktailsUi
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

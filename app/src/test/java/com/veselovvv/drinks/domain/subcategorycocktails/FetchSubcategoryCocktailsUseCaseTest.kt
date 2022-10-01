@@ -1,6 +1,7 @@
 package com.veselovvv.drinks.domain.subcategorycocktails
 
 import com.veselovvv.drinks.core.ErrorType
+import com.veselovvv.drinks.data.subcategorycocktails.SubcategoryCocktailData
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -19,7 +20,7 @@ class FetchSubcategoryCocktailsUseCaseTest {
             BaseSubcategoryCocktailsDataToDomainMapper(subcategoryCocktailDataToDomainMapper)
         )
         val expected = SubcategoryCocktailsDomain.Success(cocktails, subcategoryCocktailDataToDomainMapper)
-        val actual = useCase.execute("Alcoholic")
+        val actual = useCase.execute("a", "Alcoholic")
         assertEquals(expected, actual)
     }
 
@@ -31,7 +32,7 @@ class FetchSubcategoryCocktailsUseCaseTest {
             BaseSubcategoryCocktailsDataToDomainMapper(subcategoryCocktailDataToDomainMapper)
         )
         var expected = SubcategoryCocktailsDomain.Fail(ErrorType.NO_CONNECTION)
-        var actual = useCase.execute("Alcoholic")
+        var actual = useCase.execute("a", "Alcoholic")
         assertEquals(expected, actual)
 
         subcategoryCocktailDataToDomainMapper = BaseSubcategoryCocktailDataToDomainMapper()
@@ -40,7 +41,7 @@ class FetchSubcategoryCocktailsUseCaseTest {
             BaseSubcategoryCocktailsDataToDomainMapper(subcategoryCocktailDataToDomainMapper)
         )
         expected = SubcategoryCocktailsDomain.Fail(ErrorType.GENERIC_ERROR)
-        actual = useCase.execute("Alcoholic")
+        actual = useCase.execute("a", "Alcoholic")
         assertEquals(expected, actual)
     }
 }

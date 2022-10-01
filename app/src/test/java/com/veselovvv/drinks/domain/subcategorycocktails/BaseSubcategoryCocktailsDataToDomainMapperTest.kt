@@ -1,6 +1,7 @@
 package com.veselovvv.drinks.domain.subcategorycocktails
 
 import com.veselovvv.drinks.core.ErrorType
+import com.veselovvv.drinks.data.subcategorycocktails.SubcategoryCocktailData
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import java.net.UnknownHostException
