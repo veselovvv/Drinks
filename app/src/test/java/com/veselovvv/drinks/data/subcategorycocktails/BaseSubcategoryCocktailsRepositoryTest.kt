@@ -22,7 +22,7 @@ class BaseSubcategoryCocktailsRepositoryTest {
                 SubcategoryCocktailData("12", "Martini", "https://somephotopath2")
             )
         )
-        val actual = repository.fetchCocktails("Alcoholic")
+        val actual = repository.fetchCocktails("a","Alcoholic")
         assertEquals(expected, actual)
     }
 
@@ -34,16 +34,17 @@ class BaseSubcategoryCocktailsRepositoryTest {
             SubcategoryCocktailsCloudMapper.Base(ToSubcategoryCocktailMapper.Base())
         )
         val expected = SubcategoryCocktailsData.Fail(TestException(""))
-        val actual = repository.fetchCocktails("Alcoholic")
+        val actual = repository.fetchCocktails("a", "Alcoholic")
         assertEquals(expected, actual)
     }
 
     class TestSubcategoryCocktailsCloudDataSource(
         private val success: Boolean
     ) : SubcategoryCocktailsCloudDataSource {
-        override suspend fun fetchCocktails(subcategoryName: String) = if (success) listOf(
-            SubcategoryCocktailCloud("1", "Margarita", "https://somephotopath1"),
-            SubcategoryCocktailCloud("12", "Martini", "https://somephotopath2")
-        ) else throw TestException("")
+        override suspend fun fetchCocktails(categoryKey: String, subcategoryName: String) =
+            if (success) listOf(
+                SubcategoryCocktailCloud("1", "Margarita", "https://somephotopath1"),
+                SubcategoryCocktailCloud("12", "Martini", "https://somephotopath2")
+            ) else throw TestException("")
     }
 }
