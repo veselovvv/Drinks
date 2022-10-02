@@ -23,13 +23,12 @@ class SubcategoryCocktailsFragment : BaseFragment<FragmentSubcategoryCocktailsBi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // TODO here and in other fragments - fix DRY: (make function and add to BaseFragment)
+        // TODO here and in other fragments - fix DRY: (make function and add to BaseFragment) + add constants to that BaseFragment?
         val categoryKey = requireActivity().findNavController(R.id.fragment_container_view)
-            // TODO here and in all other places like that - move "categoryKey" to a constant
-            .backQueue.last().arguments?.getString("categoryKey") ?: ""
+            .backQueue.last().arguments?.getString(CATEGORY_KEY) ?: ""
 
         val subcategoryName = requireActivity().findNavController(R.id.fragment_container_view)
-            .backQueue.last().arguments?.getString("subcategoryName") ?: ""
+            .backQueue.last().arguments?.getString(SUBCATEGORY_NAME) ?: ""
 
         val adapter = SubcategoryCocktailsAdapter(object : Retry {
             override fun tryAgain() = viewModel.fetchCocktails(categoryKey, subcategoryName)
@@ -53,5 +52,10 @@ class SubcategoryCocktailsFragment : BaseFragment<FragmentSubcategoryCocktailsBi
         }
         viewModel.observe(this) { adapter.update(it) }
         viewModel.fetchCocktails(categoryKey, subcategoryName)
+    }
+
+    companion object {
+        private const val CATEGORY_KEY = "categoryKey"
+        private const val SUBCATEGORY_NAME = "subcategoryName"
     }
 }

@@ -16,26 +16,34 @@ class CategoriesFragment : BaseFragment<FragmentCategoriesBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.categoriesCategoriesCardView.setOnClickListener {
-            navigateToFragmentWithCategory("c")
+            navigateToFragmentWithCategory(CATEGORY_CATEGORY_KEY)
         }
 
         binding.categoriesGlassCardView.setOnClickListener {
-            navigateToFragmentWithCategory("g")
+            navigateToFragmentWithCategory(GLASS_CATEGORY_KEY)
         }
 
         binding.categoriesIngredientsCardView.setOnClickListener {
-            navigateToFragmentWithCategory("i")
+            navigateToFragmentWithCategory(INGREDIENTS_CATEGORY_KEY)
         }
 
         binding.categoriesAlcoholCardView.setOnClickListener {
-            navigateToFragmentWithCategory("a")
+            navigateToFragmentWithCategory(ALCOHOL_CATEGORY_KEY)
         }
     }
 
     private fun navigateToFragmentWithCategory(categoryKey: String) {
         val bundle = Bundle()
-        bundle.putString("category", categoryKey)
+        bundle.putString(CATEGORY_KEY, categoryKey)
         requireActivity().findNavController(R.id.fragment_container_view)
             .navigate(R.id.subcategoriesFragment, bundle)
+    }
+
+    companion object {
+        private const val CATEGORY_CATEGORY_KEY = "c"
+        private const val GLASS_CATEGORY_KEY = "g"
+        private const val INGREDIENTS_CATEGORY_KEY = "i"
+        private const val ALCOHOL_CATEGORY_KEY = "a"
+        private const val CATEGORY_KEY = "categoryKey"
     }
 }

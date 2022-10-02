@@ -24,7 +24,7 @@ class SubcategoriesFragment : BaseFragment<FragmentSubcategoriesBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         val categoryKey = requireActivity().findNavController(R.id.fragment_container_view)
-            .backQueue.last().arguments?.getString("category") ?: "" // TODO here and further replace with "categoryKey"
+            .backQueue.last().arguments?.getString(CATEGORY_KEY) ?: ""
 
         val adapter = SubcategoriesAdapter(object : Retry {
             override fun tryAgain() = viewModel.fetchSubcategories(categoryKey)
@@ -33,8 +33,8 @@ class SubcategoriesFragment : BaseFragment<FragmentSubcategoriesBinding>() {
             override fun showSubcategory(subcategory: String) {
                 val bundle = Bundle()
                 bundle.apply {
-                    putString("categoryKey", categoryKey)
-                    putString("subcategoryName", subcategory)
+                    putString(CATEGORY_KEY, categoryKey)
+                    putString(SUBCATEGORY_NAME, subcategory)
                 }
                 requireActivity().findNavController(R.id.fragment_container_view)
                     .navigate(R.id.subcategoryCocktailsFragment, bundle)
@@ -53,5 +53,10 @@ class SubcategoriesFragment : BaseFragment<FragmentSubcategoriesBinding>() {
         }
         viewModel.observe(this) { adapter.update(it) }
         viewModel.fetchSubcategories(categoryKey)
+    }
+
+    companion object {
+        private const val CATEGORY_KEY = "categoryKey"
+        private const val SUBCATEGORY_NAME = "subcategoryName"
     }
 }
