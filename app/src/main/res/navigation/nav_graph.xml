@@ -33,4 +33,9 @@
         android:id="@+id/subcategoriesFragment"
         android:name="com.veselovvv.drinks.presentation.subcategories.SubcategoriesFragment"
         android:label="SubcategoriesFragment" />
+    <fragment
+        android:id="@+id/subcategoryCocktailsFragment"
+        android:name="com.veselovvv.drinks.presentation.subcategorycocktails.SubcategoryCocktailsFragment"
+        android:label="fragment_subcategory_cocktails"
+        tools:layout="@layout/fragment_subcategory_cocktails" />
 </navigation>
