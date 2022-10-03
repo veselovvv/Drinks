@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import com.veselovvv.drinks.databinding.FragmentCategoriesBinding
 import com.veselovvv.drinks.presentation.core.BaseFragment
 
@@ -35,8 +34,7 @@ class CategoriesFragment : BaseFragment<FragmentCategoriesBinding>() {
     private fun navigateToFragmentWithCategory(categoryKey: String) {
         val bundle = Bundle()
         bundle.putString(CATEGORY_KEY, categoryKey)
-        requireActivity().findNavController(R.id.fragment_container_view)
-            .navigate(R.id.subcategoriesFragment, bundle)
+        navigateWithArguments(R.id.subcategoriesFragment, bundle)
     }
 
     companion object {

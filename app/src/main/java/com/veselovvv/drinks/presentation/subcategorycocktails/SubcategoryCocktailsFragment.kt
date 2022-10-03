@@ -5,9 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
-import com.veselovvv.drinks.R
 import com.veselovvv.drinks.core.Retry
 import com.veselovvv.drinks.databinding.FragmentSubcategoryCocktailsBinding
 import com.veselovvv.drinks.presentation.core.BaseFragment
@@ -23,12 +21,8 @@ class SubcategoryCocktailsFragment : BaseFragment<FragmentSubcategoryCocktailsBi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // TODO here and in other fragments - fix DRY: (make function and add to BaseFragment) + add constants to that BaseFragment?
-        val categoryKey = requireActivity().findNavController(R.id.fragment_container_view)
-            .backQueue.last().arguments?.getString(CATEGORY_KEY) ?: ""
-
-        val subcategoryName = requireActivity().findNavController(R.id.fragment_container_view)
-            .backQueue.last().arguments?.getString(SUBCATEGORY_NAME) ?: ""
+        val categoryKey = getStringArgument(CATEGORY_KEY)
+        val subcategoryName = getStringArgument(SUBCATEGORY_NAME)
 
         val adapter = SubcategoryCocktailsAdapter(object : Retry {
             override fun tryAgain() = viewModel.fetchCocktails(categoryKey, subcategoryName)

@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.veselovvv.drinks.R
 import com.veselovvv.drinks.core.Retry
@@ -23,8 +22,7 @@ class SubcategoriesFragment : BaseFragment<FragmentSubcategoriesBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val categoryKey = requireActivity().findNavController(R.id.fragment_container_view)
-            .backQueue.last().arguments?.getString(CATEGORY_KEY) ?: ""
+        val categoryKey = getStringArgument(CATEGORY_KEY)
 
         val adapter = SubcategoriesAdapter(object : Retry {
             override fun tryAgain() = viewModel.fetchSubcategories(categoryKey)
@@ -36,8 +34,7 @@ class SubcategoriesFragment : BaseFragment<FragmentSubcategoriesBinding>() {
                     putString(CATEGORY_KEY, categoryKey)
                     putString(SUBCATEGORY_NAME, subcategory)
                 }
-                requireActivity().findNavController(R.id.fragment_container_view)
-                    .navigate(R.id.subcategoryCocktailsFragment, bundle)
+                navigateWithArguments(R.id.subcategoryCocktailsFragment, bundle)
             }
         })
 
