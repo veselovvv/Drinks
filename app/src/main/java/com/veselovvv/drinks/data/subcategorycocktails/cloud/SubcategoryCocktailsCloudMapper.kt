@@ -6,8 +6,6 @@ import com.veselovvv.drinks.data.subcategorycocktails.ToSubcategoryCocktailMappe
 
 interface SubcategoryCocktailsCloudMapper :
     Mapper.Data<List<SubcategoryCocktailCloud>, List<SubcategoryCocktailData>> {
-    // TODO need that? + in other features???:
-    override fun map(data: List<SubcategoryCocktailCloud>): List<SubcategoryCocktailData>
 
     class Base(
         private val toSubcategoryCocktailMapper: ToSubcategoryCocktailMapper
