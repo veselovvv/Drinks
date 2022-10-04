@@ -1,5 +1,6 @@
 package com.veselovvv.drinks.domain.subcategories
 
+import com.veselovvv.drinks.core.Category
 import com.veselovvv.drinks.core.ErrorType
 import com.veselovvv.drinks.data.subcategories.SubcategoryData
 import kotlinx.coroutines.runBlocking
@@ -20,7 +21,7 @@ class FetchSubcategoriesUseCaseTest {
             BaseSubcategoriesDataToDomainMapper(subcategoryDataToDomainMapper)
         )
         val expected = SubcategoriesDomain.Success(subcategories, subcategoryDataToDomainMapper)
-        val actual = useCase.execute("c")
+        val actual = useCase.execute(Category.CATEGORIES)
         assertEquals(expected, actual)
     }
 
@@ -32,7 +33,7 @@ class FetchSubcategoriesUseCaseTest {
             BaseSubcategoriesDataToDomainMapper(subcategoryDataToDomainMapper)
         )
         var expected = SubcategoriesDomain.Fail(ErrorType.NO_CONNECTION)
-        var actual = useCase.execute("c")
+        var actual = useCase.execute(Category.CATEGORIES)
         assertEquals(expected, actual)
 
         subcategoryDataToDomainMapper = BaseSubcategoryDataToDomainMapper()
@@ -41,7 +42,7 @@ class FetchSubcategoriesUseCaseTest {
             BaseSubcategoriesDataToDomainMapper(subcategoryDataToDomainMapper)
         )
         expected = SubcategoriesDomain.Fail(ErrorType.GENERIC_ERROR)
-        actual = useCase.execute("c")
+        actual = useCase.execute(Category.CATEGORIES)
         assertEquals(expected, actual)
     }
 }

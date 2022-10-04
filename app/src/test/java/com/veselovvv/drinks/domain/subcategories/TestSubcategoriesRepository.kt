@@ -1,5 +1,6 @@
 package com.veselovvv.drinks.domain.subcategories
 
+import com.veselovvv.drinks.core.Category
 import com.veselovvv.drinks.data.subcategories.SubcategoriesData
 import com.veselovvv.drinks.data.subcategories.SubcategoriesRepository
 import com.veselovvv.drinks.data.subcategories.SubcategoryData
@@ -10,7 +11,7 @@ class TestSubcategoriesRepository(private val exception: Exception? = null) : Su
         SubcategoryData("Cocktail")
     )
 
-    override suspend fun fetchSubcategories(categoryKey: String) =
+    override suspend fun fetchSubcategories(category: Category) =
         if (exception == null) SubcategoriesData.Success(subcategories)
         else SubcategoriesData.Fail(exception)
 }

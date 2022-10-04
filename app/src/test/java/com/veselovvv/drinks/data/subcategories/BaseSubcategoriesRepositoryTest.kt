@@ -1,5 +1,6 @@
 package com.veselovvv.drinks.data.subcategories
 
+import com.veselovvv.drinks.core.Category
 import com.veselovvv.drinks.data.TestException
 import com.veselovvv.drinks.data.subcategories.cloud.*
 import kotlinx.coroutines.runBlocking
@@ -19,7 +20,7 @@ class BaseSubcategoriesRepositoryTest {
                 SubcategoryData("Cocktail")
             )
         )
-        var actual = repository.fetchSubcategories("c")
+        var actual = repository.fetchSubcategories(Category.CATEGORIES)
         assertEquals(expected, actual)
 
         expected = SubcategoriesData.Success(
@@ -28,7 +29,7 @@ class BaseSubcategoriesRepositoryTest {
                 SubcategoryData("Cocktail glass")
             )
         )
-        actual = repository.fetchSubcategories("g")
+        actual = repository.fetchSubcategories(Category.GLASS)
         assertEquals(expected, actual)
 
         expected = SubcategoriesData.Success(
@@ -37,7 +38,7 @@ class BaseSubcategoriesRepositoryTest {
                 SubcategoryData("Applejack")
             )
         )
-        actual = repository.fetchSubcategories("i")
+        actual = repository.fetchSubcategories(Category.INGREDIENTS)
         assertEquals(expected, actual)
 
         expected = SubcategoriesData.Success(
@@ -46,7 +47,7 @@ class BaseSubcategoriesRepositoryTest {
                 SubcategoryData("Non alcoholic")
             )
         )
-        actual = repository.fetchSubcategories("a")
+        actual = repository.fetchSubcategories(Category.ALCOHOLIC)
         assertEquals(expected, actual)
     }
 
@@ -57,7 +58,7 @@ class BaseSubcategoriesRepositoryTest {
             testCloudDataSource, SubcategoriesCloudMapper.Base(ToSubcategoryMapper.Base())
         )
         val expected = SubcategoriesData.Fail(TestException(""))
-        val actual = repository.fetchSubcategories("")
+        val actual = repository.fetchSubcategories(Category.CATEGORIES)
         assertEquals(expected, actual)
     }
 
