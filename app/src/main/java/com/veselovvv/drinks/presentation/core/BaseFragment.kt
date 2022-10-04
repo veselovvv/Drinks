@@ -14,6 +14,10 @@ abstract class BaseFragment<B : ViewBinding> : Fragment() {
     private var _binding: B? = null
     protected val binding get() = _binding!!
 
+    private val navController by lazy {
+        requireActivity().findNavController(R.id.fragment_container_view)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
@@ -28,11 +32,15 @@ abstract class BaseFragment<B : ViewBinding> : Fragment() {
 
     abstract fun setupViewBinding(inflater: LayoutInflater, container: ViewGroup?): B
 
+    protected fun navigate(@IdRes destinationFragment: Int) =
+        navController.navigate(destinationFragment)
+
     protected fun navigateWithArguments(@IdRes destinationFragment: Int, bundle: Bundle) =
-        requireActivity().findNavController(R.id.fragment_container_view)
-            .navigate(destinationFragment, bundle)
+        navController.navigate(destinationFragment, bundle)
+
+    protected fun getArgument(key: String) =
+        navController.backQueue.last().arguments?.getSerializable(key) ?: ""
 
     protected fun getStringArgument(key: String) =
-        requireActivity().findNavController(R.id.fragment_container_view)
-            .backQueue.last().arguments?.getString(key) ?: ""
+        navController.backQueue.last().arguments?.getString(key) ?: ""
 }

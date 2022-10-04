@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
+import com.veselovvv.drinks.core.Category
 import com.veselovvv.drinks.core.Retry
 import com.veselovvv.drinks.databinding.FragmentSubcategoryCocktailsBinding
 import com.veselovvv.drinks.presentation.core.BaseFragment
@@ -21,11 +22,11 @@ class SubcategoryCocktailsFragment : BaseFragment<FragmentSubcategoryCocktailsBi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val categoryKey = getStringArgument(CATEGORY_KEY)
+        val category = getArgument(CATEGORY) as Category
         val subcategoryName = getStringArgument(SUBCATEGORY_NAME)
 
         val adapter = SubcategoryCocktailsAdapter(object : Retry {
-            override fun tryAgain() = viewModel.fetchCocktails(categoryKey, subcategoryName)
+            override fun tryAgain() = viewModel.fetchCocktails(category, subcategoryName)
         },
         object : SubcategoryCocktailsAdapter.CocktailListener {
             override fun showCocktail(name: String, photoUrl: String) {
@@ -36,7 +37,7 @@ class SubcategoryCocktailsFragment : BaseFragment<FragmentSubcategoryCocktailsBi
 
         val swipeToRefreshLayout = binding.subcategoryCocktailsSwipeToRefresh
         swipeToRefreshLayout.setOnRefreshListener {
-            viewModel.fetchCocktails(categoryKey, subcategoryName)
+            viewModel.fetchCocktails(category, subcategoryName)
             swipeToRefreshLayout.isRefreshing = false
         }
 
@@ -45,11 +46,11 @@ class SubcategoryCocktailsFragment : BaseFragment<FragmentSubcategoryCocktailsBi
             addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
         }
         viewModel.observe(this) { adapter.update(it) }
-        viewModel.fetchCocktails(categoryKey, subcategoryName)
+        viewModel.fetchCocktails(category, subcategoryName)
     }
 
     companion object {
-        private const val CATEGORY_KEY = "categoryKey"
+        private const val CATEGORY = "category"
         private const val SUBCATEGORY_NAME = "subcategoryName"
     }
 }

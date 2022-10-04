@@ -86,6 +86,6 @@ class SubcategoriesAdapter(
     }
 
     interface SubcategoryListener {
-        fun showSubcategory(subcategory: String)
+        fun showSubcategory(subcategoryName: String)
     }
 }

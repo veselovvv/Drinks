@@ -12,7 +12,7 @@ sealed class SubcategoryUi : Object<Unit, SubcategoryUi.BaseMapper> {
     class Base(private val subcategory: String) : SubcategoryUi() {
         override fun map(mapper: BaseMapper) = mapper.map(subcategory)
         override fun open(subcategoryListener: SubcategoriesAdapter.SubcategoryListener) =
-            subcategoryListener.showSubcategory(subcategory) //TODO
+            subcategoryListener.showSubcategory(subcategory)
     }
 
     class Fail(private val message: String) : SubcategoryUi() {

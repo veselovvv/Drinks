@@ -4,6 +4,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.veselovvv.drinks.core.Category
 import com.veselovvv.drinks.domain.subcategorycocktails.FetchSubcategoryCocktailsUseCase
 import com.veselovvv.drinks.domain.subcategorycocktails.SubcategoryCocktailsDomainToUiMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,10 +19,10 @@ class SubcategoryCocktailsViewModel @Inject constructor(
     private val mapper: SubcategoryCocktailsDomainToUiMapper,
     private val communication: SubcategoryCocktailsCommunication
 ) : ViewModel() {
-    fun fetchCocktails(categoryKey: String, subcategoryName: String) {
+    fun fetchCocktails(category: Category, subcategoryName: String) {
         communication.map(listOf(SubcategoryCocktailUi.Progress))
         viewModelScope.launch(Dispatchers.IO) {
-            val resultDomain = fetchSubcategoryCocktailsUseCase.execute(categoryKey, subcategoryName)
+            val resultDomain = fetchSubcategoryCocktailsUseCase.execute(category, subcategoryName)
             val resultUi = resultDomain.map(mapper)
             withContext(Dispatchers.Main) {
                 resultUi.map(communication)

@@ -8,7 +8,6 @@ import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.isEmpty
 import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.veselovvv.drinks.R
 import com.veselovvv.drinks.core.Retry
@@ -34,8 +33,7 @@ class CocktailsFragment : BaseFragment<FragmentCocktailsBinding>() {
             object : CocktailsAdapter.CocktailListener {
                 override fun showCocktail(name: String, category: String, photoUrl: String) {
                     viewModel.saveCocktailInfo(name, category, photoUrl)
-                    requireActivity().findNavController(R.id.fragment_container_view)
-                        .navigate(R.id.cocktailDetailsFragment)
+                    navigate(R.id.cocktailDetailsFragment)
                 }
             }
         )

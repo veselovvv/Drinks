@@ -2,10 +2,11 @@ package com.veselovvv.drinks.data.subcategorycocktails.cloud
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.veselovvv.drinks.core.Category
 
 interface SubcategoryCocktailsCloudDataSource {
     suspend fun fetchCocktails(
-        categoryKey: String, subcategoryName: String
+        category: Category, subcategoryName: String
     ): List<SubcategoryCocktailCloud>
 
     class Base(
@@ -14,13 +15,13 @@ interface SubcategoryCocktailsCloudDataSource {
         private val type = object : TypeToken<SubcategoryDrinksCloud>() {}.type
 
         override suspend fun fetchCocktails(
-            categoryKey: String, subcategoryName: String
+            category: Category, subcategoryName: String
         ): List<SubcategoryCocktailCloud> {
-            val drinks = when (categoryKey) {
-                "c" -> service.fetchCategoriesSubcategoryCocktails(subcategoryName)
-                "g" -> service.fetchGlassSubcategoryCocktails(subcategoryName)
-                "i" -> service.fetchIngredientsSubcategoryCocktails(subcategoryName)
-                else -> service.fetchAlcoholicSubcategoryCocktails(subcategoryName)
+            val drinks = when (category) {
+                Category.CATEGORIES -> service.fetchCategoriesSubcategoryCocktails(subcategoryName)
+                Category.GLASS -> service.fetchGlassSubcategoryCocktails(subcategoryName)
+                Category.INGREDIENTS -> service.fetchIngredientsSubcategoryCocktails(subcategoryName)
+                Category.ALCOHOLIC -> service.fetchAlcoholicSubcategoryCocktails(subcategoryName)
             }
 
             val drinksCloud: SubcategoryDrinksCloud = gson.fromJson(drinks.string(), type)

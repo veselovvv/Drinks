@@ -4,6 +4,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.veselovvv.drinks.core.Category
 import com.veselovvv.drinks.domain.subcategories.FetchSubcategoriesUseCase
 import com.veselovvv.drinks.domain.subcategories.SubcategoriesDomainToUiMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,10 +19,10 @@ class SubcategoriesViewModel @Inject constructor(
     private val mapper: SubcategoriesDomainToUiMapper,
     private val communication: SubcategoriesCommunication
 ) : ViewModel() {
-    fun fetchSubcategories(categoryKey: String) {
+    fun fetchSubcategories(category: Category) {
         communication.map(listOf(SubcategoryUi.Progress))
         viewModelScope.launch(Dispatchers.IO) {
-            val resultDomain = fetchSubcategoriesUseCase.execute(categoryKey)
+            val resultDomain = fetchSubcategoriesUseCase.execute(category)
             val resultUi = resultDomain.map(mapper)
             withContext(Dispatchers.Main) {
                 resultUi.map(communication)
