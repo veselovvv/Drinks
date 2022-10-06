@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
+import com.veselovvv.drinks.R
 import com.veselovvv.drinks.core.Category
 import com.veselovvv.drinks.core.Retry
 import com.veselovvv.drinks.databinding.FragmentSubcategoryCocktailsBinding
@@ -30,8 +31,8 @@ class SubcategoryCocktailsFragment : BaseFragment<FragmentSubcategoryCocktailsBi
         },
         object : SubcategoryCocktailsAdapter.CocktailListener {
             override fun showCocktail(name: String, photoUrl: String) {
-                //TODO save cocktail info
-                //TODO navigate to cocktail details fragment
+                viewModel.saveCocktailInfo(name, subcategoryName, photoUrl)
+                navigate(R.id.cocktailDetailsFragment)
             }
         })
 
