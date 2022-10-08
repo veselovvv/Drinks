@@ -16,11 +16,7 @@ interface Mapper {
             protected fun getErrorType(e: Exception) = when (e) {
                 is UnknownHostException -> ErrorType.NO_CONNECTION
                 is HttpException -> ErrorType.SERVICE_UNAVAILABLE
-                else -> {
-                    //TODO
-                    e.printStackTrace()
-                    ErrorType.GENERIC_ERROR
-                }
+                else -> ErrorType.GENERIC_ERROR
             }
         }
     }
