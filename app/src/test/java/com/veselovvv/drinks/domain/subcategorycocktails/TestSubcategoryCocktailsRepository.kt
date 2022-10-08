@@ -9,8 +9,8 @@ class TestSubcategoryCocktailsRepository(
     private val exception: Exception? = null
 ) : SubcategoryCocktailsRepository {
     private val cocktails = listOf(
-        SubcategoryCocktailData("1", "Margarita", "https://somephotopath1"),
-        SubcategoryCocktailData("12", "Martini", "https://somephotopath2")
+        SubcategoryCocktailData("Margarita", "https://somephotopath1"),
+        SubcategoryCocktailData("Martini", "https://somephotopath2")
     )
 
     override suspend fun fetchCocktails(category: Category, subcategoryName: String) =

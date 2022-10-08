@@ -12,8 +12,8 @@ class FetchSubcategoryCocktailsUseCaseTest {
     @Test
     fun test_success() = runBlocking {
         val cocktails = listOf(
-            SubcategoryCocktailData("1", "Margarita", "https://somephotopath1"),
-            SubcategoryCocktailData("12", "Martini", "https://somephotopath2")
+            SubcategoryCocktailData("Margarita", "https://somephotopath1"),
+            SubcategoryCocktailData("Martini", "https://somephotopath2")
         )
         val subcategoryCocktailDataToDomainMapper = BaseSubcategoryCocktailDataToDomainMapper()
         val useCase = FetchSubcategoryCocktailsUseCase(

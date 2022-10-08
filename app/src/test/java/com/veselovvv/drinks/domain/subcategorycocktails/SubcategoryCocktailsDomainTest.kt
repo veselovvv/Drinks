@@ -13,12 +13,12 @@ class SubcategoryCocktailsDomainTest {
     @Test
     fun test_success() {
         val cocktails = listOf(
-            SubcategoryCocktailData("1", "Margarita", "https://somephotopath1"),
-            SubcategoryCocktailData("12", "Martini", "https://somephotopath2")
+            SubcategoryCocktailData("Margarita", "https://somephotopath1"),
+            SubcategoryCocktailData("Martini", "https://somephotopath2")
         )
         val resultCocktails = listOf(
-            SubcategoryCocktailDomain("1", "Margarita", "https://somephotopath1"),
-            SubcategoryCocktailDomain("12", "Martini", "https://somephotopath2")
+            SubcategoryCocktailDomain("Margarita", "https://somephotopath1"),
+            SubcategoryCocktailDomain("Martini", "https://somephotopath2")
         )
         val subcategoryCocktailDomainToUiMapper = BaseSubcategoryCocktailDomainToUiMapper()
         val domain = SubcategoryCocktailsDomain.Success(

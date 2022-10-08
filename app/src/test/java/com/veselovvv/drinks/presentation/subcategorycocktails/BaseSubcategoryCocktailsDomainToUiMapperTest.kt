@@ -15,8 +15,8 @@ class BaseSubcategoryCocktailsDomainToUiMapperTest {
     @Test
     fun test_success() {
         val cocktails = listOf(
-            SubcategoryCocktailDomain("1", "Margarita", "https://somephotopath1"),
-            SubcategoryCocktailDomain("12", "Martini", "https://somephotopath2")
+            SubcategoryCocktailDomain("Margarita", "https://somephotopath1"),
+            SubcategoryCocktailDomain("Martini", "https://somephotopath2")
         )
         val expected = SubcategoryCocktailsUi.Success(cocktails, subcategoryCocktailDomainToUiMapper)
         val actual = mapper.map(cocktails)

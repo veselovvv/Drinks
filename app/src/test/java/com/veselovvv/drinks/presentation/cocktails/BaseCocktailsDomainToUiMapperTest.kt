@@ -15,8 +15,8 @@ class BaseCocktailsDomainToUiMapperTest {
     @Test
     fun test_success() {
         val cocktails = listOf(
-            CocktailDomain("1", "Margarita", "Ordinal", "https://somephotopath1"),
-            CocktailDomain("12", "Martini", "Ordinal", "https://somephotopath2")
+            CocktailDomain("Margarita", "Ordinal", "https://somephotopath1"),
+            CocktailDomain("Martini", "Ordinal", "https://somephotopath2")
         )
         val expected = CocktailsUi.Success(cocktails, cocktailDomainToUiMapper)
         val actual = mapper.map(cocktails)

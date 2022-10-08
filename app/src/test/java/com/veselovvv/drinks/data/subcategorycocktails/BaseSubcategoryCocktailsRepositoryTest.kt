@@ -19,8 +19,8 @@ class BaseSubcategoryCocktailsRepositoryTest {
         )
         val expected = SubcategoryCocktailsData.Success(
             listOf(
-                SubcategoryCocktailData("1", "Margarita", "https://somephotopath1"),
-                SubcategoryCocktailData("12", "Martini", "https://somephotopath2")
+                SubcategoryCocktailData("Margarita", "https://somephotopath1"),
+                SubcategoryCocktailData("Martini", "https://somephotopath2")
             )
         )
         val actual = repository.fetchCocktails(Category.ALCOHOLIC,"Alcoholic")
@@ -44,8 +44,8 @@ class BaseSubcategoryCocktailsRepositoryTest {
     ) : SubcategoryCocktailsCloudDataSource {
         override suspend fun fetchCocktails(category: Category, subcategoryName: String) =
             if (success) listOf(
-                SubcategoryCocktailCloud("1", "Margarita", "https://somephotopath1"),
-                SubcategoryCocktailCloud("12", "Martini", "https://somephotopath2")
+                SubcategoryCocktailCloud("Margarita", "https://somephotopath1"),
+                SubcategoryCocktailCloud("Martini", "https://somephotopath2")
             ) else throw TestException("")
     }
 }

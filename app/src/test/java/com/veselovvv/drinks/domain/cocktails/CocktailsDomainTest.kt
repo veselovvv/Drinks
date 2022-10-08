@@ -17,8 +17,8 @@ class CocktailsDomainTest {
             CocktailData("12", "Martini", "Ordinal", "https://somephotopath2")
         )
         val resultCocktails = listOf(
-            CocktailDomain("1", "Margarita", "Ordinal", "https://somephotopath1"),
-            CocktailDomain("12", "Martini", "Ordinal", "https://somephotopath2")
+            CocktailDomain("Margarita", "Ordinal", "https://somephotopath1"),
+            CocktailDomain("Martini", "Ordinal", "https://somephotopath2")
         )
         val cocktailDomainToUiMapper = BaseCocktailDomainToUiMapper()
         val domain = CocktailsDomain.Success(cocktails, BaseCocktailDataToDomainMapper())
