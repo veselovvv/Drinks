@@ -10,12 +10,11 @@ sealed class CocktailUi : Object<Unit, CocktailUi.BaseMapper> {
     object Progress : CocktailUi()
 
     class Base(
-        private val id: String,
         private val name: String,
         private val category: String,
         private val photoUrl: String
     ) : CocktailUi() {
-        override fun map(mapper: BaseMapper) = mapper.map(id, name, category, photoUrl)
+        override fun map(mapper: BaseMapper) = mapper.map(name, category, photoUrl)
         override fun open(cocktailListener: CocktailsAdapter.CocktailListener) =
             cocktailListener.showCocktail(name, category, photoUrl)
     }
@@ -25,7 +24,7 @@ sealed class CocktailUi : Object<Unit, CocktailUi.BaseMapper> {
     }
 
     interface BaseMapper : Mapper {
-        fun map(id: String, name: String, category: String, photoUrl: String)
+        fun map(name: String, category: String, photoUrl: String)
         fun map(text: String)
     }
 }

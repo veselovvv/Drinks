@@ -10,11 +10,10 @@ sealed class SubcategoryCocktailUi : Object<Unit, SubcategoryCocktailUi.BaseMapp
     object Progress : SubcategoryCocktailUi()
 
     class Base(
-        private val id: String,
         private val name: String,
         private val photoUrl: String
     ) : SubcategoryCocktailUi() {
-        override fun map(mapper: BaseMapper) = mapper.map(id, name, photoUrl)
+        override fun map(mapper: BaseMapper) = mapper.map(name, photoUrl)
         override fun open(cocktailListener: SubcategoryCocktailsAdapter.CocktailListener) =
             cocktailListener.showCocktail(name, photoUrl)
     }
@@ -24,7 +23,7 @@ sealed class SubcategoryCocktailUi : Object<Unit, SubcategoryCocktailUi.BaseMapp
     }
 
     interface BaseMapper : Mapper {
-        fun map(id: String, name: String, photoUrl: String)
+        fun map(name: String, photoUrl: String)
         fun map(text: String)
     }
 }

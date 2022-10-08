@@ -11,6 +11,6 @@ data class CocktailData(
     private val category: String,
     private val photoUrl: String
 ) : Object<CocktailDomain, CocktailDataToDomainMapper>, Object.ToDb<CocktailDb, CocktailDataToDbMapper> {
-    override fun map(mapper: CocktailDataToDomainMapper) = mapper.map(id, name, category, photoUrl)
+    override fun map(mapper: CocktailDataToDomainMapper) = mapper.map(name, category, photoUrl)
     override fun mapWith(mapper: CocktailDataToDbMapper) = mapper.mapToDb(id, name, category, photoUrl)
 }

@@ -58,8 +58,7 @@ class SubcategoryCocktailsAdapter(
         ) : DrinksViewHolder(binding.root) {
             override fun bind(cocktail: SubcategoryCocktailUi) {
                 cocktail.map(object : SubcategoryCocktailUi.BaseMapper {
-                    override fun map(id: String, name: String, photoUrl: String) {
-                        // TODO why this method gets id? + check in other adapters if there are unused parameters
+                    override fun map(name: String, photoUrl: String) {
                         with(binding) {
                             subcategoryCocktailPhotoImageView.loadImage(itemView, photoUrl)
                             subcategoryCocktailNameTextView.text = name
@@ -83,7 +82,7 @@ class SubcategoryCocktailsAdapter(
                     override fun map(text: String) {
                         binding.failMessageTextView.text = text
                     }
-                    override fun map(id: String, name: String, photoUrl: String) = Unit
+                    override fun map(name: String, photoUrl: String) = Unit
                 })
                 binding.failTryAgainButton.setOnClickListener {
                     retry.tryAgain()

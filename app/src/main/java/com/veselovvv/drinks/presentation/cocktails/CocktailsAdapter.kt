@@ -58,7 +58,7 @@ class CocktailsAdapter(
         ) : DrinksViewHolder(binding.root) {
             override fun bind(cocktail: CocktailUi) {
                 cocktail.map(object : CocktailUi.BaseMapper {
-                    override fun map(id: String, name: String, category: String, photoUrl: String) {
+                    override fun map(name: String, category: String, photoUrl: String) {
                         with(binding) {
                             cocktailPhotoImageView.loadImage(itemView, photoUrl)
                             cocktailNameTextView.text = name
@@ -83,7 +83,7 @@ class CocktailsAdapter(
                     override fun map(text: String) {
                         binding.failMessageTextView.text = text
                     }
-                    override fun map(id: String, name: String, category: String, photoUrl: String) = Unit
+                    override fun map(name: String, category: String, photoUrl: String) = Unit
                 })
                 binding.failTryAgainButton.setOnClickListener {
                     retry.tryAgain()

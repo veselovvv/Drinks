@@ -4,5 +4,5 @@ import com.veselovvv.drinks.core.Mapper
 import com.veselovvv.drinks.presentation.subcategorycocktails.SubcategoryCocktailUi
 
 interface SubcategoryCocktailDomainToUiMapper : Mapper {
-    fun map(id: String, name: String, photoUrl: String): SubcategoryCocktailUi
+    fun map(name: String, photoUrl: String): SubcategoryCocktailUi
 }
