@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.veselovvv.drinks.core.Retry
 import com.veselovvv.drinks.databinding.CocktailLayoutBinding
 import com.veselovvv.drinks.databinding.FailFullscreenBinding
+import com.veselovvv.drinks.databinding.NoResultsScreenBinding
 import com.veselovvv.drinks.databinding.ProgressFullscreenBinding
 import com.veselovvv.drinks.presentation.core.loadImage
 
@@ -23,12 +24,16 @@ class CocktailsAdapter(
     }
 
     override fun getItemViewType(position: Int) = when (cocktails[position]) {
+        is CocktailUi.NoResults -> -1
         is CocktailUi.Base -> 0
         is CocktailUi.Fail -> 1
-        is CocktailUi.Progress -> 2
+        else -> 2
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = when (viewType) {
+        -1 -> DrinksViewHolder.NoResults(
+            NoResultsScreenBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        )
         0 -> DrinksViewHolder.Base(
             CocktailLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false),
             cocktailListener
@@ -51,6 +56,8 @@ class CocktailsAdapter(
         open fun bind(cocktail: CocktailUi) = Unit
 
         class FullscreenProgress(binding: ProgressFullscreenBinding) : DrinksViewHolder(binding.root)
+
+        class NoResults(binding: NoResultsScreenBinding): DrinksViewHolder(binding.root)
 
         class Base(
             private val binding: CocktailLayoutBinding,

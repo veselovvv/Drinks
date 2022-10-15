@@ -9,6 +9,8 @@ sealed class CocktailUi : Object<Unit, CocktailUi.BaseMapper> {
 
     object Progress : CocktailUi()
 
+    object NoResults : CocktailUi()
+
     class Base(
         private val name: String,
         private val category: String,
