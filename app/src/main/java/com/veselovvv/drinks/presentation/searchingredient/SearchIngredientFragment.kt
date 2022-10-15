@@ -49,8 +49,9 @@ class SearchIngredientFragment : BaseFragment<FragmentSearchIngredientBinding>()
 
         viewModel.observe(this) { ui ->
             ui.map(binding.searchIngredientProgressLayout.root)
-            ui.mapNoResults(binding.searchIngredientNoResultsLayout)
+            ui.mapNoResults(binding.searchIngredientNoResultsLayout.root)
             ui.map(
+                binding.searchIngredientStartLayout,
                 binding.searchIngredientName,
                 binding.searchIngredientDescription,
                 binding.searchIngredientType,

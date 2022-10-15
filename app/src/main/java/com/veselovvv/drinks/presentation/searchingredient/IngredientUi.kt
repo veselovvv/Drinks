@@ -11,6 +11,7 @@ sealed class IngredientUi : IngredientUiMapper {
     override fun mapNoResults(noResultsLayout: ViewGroup) = noResultsLayout.hide()
 
     override fun map(
+        startLayout: ViewGroup,
         nameTextView: MaterialTextView,
         descriptionTextView: MaterialTextView,
         typeTextView: MaterialTextView,
@@ -36,12 +37,14 @@ sealed class IngredientUi : IngredientUiMapper {
         private val abv: String
     ) : IngredientUi() {
         override fun map(
+            startLayout: ViewGroup,
             nameTextView: MaterialTextView,
             descriptionTextView: MaterialTextView,
             typeTextView: MaterialTextView,
             alcoholTextView: MaterialTextView,
             abvTextView: MaterialTextView
         ) {
+            startLayout.hide()
             nameTextView.text = name
             descriptionTextView.text = description
             typeTextView.text = type

@@ -8,6 +8,7 @@ interface IngredientUiMapper {
     fun map(progressLayout: ViewGroup)
     fun mapNoResults(noResultsLayout: ViewGroup)
     fun map(
+        startLayout: ViewGroup,
         nameTextView: MaterialTextView,
         descriptionTextView: MaterialTextView,
         typeTextView: MaterialTextView,

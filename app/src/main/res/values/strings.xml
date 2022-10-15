@@ -17,4 +17,5 @@
     <string name="abv">Abv:</string>
     <string name="alcohol">Alcohol</string>
     <string name="subcategories">Subcategories</string>
+    <string name="click_on_the_search_button_to_find_an_ingredient">Click on the search button to find an ingredient</string>
 </resources>
