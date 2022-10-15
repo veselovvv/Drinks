@@ -1,2 +1,2 @@
 # Drinks
-This project isn't finished yet.
+🍹 Android App using Kotlin, Clean Architecture, MVVM, ViewModel, LiveData, Coroutines, Hilt, Navigation Component, View Binding, Retrofit, Gson, Room, Glide, CircleImageView, Material Design, and Bottom Navigation. This app displays a list of drinks retrieved from this API - https://www.thecocktaildb.com/api.php, as well as detailed information about each drink. There is also searching for drinks, finding a drink of some category, getting a random drink, and searching for an ingredient.
