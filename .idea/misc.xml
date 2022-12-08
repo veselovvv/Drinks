@@ -3,15 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/MyApps/Drinks/app/src/main/res/drawable-v24/baseline_liquor_24.xml" value="0.1" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/MyApps/Drinks/app/src/main/res/layout/activity_main.xml" value="0.18614130434782608" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/MyApps/Drinks/app/src/main/res/layout/cocktail_layout.xml" value="0.264" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/MyApps/Drinks/app/src/main/res/layout/fail_fullscreen.xml" value="0.18795289855072464" />
-        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/MyApps/Drinks/app/src/main/res/layout/fragment_categories.xml" value="0.18614130434782608" />
-        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/MyApps/Drinks/app/src/main/res/layout/fragment_cocktail_details.xml" value="0.264" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/MyApps/Drinks/app/src/main/res/layout/fragment_categories.xml" value="0.1" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/MyApps/Drinks/app/src/main/res/layout/fragment_cocktail_details.xml" value="0.1" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/MyApps/Drinks/app/src/main/res/layout/fragment_cocktails.xml" value="0.1897644927536232" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/MyApps/Drinks/app/src/main/res/layout/fragment_random_cocktail.xml" value="0.21014492753623187" />
-        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/MyApps/Drinks/app/src/main/res/layout/fragment_search_ingredient.xml" value="0.264" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/MyApps/Drinks/app/src/main/res/layout/fragment_search_ingredient.xml" value="0.10042735042735043" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/MyApps/Drinks/app/src/main/res/layout/fragment_subcategories.xml" value="0.24456521739130435" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/MyApps/Drinks/app/src/main/res/layout/fragment_subcategory_cocktails.xml" value="0.24456521739130435" />
         <entry key="..\:/Users/ADMIN/AndroidStudioProjects/MyApps/Drinks/app/src/main/res/layout/progress_fullscreen.xml" value="0.23550724637681159" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/MyApps/Drinks/app/src/main/res/layout/subcategory_cocktail_layout.xml" value="0.192481884057971" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/MyApps/Drinks/app/src/main/res/layout/subcategory_layout.xml" value="0.24456521739130435" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/MyApps/Drinks/app/src/main/res/menu/cocktails_toolbar_menu.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/ADMIN/AndroidStudioProjects/MyApps/Drinks/app/src/main/res/menu/search_ingredient_menu.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>

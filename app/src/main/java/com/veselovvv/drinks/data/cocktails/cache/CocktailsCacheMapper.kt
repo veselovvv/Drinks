@@ -6,6 +6,6 @@ import com.veselovvv.drinks.data.cocktails.ToCocktailMapper
 
 interface CocktailsCacheMapper : Mapper.Data<List<CocktailDb>, List<CocktailData>> {
     class Base(private val mapper: ToCocktailMapper) : CocktailsCacheMapper {
-        override fun map(data: List<CocktailDb>) = data.map { it.map(mapper)  }
+        override fun map(data: List<CocktailDb>) = data.map { it.map(mapper) }
     }
 }
