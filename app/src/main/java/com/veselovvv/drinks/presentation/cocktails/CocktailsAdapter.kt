@@ -57,7 +57,7 @@ class CocktailsAdapter(
 
         class FullscreenProgress(binding: ProgressFullscreenBinding) : DrinksViewHolder(binding.root)
 
-        class NoResults(binding: NoResultsScreenBinding): DrinksViewHolder(binding.root)
+        class NoResults(binding: NoResultsScreenBinding) : DrinksViewHolder(binding.root)
 
         class Base(
             private val binding: CocktailLayoutBinding,
