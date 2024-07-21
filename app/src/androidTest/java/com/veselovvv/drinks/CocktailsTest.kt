@@ -70,4 +70,80 @@ class CocktailsTest {
             )
         )
     }
+
+    /**
+     * Check cocktails list state
+     * 1. Click search button
+     * Check search view state
+     * 2. CLick back search button
+     * Check cocktails list state
+     * 3. Click search button
+     * Check search view state
+     * 4. Type "Mart" in search view
+     * Check cocktails list state with found cocktail
+     * 5. CLick back search button
+     * Check cocktails list state
+     * 6. Click search button
+     * Check search view state
+     * 7. Type "Zor" in search view
+     * Check no results state with text "No results to show"
+     * 8. Type "Mart" in search view
+     * Check cocktails list state with found cocktail
+     * 9. CLick back search button
+     * Check cocktails list state
+     */
+    @Test
+    fun searchCocktails() = with(CocktailsPage()) {
+        checkCocktailsListState(
+            cocktails = listOf(
+                Pair("Margarita", "Ordinal"),
+                Pair("Martini", "Ordinal"),
+                Pair("Clover Club", "Ordinary Drink")
+            )
+        )
+        clickSearchButton()
+        checkSearchViewState()
+        clickBackSearchButton()
+        checkCocktailsListState(
+            cocktails = listOf(
+                Pair("Margarita", "Ordinal"),
+                Pair("Martini", "Ordinal"),
+                Pair("Clover Club", "Ordinary Drink")
+            )
+        )
+        clickSearchButton()
+        checkSearchViewState()
+        typeInSearchView(text = "Mart")
+        checkCocktailsListState(
+            cocktails = listOf(
+                Pair("Martini", "Ordinal")
+            )
+        )
+        clickBackSearchButton()
+        checkCocktailsListState(
+            cocktails = listOf(
+                Pair("Margarita", "Ordinal"),
+                Pair("Martini", "Ordinal"),
+                Pair("Clover Club", "Ordinary Drink")
+            )
+        )
+        clickSearchButton()
+        checkSearchViewState()
+        typeInSearchView(text = "Zor")
+        checkNoResultsState(text = "No results to show")
+        typeInSearchView(text = "Mart")
+        checkCocktailsListState(
+            cocktails = listOf(
+                Pair("Martini", "Ordinal")
+            )
+        )
+        clickBackSearchButton()
+        checkCocktailsListState(
+            cocktails = listOf(
+                Pair("Margarita", "Ordinal"),
+                Pair("Martini", "Ordinal"),
+                Pair("Clover Club", "Ordinary Drink")
+            )
+        )
+    }
 }
