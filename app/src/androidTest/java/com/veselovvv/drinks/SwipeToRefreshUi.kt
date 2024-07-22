@@ -10,12 +10,12 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withParent
 import org.hamcrest.Matchers.allOf
 
-class SwipeToRefreshUi {
+class SwipeToRefreshUi(rootLayout: Int, swipeToRefreshLayout: Int) {
     private val interaction: ViewInteraction = onView(
         allOf(
-            withParent(withId(R.id.cocktails_root_layout)),
+            withParent(withId(rootLayout)),
             withParent(isAssignableFrom(LinearLayout::class.java)),
-            withId(R.id.cocktails_swipe_to_refresh),
+            withId(swipeToRefreshLayout),
             isAssignableFrom(SwipeRefreshLayout::class.java)
         )
     )
