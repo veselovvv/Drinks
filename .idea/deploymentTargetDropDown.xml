@@ -21,6 +21,9 @@
           <timeTargetWasSelectedWithDropDown value="2024-07-21T10:30:38.026050400Z" />
         </State>
       </entry>
+      <entry key="loadCocktailDetailsAndGoBack()">
+        <State />
+      </entry>
       <entry key="searchCocktails()">
         <State />
       </entry>
