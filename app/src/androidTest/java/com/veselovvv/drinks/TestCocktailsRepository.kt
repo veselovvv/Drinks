@@ -18,5 +18,12 @@ class TestCocktailsRepository : CocktailsRepository {
 
     override suspend fun fetchCocktails() = CocktailsData.Success(cocktails)
     override suspend fun fetchCocktailsFromNetwork() = CocktailsData.Fail(UnknownHostException())
-    override suspend fun searchCocktails(query: String) = CocktailsData.Success(foundCocktails)
+    override suspend fun searchCocktails(query: String) =
+        CocktailsData.Success(
+            when {
+                query == "" -> cocktails
+                query.startsWith("Mart") -> foundCocktails
+                else -> listOf()
+            }
+        )
 }
