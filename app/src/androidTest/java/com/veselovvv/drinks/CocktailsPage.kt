@@ -3,6 +3,7 @@ package com.veselovvv.drinks
 class CocktailsPage : AbstractPage(R.id.cocktails_root_layout) {
     private val recyclerViewUi = RecyclerViewUi()
     private val searchViewUi = SearchViewUi()
+    private val bottomNavigationUi = BottomNavigationUi()
     private val swipeToRefreshUi = SwipeToRefreshUi(
         R.id.cocktails_root_layout,
         R.id.cocktails_swipe_to_refresh
@@ -20,4 +21,5 @@ class CocktailsPage : AbstractPage(R.id.cocktails_root_layout) {
     fun typeInSearchView(text: String) = searchViewUi.typeInSearchView(text = text)
     fun checkNoResultsState(text: String) = recyclerViewUi.checkNoResultsState(text = text)
     fun clickOnItemInList(index: Int) = recyclerViewUi.clickOnItemInList(index)
+    fun clickOnCategoriesTab() = bottomNavigationUi.clickOnCategoriesTab()
 }

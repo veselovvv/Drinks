@@ -14,8 +14,8 @@ import com.google.android.material.textview.MaterialTextView
 import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.Matchers
 
-abstract class AbstractPage(rootLayout: Int) {
-    private val interaction: ViewInteraction = onView(
+abstract class AbstractPage(protected val rootLayout: Int) {
+    protected open val interaction: ViewInteraction = onView(
         allOf(
             isAssignableFrom(LinearLayout::class.java),
             withId(rootLayout)
