@@ -8,6 +8,8 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import org.hamcrest.Matchers.allOf
 
 class CategoriesPage : AbstractPage(R.id.categories_root_layout) {
+    private val cardViewUi = CardViewUi()
+
     override val interaction: ViewInteraction = onView(
         allOf(
             isAssignableFrom(GridLayout::class.java),
@@ -23,4 +25,8 @@ class CategoriesPage : AbstractPage(R.id.categories_root_layout) {
         checkTextViewHasText(R.id.ingredients_text_view, category3)
         checkTextViewHasText(R.id.alcohol_text_view, category4)
     }
+
+    fun clickOnCategoriesCardView() = cardViewUi.click(
+        cardViewId = R.id.categories_categories_card_view
+    )
 }
