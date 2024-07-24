@@ -1,5 +1,6 @@
 package com.veselovvv.drinks
 
+import androidx.test.espresso.Espresso.pressBack
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -48,6 +49,70 @@ class CategoriesTest {
                 category4 = "Alcohol"
             )
             activityScenarioRule.scenario.recreate()
+            checkIsVisible()
+            checkCategoriesState(
+                category1 = "Categories",
+                category2 = "Glass",
+                category3 = "Ingredients",
+                category4 = "Alcohol"
+            )
+        }
+    }
+
+    /**
+     * Check Cocktails Page is visible
+     * 1. Click on "Categories" tab in BottomNavigation
+     * Check Categories Page is visible
+     * Check categories state
+     * 2. Click on "Categories" CardView
+     * Check Subcategories Page is visible
+     * Check subcategories list state
+     * 3. Swipe to refresh
+     * Check Subcategories Page is visible
+     * Check subcategories list state
+     * 4. Press back button
+     * Check Subcategories Page is not visible
+     * Check Categories Page is visible
+     * Check categories state
+     */
+    @Test
+    fun loadCategoriesSubcategoriesAndGoBack() {
+        with(CocktailsPage()) {
+            checkIsVisible()
+            clickOnCategoriesTab()
+        }
+
+        val categoriesPage = CategoriesPage()
+
+        with(categoriesPage) {
+            checkIsVisible()
+            checkCategoriesState(
+                category1 = "Categories",
+                category2 = "Glass",
+                category3 = "Ingredients",
+                category4 = "Alcohol"
+            )
+            clickOnCategoriesCardView()
+        }
+
+        val subcategoriesPage = SubcategoriesPage()
+
+        with(subcategoriesPage) {
+            checkIsVisible()
+            checkSubcategoriesListState(
+                subcategories = listOf("Ordinary Drink", "Cocktail", "Shake", "Coffee / Tea")
+            )
+            swipeToRefresh()
+            checkIsVisible()
+            checkSubcategoriesListState(
+                subcategories = listOf("Ordinary Drink", "Cocktail", "Shake", "Coffee / Tea")
+            )
+        }
+
+        pressBack()
+
+        subcategoriesPage.checkIsNotVisible()
+        with(categoriesPage) {
             checkIsVisible()
             checkCategoriesState(
                 category1 = "Categories",
