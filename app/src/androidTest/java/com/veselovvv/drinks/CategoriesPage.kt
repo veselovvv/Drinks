@@ -29,4 +29,8 @@ class CategoriesPage : AbstractPage(R.id.categories_root_layout) {
     fun clickOnCategoriesCardView() = cardViewUi.click(
         cardViewId = R.id.categories_categories_card_view
     )
+
+    fun clickOnGlassCardView() = cardViewUi.click(
+        cardViewId = R.id.categories_glass_card_view
+    )
 }
