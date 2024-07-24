@@ -68,9 +68,11 @@ class CategoriesTest {
      * Check Subcategories Page is visible
      * Check subcategories list state
      * 3. Swipe to refresh
+     * Check error state with text "No connection. Please try again!"
+     * 4. Click "Try again" button
      * Check Subcategories Page is visible
      * Check subcategories list state
-     * 4. Press back button
+     * 5. Press back button
      * Check Subcategories Page is not visible
      * Check Categories Page is visible
      * Check categories state
@@ -103,6 +105,8 @@ class CategoriesTest {
                 subcategories = listOf("Ordinary Drink", "Cocktail", "Shake", "Coffee / Tea")
             )
             swipeToRefresh()
+            checkErrorState(message = "No connection. Please try again!")
+            clickTryAgainButton()
             checkIsVisible()
             checkSubcategoriesListState(
                 subcategories = listOf("Ordinary Drink", "Cocktail", "Shake", "Coffee / Tea")
@@ -132,9 +136,11 @@ class CategoriesTest {
      * Check Subcategories Page is visible
      * Check subcategories list state
      * 3. Swipe to refresh
+     * Check error state with text "No connection. Please try again!"
+     * 4. Click "Try again" button
      * Check Subcategories Page is visible
      * Check subcategories list state
-     * 4. Press back button
+     * 5. Press back button
      * Check Subcategories Page is not visible
      * Check Categories Page is visible
      * Check categories state
@@ -167,6 +173,8 @@ class CategoriesTest {
                 subcategories = listOf("Cocktail glass", "Whiskey glass", "Wine glass")
             )
             swipeToRefresh()
+            checkErrorState(message = "No connection. Please try again!")
+            clickTryAgainButton()
             checkIsVisible()
             checkSubcategoriesListState(
                 subcategories = listOf("Cocktail glass", "Whiskey glass", "Wine glass")
@@ -196,9 +204,11 @@ class CategoriesTest {
      * Check Subcategories Page is visible
      * Check subcategories list state
      * 3. Swipe to refresh
+     * Check error state with text "No connection. Please try again!"
+     * 4. Click "Try again" button
      * Check Subcategories Page is visible
      * Check subcategories list state
-     * 4. Press back button
+     * 5. Press back button
      * Check Subcategories Page is not visible
      * Check Categories Page is visible
      * Check categories state
@@ -231,6 +241,8 @@ class CategoriesTest {
                 subcategories = listOf("Gin", "Dark rum", "Sugar", "Milk")
             )
             swipeToRefresh()
+            checkErrorState(message = "No connection. Please try again!")
+            clickTryAgainButton()
             checkIsVisible()
             checkSubcategoriesListState(
                 subcategories = listOf("Gin", "Dark rum", "Sugar", "Milk")
@@ -260,9 +272,11 @@ class CategoriesTest {
      * Check Subcategories Page is visible
      * Check subcategories list state
      * 3. Swipe to refresh
+     * Check error state with text "No connection. Please try again!"
+     * 4. Click "Try again" button
      * Check Subcategories Page is visible
      * Check subcategories list state
-     * 4. Press back button
+     * 5. Press back button
      * Check Subcategories Page is not visible
      * Check Categories Page is visible
      * Check categories state
@@ -295,6 +309,8 @@ class CategoriesTest {
                 subcategories = listOf("Alcoholic", "Non alcoholic", "Optional alcohol")
             )
             swipeToRefresh()
+            checkErrorState(message = "No connection. Please try again!")
+            clickTryAgainButton()
             checkIsVisible()
             checkSubcategoriesListState(
                 subcategories = listOf("Alcoholic", "Non alcoholic", "Optional alcohol")

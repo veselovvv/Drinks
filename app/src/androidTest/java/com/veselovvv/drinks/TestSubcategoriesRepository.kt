@@ -4,10 +4,15 @@ import com.veselovvv.drinks.core.Category
 import com.veselovvv.drinks.data.subcategories.SubcategoriesData
 import com.veselovvv.drinks.data.subcategories.SubcategoriesRepository
 import com.veselovvv.drinks.data.subcategories.SubcategoryData
+import java.net.UnknownHostException
 
 class TestSubcategoriesRepository : SubcategoriesRepository {
-    override suspend fun fetchSubcategories(category: Category) =
-        SubcategoriesData.Success(
+    private var isSuccess = false
+
+    override suspend fun fetchSubcategories(category: Category): SubcategoriesData {
+        isSuccess = !isSuccess
+
+        return if (isSuccess) SubcategoriesData.Success(
             when (category) {
                 Category.CATEGORIES -> listOf(
                     SubcategoryData("Ordinary Drink"),
@@ -32,5 +37,6 @@ class TestSubcategoriesRepository : SubcategoriesRepository {
                     SubcategoryData("Optional alcohol")
                 )
             }
-        )
+        ) else SubcategoriesData.Fail(UnknownHostException())
+    }
 }
