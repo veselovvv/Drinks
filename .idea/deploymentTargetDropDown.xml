@@ -40,10 +40,10 @@
       <entry key="loadCategoriesSubcategoriesAndGoBack()">
         <State />
       </entry>
-      <entry key="loadCocktailDetailsAndGoBack()">
+      <entry key="loadGlassSubcategoriesAndGoBack()">
         <State />
       </entry>
-      <entry key="loadGlassSubcategoriesAndGoBack()">
+      <entry key="loadIngredientsSubcategoriesAndGoBack()">
         <State />
       </entry>
     </value>
