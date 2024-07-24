@@ -1,7 +1,7 @@
 package com.veselovvv.drinks
 
 class CocktailsPage : AbstractPage(R.id.cocktails_root_layout) {
-    private val recyclerViewUi = RecyclerViewUi()
+    private val recyclerViewUi = CocktailsRecyclerViewUi()
     private val searchViewUi = SearchViewUi()
     private val bottomNavigationUi = BottomNavigationUi()
     private val swipeToRefreshUi = SwipeToRefreshUi(

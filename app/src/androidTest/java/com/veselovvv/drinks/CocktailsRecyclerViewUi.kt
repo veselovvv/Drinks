@@ -14,7 +14,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withParent
 import org.hamcrest.Matchers.allOf
 
-class RecyclerViewUi {
+class CocktailsRecyclerViewUi {
     private val interaction: ViewInteraction = onView(
         allOf(
             withParent(withId(R.id.cocktails_swipe_to_refresh)),
