@@ -1,9 +1,7 @@
 package com.veselovvv.drinks
 
 import androidx.recyclerview.widget.RecyclerView
-import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
 import androidx.test.espresso.contrib.RecyclerViewActions.scrollToPosition
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 
@@ -26,10 +24,6 @@ class CocktailsRecyclerViewUi : RecyclerViewUi(
             .check(matches(withItemViewType(NO_RESULTS_VIEW_TYPE)))
             .check(matches(isDisplayed()))
             .check(matches(withRecyclerViewItemText(R.id.no_results_text_view, text)))
-    }
-
-    fun clickOnItemInList(index: Int) {
-        interaction.perform(actionOnItemAtPosition<RecyclerView.ViewHolder>(index, click()))
     }
 
     /**

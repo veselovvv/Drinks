@@ -13,4 +13,5 @@ class SubcategoriesPage : AbstractPage(R.id.subcategories_root_layout) {
     fun swipeToRefresh() = swipeToRefreshUi.swipeToRefresh()
     fun checkErrorState(message: String) = recyclerViewUi.checkErrorState(message = message)
     fun clickTryAgainButton() = recyclerViewUi.clickTryAgainButton()
+    fun clickOnItemInList(index: Int) = recyclerViewUi.clickOnItemInList(index)
 }
