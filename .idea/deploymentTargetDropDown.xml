@@ -40,7 +40,7 @@
       <entry key="loadCategoriesSubcategoriesAndOpenSubcategoryAndGoBack()">
         <State />
       </entry>
-      <entry key="loadGlassSubcategoriesAndGoBack()">
+      <entry key="loadGlassSubcategoriesAndOpenSubcategoryAndGoBack()">
         <State />
       </entry>
       <entry key="loadIngredientsSubcategoriesAndGoBack()">
