@@ -330,4 +330,76 @@ class CategoriesTest {
             )
         }
     }
+
+    /**
+     * Check Cocktails Page is visible
+     * 1. Click on "Categories" tab in BottomNavigation
+     * Check Categories Page is visible
+     * Check categories state
+     * 2. Click on "Categories" CardView
+     * Check Subcategories Page is visible
+     * Check subcategories list state
+     * 3. Click on first item in list (index = 0)
+     * Check Subcategory Cocktails Page is visible
+     * Check subcategory cocktails list state
+     * 4. Swipe to refresh
+     * Check error state with text "No connection. Please try again!"
+     * 5. Click "Try again" button
+     * Check Subcategory Cocktails Page is visible
+     * Check subcategory cocktails list state
+     * 6. Press back button
+     * Check Subcategory Cocktails Page is not visible
+     * Check Subcategories Page is visible
+     */
+    @Test
+    fun loadCategoriesSubcategoriesAndOpenSubcategoryAndGoBack() {
+        with(CocktailsPage()) {
+            checkIsVisible()
+            clickOnCategoriesTab()
+        }
+
+        val categoriesPage = CategoriesPage()
+
+        with(categoriesPage) {
+            checkIsVisible()
+            checkCategoriesState(
+                category1 = "Categories",
+                category2 = "Glass",
+                category3 = "Ingredients",
+                category4 = "Alcohol"
+            )
+            clickOnCategoriesCardView()
+        }
+
+        val subcategoriesPage = SubcategoriesPage()
+
+        with(subcategoriesPage) {
+            checkIsVisible()
+            checkSubcategoriesListState(
+                subcategories = listOf("Ordinary Drink", "Cocktail", "Shake", "Coffee / Tea")
+            )
+            clickOnItemInList(index = 0)
+        }
+
+        val subcategoryCocktailsPage = SubcategoryCocktailsPage()
+
+        with(subcategoryCocktailsPage) {
+            checkIsVisible()
+            checkSubcategoryCocktailsListState(
+                subcategoryCocktails = listOf("410 Gone", "501 Blue", "A. J.")
+            )
+            swipeToRefresh()
+            checkErrorState(message = "No connection. Please try again!")
+            clickTryAgainButton()
+            checkIsVisible()
+            checkSubcategoryCocktailsListState(
+                subcategoryCocktails = listOf("410 Gone", "501 Blue", "A. J.")
+            )
+        }
+
+        pressBack()
+
+        subcategoryCocktailsPage.checkIsNotVisible()
+        subcategoriesPage.checkIsVisible()
+    }
 }
