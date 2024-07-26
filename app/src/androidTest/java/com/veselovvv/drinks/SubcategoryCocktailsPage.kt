@@ -13,4 +13,5 @@ class SubcategoryCocktailsPage : AbstractPage(R.id.subcategory_cocktails_root_la
     fun swipeToRefresh() = swipeToRefreshUi.swipeToRefresh()
     fun checkErrorState(message: String) = recyclerViewUi.checkErrorState(message = message)
     fun clickTryAgainButton() = recyclerViewUi.clickTryAgainButton()
+    fun clickOnItemInList(index: Int) = recyclerViewUi.clickOnItemInList(index)
 }

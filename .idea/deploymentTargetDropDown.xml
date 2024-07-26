@@ -18,6 +18,9 @@
           <timeTargetWasSelectedWithDropDown value="2024-07-23T15:17:50.146761800Z" />
         </State>
       </entry>
+      <entry key="CocktailsTest">
+        <State />
+      </entry>
       <entry key="app">
         <State>
           <targetSelectedWithDropDown>
@@ -34,16 +37,13 @@
           <timeTargetWasSelectedWithDropDown value="2024-07-21T10:30:38.026050400Z" />
         </State>
       </entry>
-      <entry key="loadCategoriesSubcategoriesAndGoBack()">
+      <entry key="loadCategoriesSubcategoriesAndOpenCocktailDetailsAndGoBack()">
         <State />
       </entry>
       <entry key="loadCategoriesSubcategoriesAndOpenSubcategoryAndGoBack()">
         <State />
       </entry>
       <entry key="loadGlassSubcategoriesAndOpenSubcategoryAndGoBack()">
-        <State />
-      </entry>
-      <entry key="loadIngredientsSubcategoriesAndGoBack()">
         <State />
       </entry>
     </value>
