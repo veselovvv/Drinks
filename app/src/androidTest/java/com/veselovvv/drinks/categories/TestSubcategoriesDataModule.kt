@@ -1,4 +1,4 @@
-package com.veselovvv.drinks
+package com.veselovvv.drinks.categories
 
 import com.veselovvv.drinks.data.subcategories.SubcategoriesRepository
 import com.veselovvv.drinks.di.subcategories.SubcategoriesDataModule

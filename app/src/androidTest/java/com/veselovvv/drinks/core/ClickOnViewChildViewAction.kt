@@ -1,4 +1,4 @@
-package com.veselovvv.drinks
+package com.veselovvv.drinks.core
 
 import android.view.View
 import androidx.annotation.IdRes

@@ -1,4 +1,4 @@
-package com.veselovvv.drinks
+package com.veselovvv.drinks.core
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -12,6 +12,7 @@ import androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withParent
+import com.veselovvv.drinks.R
 import org.hamcrest.Matchers.allOf
 
 abstract class RecyclerViewUi(swipeToRefreshId: Int, recyclerViewId: Int) {

@@ -1,4 +1,4 @@
-package com.veselovvv.drinks
+package com.veselovvv.drinks.core
 
 import android.widget.LinearLayout
 import androidx.test.espresso.Espresso.onView
@@ -11,6 +11,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withParent
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textview.MaterialTextView
+import com.veselovvv.drinks.R
 import org.hamcrest.Matchers.allOf
 
 class ErrorUi {

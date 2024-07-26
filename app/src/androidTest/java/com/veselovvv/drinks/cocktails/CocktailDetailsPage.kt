@@ -1,4 +1,9 @@
-package com.veselovvv.drinks
+package com.veselovvv.drinks.cocktails
+
+import com.veselovvv.drinks.R
+import com.veselovvv.drinks.core.AbstractPage
+import com.veselovvv.drinks.core.ErrorUi
+import com.veselovvv.drinks.core.SwipeToRefreshUi
 
 class CocktailDetailsPage : AbstractPage(R.id.cocktail_details_root_layout) {
     private val swipeToRefreshUi = SwipeToRefreshUi(

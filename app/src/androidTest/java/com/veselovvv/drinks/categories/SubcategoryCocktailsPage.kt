@@ -1,4 +1,8 @@
-package com.veselovvv.drinks
+package com.veselovvv.drinks.categories
+
+import com.veselovvv.drinks.R
+import com.veselovvv.drinks.core.AbstractPage
+import com.veselovvv.drinks.core.SwipeToRefreshUi
 
 class SubcategoryCocktailsPage : AbstractPage(R.id.subcategory_cocktails_root_layout) {
     private val recyclerViewUi = SubcategoryCocktailsRecyclerViewUi()

@@ -1,10 +1,12 @@
-package com.veselovvv.drinks
+package com.veselovvv.drinks.categories
 
 import android.widget.GridLayout
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.ViewInteraction
 import androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom
 import androidx.test.espresso.matcher.ViewMatchers.withId
+import com.veselovvv.drinks.R
+import com.veselovvv.drinks.core.AbstractPage
 import org.hamcrest.Matchers.allOf
 
 class CategoriesPage : AbstractPage(R.id.categories_root_layout) {

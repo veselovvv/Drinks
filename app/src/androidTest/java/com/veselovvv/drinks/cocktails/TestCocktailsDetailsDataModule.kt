@@ -1,4 +1,4 @@
-package com.veselovvv.drinks
+package com.veselovvv.drinks.cocktails
 
 import com.veselovvv.drinks.data.cocktaildetails.CocktailDetailsRepository
 import com.veselovvv.drinks.di.cocktaildetails.CocktailDetailsDataModule

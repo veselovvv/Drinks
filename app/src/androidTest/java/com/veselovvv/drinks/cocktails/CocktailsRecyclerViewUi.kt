@@ -1,9 +1,13 @@
-package com.veselovvv.drinks
+package com.veselovvv.drinks.cocktails
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions.scrollToPosition
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import com.veselovvv.drinks.R
+import com.veselovvv.drinks.core.RecyclerViewUi
+import com.veselovvv.drinks.core.withItemViewType
+import com.veselovvv.drinks.core.withRecyclerViewItemText
 
 class CocktailsRecyclerViewUi : RecyclerViewUi(
     R.id.cocktails_swipe_to_refresh,

@@ -1,4 +1,4 @@
-package com.veselovvv.drinks
+package com.veselovvv.drinks.core
 
 import android.widget.EditText
 import android.widget.ImageView
@@ -14,6 +14,7 @@ import androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withContentDescription
 import androidx.test.espresso.matcher.ViewMatchers.withId
+import com.veselovvv.drinks.R
 import org.hamcrest.Matchers.allOf
 
 class SearchViewUi {

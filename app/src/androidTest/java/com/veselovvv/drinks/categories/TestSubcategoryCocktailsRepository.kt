@@ -1,4 +1,4 @@
-package com.veselovvv.drinks
+package com.veselovvv.drinks.categories
 
 import com.veselovvv.drinks.core.Category
 import com.veselovvv.drinks.data.subcategorycocktails.SubcategoryCocktailData

@@ -3,20 +3,10 @@
   <component name="deploymentTargetDropDown">
     <value>
       <entry key="CategoriesTest">
-        <State>
-          <targetSelectedWithDropDown>
-            <Target>
-              <type value="QUICK_BOOT_TARGET" />
-              <deviceKey>
-                <Key>
-                  <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\ADMIN\.android\avd\Nexus_5X_API_29.avd" />
-                </Key>
-              </deviceKey>
-            </Target>
-          </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-07-23T15:17:50.146761800Z" />
-        </State>
+        <State />
+      </entry>
+      <entry key="CategoriesTest (1)">
+        <State />
       </entry>
       <entry key="CocktailsTest">
         <State />
@@ -37,13 +27,10 @@
           <timeTargetWasSelectedWithDropDown value="2024-07-21T10:30:38.026050400Z" />
         </State>
       </entry>
-      <entry key="loadCategoriesSubcategoriesAndOpenCocktailDetailsAndGoBack()">
+      <entry key="loadAlcoholSubcategoriesAndOpenCocktailDetailsAndGoBack()">
         <State />
       </entry>
-      <entry key="loadCategoriesSubcategoriesAndOpenSubcategoryAndGoBack()">
-        <State />
-      </entry>
-      <entry key="loadGlassSubcategoriesAndOpenSubcategoryAndGoBack()">
+      <entry key="loadIngredientsSubcategoriesAndOpenCocktailDetailsAndGoBack()">
         <State />
       </entry>
     </value>

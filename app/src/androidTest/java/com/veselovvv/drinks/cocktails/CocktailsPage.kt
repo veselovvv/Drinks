@@ -1,4 +1,9 @@
-package com.veselovvv.drinks
+package com.veselovvv.drinks.cocktails
+
+import com.veselovvv.drinks.R
+import com.veselovvv.drinks.core.AbstractPage
+import com.veselovvv.drinks.core.SearchViewUi
+import com.veselovvv.drinks.core.SwipeToRefreshUi
 
 class CocktailsPage : AbstractPage(R.id.cocktails_root_layout) {
     private val recyclerViewUi = CocktailsRecyclerViewUi()

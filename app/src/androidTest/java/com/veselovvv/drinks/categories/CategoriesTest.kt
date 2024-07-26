@@ -1,8 +1,11 @@
-package com.veselovvv.drinks
+package com.veselovvv.drinks.categories
 
 import androidx.test.espresso.Espresso.pressBack
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.veselovvv.drinks.MainActivity
+import com.veselovvv.drinks.cocktails.CocktailDetailsPage
+import com.veselovvv.drinks.cocktails.CocktailsPage
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Before

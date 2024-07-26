@@ -1,4 +1,4 @@
-package com.veselovvv.drinks
+package com.veselovvv.drinks.categories
 
 import android.widget.GridLayout
 import androidx.annotation.IdRes
@@ -8,6 +8,7 @@ import androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withParent
 import com.google.android.material.card.MaterialCardView
+import com.veselovvv.drinks.R
 import org.hamcrest.Matchers.allOf
 
 class CardViewUi {
