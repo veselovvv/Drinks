@@ -921,4 +921,105 @@ class CategoriesTest {
         cocktailDetailsPage.checkIsNotVisible()
         subcategoryCocktailsPage.checkIsVisible()
     }
+
+    /**
+     * Check Cocktails Page is visible
+     * 1. Click on "Categories" tab in BottomNavigation
+     * Check Categories Page is visible
+     * Check categories state
+     * 2. Click on "Alcohol" CardView
+     * Check Subcategories Page is visible
+     * Check subcategories list state
+     * 3. Click on first item in list (index = 0)
+     * Check Subcategory Cocktails Page is visible
+     * Check subcategory cocktails list state
+     * 4. Click on first item in list (index = 0)
+     * Check Cocktail Details Page is visible
+     * Check cocktail details state
+     * 5. Swipe to refresh
+     * Check error state with text "No connection. Please try again!"
+     * 6. Click "Try again" button
+     * Check Cocktail Details Page is visible
+     * Check cocktail details state
+     * 7. Press back button
+     * Check Cocktail Details Page is not visible
+     * Check Subcategory Cocktails Page is visible
+     */
+    @Test
+    fun loadAlcoholSubcategoriesAndOpenCocktailDetailsAndGoBack() {
+        with(CocktailsPage()) {
+            checkIsVisible()
+            clickOnCategoriesTab()
+        }
+
+        val categoriesPage = CategoriesPage()
+
+        with(categoriesPage) {
+            checkIsVisible()
+            checkCategoriesState(
+                category1 = "Categories",
+                category2 = "Glass",
+                category3 = "Ingredients",
+                category4 = "Alcohol"
+            )
+            clickOnAlcoholCardView()
+        }
+
+        val subcategoriesPage = SubcategoriesPage()
+
+        with(subcategoriesPage) {
+            checkIsVisible()
+            checkSubcategoriesListState(
+                subcategories = listOf("Alcoholic", "Non alcoholic", "Optional alcohol")
+            )
+            clickOnItemInList(index = 0)
+        }
+
+        val subcategoryCocktailsPage = SubcategoryCocktailsPage()
+
+        with(subcategoryCocktailsPage) {
+            checkIsVisible()
+            checkSubcategoryCocktailsListState(
+                subcategoryCocktails = listOf("3 Wise Men", "410 Gone", "501 Blue")
+            )
+            clickOnItemInList(index = 0)
+        }
+
+        val cocktailDetailsPage = CocktailDetailsPage()
+
+        with(cocktailDetailsPage) {
+            checkIsVisible()
+            checkCocktailDetailsState(
+                name = "3 Wise Men",
+                category = "Alcoholic",
+                alcoholic = "Alcoholic",
+                glass = "Collins glass",
+                instructions = "Put them in a glass and slam it to the head.",
+                ingredient1 = "Jack Daniels",
+                ingredient2 = "Johnnie Walker",
+                ingredient3 = "Jim Beam",
+                ingredient4 = ""
+            )
+            swipeToRefresh()
+            checkErrorState(message = "No connection. Please try again!")
+            clickTryAgainButton()
+            checkIsVisible()
+            checkCocktailDetailsState(
+                name = "3 Wise Men",
+                category = "Alcoholic",
+                alcoholic = "Alcoholic",
+                glass = "Collins glass",
+                instructions = "Put them in a glass and slam it to the head.",
+                ingredient1 = "Jack Daniels",
+                ingredient2 = "Johnnie Walker",
+                ingredient3 = "Jim Beam",
+                ingredient4 = ""
+            )
+        }
+
+        pressBack()
+
+        cocktailDetailsPage.checkIsNotVisible()
+        subcategoryCocktailsPage.checkIsVisible()
+    }
 }
