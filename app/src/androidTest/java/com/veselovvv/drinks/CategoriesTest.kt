@@ -820,4 +820,105 @@ class CategoriesTest {
         cocktailDetailsPage.checkIsNotVisible()
         subcategoryCocktailsPage.checkIsVisible()
     }
+
+    /**
+     * Check Cocktails Page is visible
+     * 1. Click on "Categories" tab in BottomNavigation
+     * Check Categories Page is visible
+     * Check categories state
+     * 2. Click on "Ingredients" CardView
+     * Check Subcategories Page is visible
+     * Check subcategories list state
+     * 3. Click on first item in list (index = 0)
+     * Check Subcategory Cocktails Page is visible
+     * Check subcategory cocktails list state
+     * 4. Click on first item in list (index = 0)
+     * Check Cocktail Details Page is visible
+     * Check cocktail details state
+     * 5. Swipe to refresh
+     * Check error state with text "No connection. Please try again!"
+     * 6. Click "Try again" button
+     * Check Cocktail Details Page is visible
+     * Check cocktail details state
+     * 7. Press back button
+     * Check Cocktail Details Page is not visible
+     * Check Subcategory Cocktails Page is visible
+     */
+    @Test
+    fun loadIngredientsSubcategoriesAndOpenCocktailDetailsAndGoBack() {
+        with(CocktailsPage()) {
+            checkIsVisible()
+            clickOnCategoriesTab()
+        }
+
+        val categoriesPage = CategoriesPage()
+
+        with(categoriesPage) {
+            checkIsVisible()
+            checkCategoriesState(
+                category1 = "Categories",
+                category2 = "Glass",
+                category3 = "Ingredients",
+                category4 = "Alcohol"
+            )
+            clickOnIngredientsCardView()
+        }
+
+        val subcategoriesPage = SubcategoriesPage()
+
+        with(subcategoriesPage) {
+            checkIsVisible()
+            checkSubcategoriesListState(
+                subcategories = listOf("Gin", "Dark rum", "Sugar", "Milk")
+            )
+            clickOnItemInList(index = 0)
+        }
+
+        val subcategoryCocktailsPage = SubcategoryCocktailsPage()
+
+        with(subcategoryCocktailsPage) {
+            checkIsVisible()
+            checkSubcategoryCocktailsListState(
+                subcategoryCocktails = listOf("Ace", "Casino", "Derby")
+            )
+            clickOnItemInList(index = 0)
+        }
+
+        val cocktailDetailsPage = CocktailDetailsPage()
+
+        with(cocktailDetailsPage) {
+            checkIsVisible()
+            checkCocktailDetailsState(
+                name = "Ace",
+                category = "Gin",
+                alcoholic = "Alcoholic",
+                glass = "Martini glass",
+                instructions = "Shake all the ingredients in a cocktail shaker and ice then strain in a cold glass.",
+                ingredient1 = "Gin",
+                ingredient2 = "Grenadine",
+                ingredient3 = "Heavy cream",
+                ingredient4 = "Milk"
+            )
+            swipeToRefresh()
+            checkErrorState(message = "No connection. Please try again!")
+            clickTryAgainButton()
+            checkIsVisible()
+            checkCocktailDetailsState(
+                name = "Ace",
+                category = "Gin",
+                alcoholic = "Alcoholic",
+                glass = "Martini glass",
+                instructions = "Shake all the ingredients in a cocktail shaker and ice then strain in a cold glass.",
+                ingredient1 = "Gin",
+                ingredient2 = "Grenadine",
+                ingredient3 = "Heavy cream",
+                ingredient4 = "Milk"
+            )
+        }
+
+        pressBack()
+
+        cocktailDetailsPage.checkIsNotVisible()
+        subcategoryCocktailsPage.checkIsVisible()
+    }
 }
