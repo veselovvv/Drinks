@@ -7,6 +7,7 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.ViewInteraction
 import androidx.test.espresso.action.ViewActions.clearText
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.pressImeActionButton
 import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom
@@ -44,5 +45,9 @@ class SearchViewUi {
 
     fun typeInSearchView(text: String) {
         searchEditTextInteraction.perform(clearText()).perform(typeText(text))
+    }
+
+    fun clickSearchButtonOnKeyboard() {
+        searchEditTextInteraction.perform(pressImeActionButton())
     }
 }

@@ -10,7 +10,7 @@ class CocktailDetailsPage : AbstractPage(R.id.cocktail_details_root_layout) {
         R.id.cocktail_details_root_layout,
         R.id.cocktail_details_swipe_to_refresh
     )
-    private val errorUi = ErrorUi()
+    private val errorUi = ErrorUi(R.id.cocktail_details_fail_layout)
 
     fun checkCocktailDetailsState(
         name: String,

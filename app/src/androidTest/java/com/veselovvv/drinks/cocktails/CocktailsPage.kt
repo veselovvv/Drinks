@@ -28,4 +28,5 @@ class CocktailsPage : AbstractPage(R.id.cocktails_root_layout) {
     fun clickOnItemInList(index: Int) = recyclerViewUi.clickOnItemInList(index)
     fun clickOnCategoriesTab() = bottomNavigationUi.clickOnCategoriesTab()
     fun clickOnRandomTab() = bottomNavigationUi.clickOnRandomTab()
+    fun clickOnIngredientsTab() = bottomNavigationUi.clickOnIngredientsTab()
 }

@@ -12,7 +12,6 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import com.google.android.material.textview.MaterialTextView
 import org.hamcrest.CoreMatchers.allOf
-import org.hamcrest.Matchers
 
 abstract class AbstractPage(protected val rootLayout: Int) {
     protected open val interaction: ViewInteraction = onView(
@@ -32,7 +31,7 @@ abstract class AbstractPage(protected val rootLayout: Int) {
 
     fun checkTextViewHasText(@IdRes textViewId: Int, text: String) {
         onView(
-            Matchers.allOf(
+            allOf(
                 withId(textViewId),
                 isAssignableFrom(MaterialTextView::class.java)
             )

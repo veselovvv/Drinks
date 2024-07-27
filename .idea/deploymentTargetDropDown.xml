@@ -11,6 +11,12 @@
       <entry key="CocktailsTest">
         <State />
       </entry>
+      <entry key="IngredientsTest">
+        <State />
+      </entry>
+      <entry key="RandomTest">
+        <State />
+      </entry>
       <entry key="app">
         <State>
           <targetSelectedWithDropDown>
@@ -26,12 +32,6 @@
           </targetSelectedWithDropDown>
           <timeTargetWasSelectedWithDropDown value="2024-07-21T10:30:38.026050400Z" />
         </State>
-      </entry>
-      <entry key="loadAlcoholSubcategoriesAndOpenCocktailDetailsAndGoBack()">
-        <State />
-      </entry>
-      <entry key="loadIngredientsSubcategoriesAndOpenCocktailDetailsAndGoBack()">
-        <State />
       </entry>
     </value>
   </component>

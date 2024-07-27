@@ -13,4 +13,5 @@ class BottomNavigationUi {
 
     fun clickOnCategoriesTab() = clickOnTab(R.id.categoriesFragment)
     fun clickOnRandomTab() = clickOnTab(R.id.randomCocktailFragment)
+    fun clickOnIngredientsTab() = clickOnTab(R.id.searchIngredientFragment)
 }

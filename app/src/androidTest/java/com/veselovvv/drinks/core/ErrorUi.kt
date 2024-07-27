@@ -1,6 +1,7 @@
 package com.veselovvv.drinks.core
 
 import android.widget.LinearLayout
+import androidx.annotation.IdRes
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -14,8 +15,8 @@ import com.google.android.material.textview.MaterialTextView
 import com.veselovvv.drinks.R
 import org.hamcrest.Matchers.allOf
 
-class ErrorUi {
-    private val parentIdMatcher = withId(R.id.cocktail_details_fail_layout)
+class ErrorUi(@IdRes private val failLayoutId: Int) {
+    private val parentIdMatcher = withId(failLayoutId)
     private val parentClassMatcher = isAssignableFrom(LinearLayout::class.java)
 
     fun checkErrorState(message: String) {
